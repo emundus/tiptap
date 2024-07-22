@@ -31,11 +31,31 @@ npm run dev
 npm run build
 ```
 
+#### Generate documentation
+1. First install vuese
+```
+npm install -g @vuese/cli
+```
+2. Then generate the documentation
+```
+vuese gen
+```
+3. The documentation is generated in the `docs` folder. You can preview it by running the following command
+```
+npm run docs:dev
+```
+4. To build the documentation for production
+```
+npm run docs:build
+```
+
 
 ## Acknowledgements
 
 - [FontAwesome icons](https://fontawesome.com/icons)
 - [TipTap](https://tiptap.dev/)
+- [VitePress](https://vitepress.dev/)
+- [Vuese](https://vuese.github.io/website/cli/#writing-documentation-for-your-component)
 
 
 ## Roadmap

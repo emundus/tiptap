@@ -8,10 +8,15 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Editor', link: '/TipTapEditor' }
+      { text: 'Quick start', link: '/quick-start' }
     ],
 
     sidebar: [
+      {
+        items: [
+          { text: 'Quick start', link: '/quick-start' }
+        ]
+      },
       {
         text: 'Main Components',
         items: [
