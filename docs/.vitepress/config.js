@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "TipTapEditor",
-  description: "A custom Editor based on TipTap package",
+  description: "A VitePress Site",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -39,6 +39,5 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/emundus/tiptap' }
     ]
   },
-  outDir: '../docs',
   base: '/tiptap/'
 })

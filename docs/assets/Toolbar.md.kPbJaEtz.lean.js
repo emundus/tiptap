@@ -1,1 +1,0 @@
-import{_ as t,c as e,o as a,a2 as d}from"./chunks/framework.COY32EXb.js";const m=JSON.parse('{"title":"Toolbar","description":"","frontmatter":{},"headers":[],"relativePath":"Toolbar.md","filePath":"Toolbar.md"}'),o={name:"Toolbar.md"},r=d("",7),i=[r];function s(h,n,l,c,b,_){return a(),e("div",null,i)}const u=t(o,[["render",s]]);export{m as __pageData,u as default};

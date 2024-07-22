@@ -1,5 +1,5 @@
 {
     "genType": "markdown",
-    "outDir": "vitepress",
+    "outDir": "docs",
     "markdownDir": ""
 }

@@ -22,9 +22,9 @@
     "types": "vue-tsc ",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
-    "docs:dev": "vitepress dev vitepress",
-    "docs:build": "vitepress build vitepress",
-    "docs:preview": "vitepress preview vitepress"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
