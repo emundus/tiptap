@@ -1,0 +1,1 @@
+import{_ as t,c as d,o as e,a2 as a}from"./chunks/framework.COY32EXb.js";const p=JSON.parse('{"title":"Modal","description":"","frontmatter":{},"headers":[],"relativePath":"Modal.md","filePath":"Modal.md"}'),o={name:"Modal.md"},r=a("",7),l=[r];function c(h,s,n,i,_,b){return e(),d("div",null,l)}const m=t(o,[["render",c]]);export{p as __pageData,m as default};
