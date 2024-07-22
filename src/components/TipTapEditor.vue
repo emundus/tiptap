@@ -215,7 +215,7 @@ export default {
     },
     wrapperClasses: {
       type: Array,
-      default: 'editor-wrapper'
+      default: () => ['editor-wrapper'],
     },
     // Class for the toolbar
     toolbarClasses: {

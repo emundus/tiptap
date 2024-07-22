@@ -1,0 +1,1 @@
+import{_ as t,c as e,o,a2 as d}from"./chunks/framework.BLHWSx9w.js";const f=JSON.parse('{"title":"Popover","description":"","frontmatter":{},"headers":[],"relativePath":"Popover.md","filePath":"Popover.md"}'),a={name:"Popover.md"},r=d("",5),n=[r];function c(s,h,i,p,l,_){return o(),e("div",null,n)}const m=t(a,[["render",c]]);export{f as __pageData,m as default};

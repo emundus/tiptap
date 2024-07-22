@@ -7,6 +7,7 @@
 |---|---|---|---|---|
 |editorProp|-|`Editor`|`true`|-|
 |extensions|Extensions to display in the toolbar|`Array`|`true`|-|
+|displayMediaLibrary|-|`Boolean`|`false`|false|
 
 <!-- @vuese:Toolbar:props:end -->
 
@@ -17,6 +18,7 @@
 |Event Name|Description|Parameters|
 |---|---|---|
 |importImage|-|-|
+|showMediaLibrary|-|-|
 
 <!-- @vuese:Toolbar:events:end -->
 

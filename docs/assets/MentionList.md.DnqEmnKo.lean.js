@@ -1,0 +1,1 @@
+import{_ as t,c as e,o,a2 as d}from"./chunks/framework.BLHWSx9w.js";const u=JSON.parse('{"title":"MentionList","description":"","frontmatter":{},"headers":[],"relativePath":"MentionList.md","filePath":"MentionList.md"}'),a={name:"MentionList.md"},i=d("",3),n=[i];function r(s,c,h,_,l,p){return o(),e("div",null,n)}const f=t(a,[["render",r]]);export{u as __pageData,f as default};

@@ -2,6 +2,9 @@
 .DS_Store
 node_modules
 
+# Vitepress
+vitepress/.vitepress/cache
+
 # Ignore only if we want to publish to packagist
 #/dist
 
