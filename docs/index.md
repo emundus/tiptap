@@ -10,6 +10,9 @@ hero:
     - theme: brand
       text: Discover
       link: /TipTapEditor
+    - theme: alt
+      text: Github
+      link: "https://github.com/emundus/tiptap"
 
 features:
   - title: Feature A
