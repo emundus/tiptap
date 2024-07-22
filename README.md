@@ -3,6 +3,8 @@
 
 This project is a wysiwig-type editor based on [TipTap](https://tiptap.dev/).
 
+## Demo
+https://emundus.github.io/tiptap/
 
 
 ## Built with
