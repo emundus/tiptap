@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "TipTapEditor",
-  description: "A VitePress Site",
+  description: "An editor for Vue.js based on TipTap package",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
