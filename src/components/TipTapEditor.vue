@@ -11,7 +11,7 @@
         v-bind:font_families="fontFamilies"
     />
     <div class="editor-content" :class="editorContentClasses" :style="{ 'height': this.editorContentHeight }">
-      <editor-content @paste="pasteEventHandler" :editor="editor"/>
+      <editor-content @paste="pasteEventHandler" :editor="editor" :style="{height: '100%'}"/>
     </div>
     <media-library
         v-if="showMediaLibrary"

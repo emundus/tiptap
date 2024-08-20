@@ -130,130 +130,134 @@
         overflow: scroll;
         padding: 8px;
 
-        /* Placeholder (at the top) */
-        p.is-editor-empty:first-child::before {
-            color: rgb(163 163 163);
-            content: attr(data-placeholder);
-            float: left;
-            height: 0;
-            pointer-events: none;
-        }
+        .tiptap {
+            height: 100%;
 
-        /* HEADINGS */
-        h1 {
-            font-size: 32px;
-        }
-
-        h2 {
-            font-size: 24px;
-        }
-
-        h3 {
-            font-size: 20px;
-        }
-
-        :first-child {
-            margin-top: 0;
-        }
-
-        a {
-            color: rgb(59 130 246);
-            text-decoration: underline;
-        }
-
-        /* List styles */
-        ul,
-        ol {
-            padding: 0 1rem;
-            margin: 1.25rem 1rem 1.25rem 0.4rem;
-
-            li p {
-                margin-top: 0.25em;
-                margin-bottom: 0.25em;
+            /* Placeholder (at the top) */
+            p.is-editor-empty:first-child::before {
+                color: rgb(163 163 163);
+                content: attr(data-placeholder);
+                float: left;
+                height: 0;
+                pointer-events: none;
             }
-        }
 
-        ul {
-            list-style-type: disc;
-        }
+            /* HEADINGS */
+            h1 {
+                font-size: 32px;
+            }
 
-        ol {
-            list-style-type: decimal;
-        }
+            h2 {
+                font-size: 24px;
+            }
 
-        /* Table-specific styling */
-        table {
-            border-collapse: collapse;
-            margin: 0;
-            overflow: hidden;
-            table-layout: fixed;
-            width: 100%;
+            h3 {
+                font-size: 20px;
+            }
 
-            td,
-            th {
-                border: 1px solid rgb(163 163 163);;
-                box-sizing: border-box;
-                min-width: 1em;
-                padding: 6px 8px;
-                position: relative;
-                vertical-align: top;
+            :first-child {
+                margin-top: 0;
+            }
 
-                > * {
-                    margin-bottom: 0;
+            a {
+                color: rgb(59 130 246);
+                text-decoration: underline;
+            }
+
+            /* List styles */
+            ul,
+            ol {
+                padding: 0 1rem;
+                margin: 1.25rem 1rem 1.25rem 0.4rem;
+
+                li p {
+                    margin-top: 0.25em;
+                    margin-bottom: 0.25em;
                 }
             }
 
-            th {
-                background-color: rgb(245 245 245);
-                font-weight: bold;
-                text-align: left;
+            ul {
+                list-style-type: disc;
             }
 
-            .selectedCell:after {
-                background-color: rgb(229 229 229);
-                content: "";
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                pointer-events: none;
-                position: absolute;
-                z-index: 2;
+            ol {
+                list-style-type: decimal;
             }
 
-            .column-resize-handle {
-                background-color: rgb(191 219 254);
-                bottom: -2px;
-                pointer-events: none;
-                position: absolute;
-                right: -2px;
-                top: 0;
-                width: 4px;
+            /* Table-specific styling */
+            table {
+                border-collapse: collapse;
+                margin: 0;
+                overflow: hidden;
+                table-layout: fixed;
+                width: 100%;
+
+                td,
+                th {
+                    border: 1px solid rgb(163 163 163);;
+                    box-sizing: border-box;
+                    min-width: 1em;
+                    padding: 6px 8px;
+                    position: relative;
+                    vertical-align: top;
+
+                    > * {
+                        margin-bottom: 0;
+                    }
+                }
+
+                th {
+                    background-color: rgb(245 245 245);
+                    font-weight: bold;
+                    text-align: left;
+                }
+
+                .selectedCell:after {
+                    background-color: rgb(229 229 229);
+                    content: "";
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    pointer-events: none;
+                    position: absolute;
+                    z-index: 2;
+                }
+
+                .column-resize-handle {
+                    background-color: rgb(191 219 254);
+                    bottom: -2px;
+                    pointer-events: none;
+                    position: absolute;
+                    right: -2px;
+                    top: 0;
+                    width: 4px;
+                }
             }
-        }
 
-        .tableWrapper {
-            margin: 1.5rem 0;
-            overflow-x: auto;
-        }
+            .tableWrapper {
+                margin: 1.5rem 0;
+                overflow-x: auto;
+            }
 
-        &.resize-cursor {
-            cursor: col-resize;
-        }
+            &.resize-cursor {
+                cursor: col-resize;
+            }
 
-        pre {
-            background: black;
-            border-radius: 0.5rem;
-            color: white;
-            font-family: 'JetBrainsMono', monospace;
-            margin: 1.5rem 0;
-            padding: 0.75rem 1rem;
+            pre {
+                background: black;
+                border-radius: 0.5rem;
+                color: white;
+                font-family: 'JetBrainsMono', monospace;
+                margin: 1.5rem 0;
+                padding: 0.75rem 1rem;
 
-            code {
-                background: none;
-                color: inherit;
-                font-size: 0.8rem;
-                padding: 0;
+                code {
+                    background: none;
+                    color: inherit;
+                    font-size: 0.8rem;
+                    padding: 0;
+                }
             }
         }
     }

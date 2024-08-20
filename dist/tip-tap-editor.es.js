@@ -29020,7 +29020,7 @@ const _sfc_main = {
     },
     wrapperClasses: {
       type: Array,
-      default: "editor-wrapper"
+      default: () => ["editor-wrapper"]
     },
     toolbarClasses: {
       type: Array
@@ -29271,7 +29271,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [
       createVNode(_component_editor_content, {
         onPaste: $options.pasteEventHandler,
-        editor: $data.editor
+        editor: $data.editor,
+        style: { height: "100%" }
       }, null, 8, ["onPaste", "editor"])
     ], 6),
     $data.showMediaLibrary ? (openBlock(), createBlock(_component_media_library, {

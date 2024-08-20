@@ -7,6 +7,7 @@
        :preset="preset"
        :plugins="plugins"
        :media-files="files"
+       :editor-content-height="'30em'"
    />
   </div>
 </template>
