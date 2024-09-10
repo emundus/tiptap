@@ -64,13 +64,13 @@
               <span>{{ translate('toolbar.image.import',this.locale) }}</span>
               <input type="file" id="import_file" accept="image/*" style="display:none" @change="$emit('importImage',$event)">
             </li>
-            <li class="image-item">
+            <li class="image-item" @click="importFromUrl">
               <font-awesome-icon :icon="['fas', 'link']"/>
-              <span @click="importFromUrl">{{ translate('toolbar.image.url',this.locale) }}</span>
+              <span>{{ translate('toolbar.image.url',this.locale) }}</span>
             </li>
-            <li class="image-item" v-if="displayMediaLibrary">
+            <li class="image-item" v-if="displayMediaLibrary" @click="$emit('showMediaLibrary')">
               <font-awesome-icon :icon="['fas', 'photo-film']"/>
-              <span @click="$emit('showMediaLibrary')">{{ translate('toolbar.image.media',this.locale) }}</span>
+              <span>{{ translate('toolbar.image.media',this.locale) }}</span>
             </li>
           </ul>
         </popover>
