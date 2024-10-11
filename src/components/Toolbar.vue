@@ -158,7 +158,7 @@
       </li>
 
       <!-- IMAGE MODAL -->
-      <modal v-if="imageModal" class="insert-image" name="insert-image" :resizable="true" :draggable="true" :click-to-close="false" width="auto">
+      <modal v-if="imageModal" class="insert-image" name="insert-image" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
         <div class="insert-image--modal-head">
           <div class="insert-image--modal-head-title">
             <h2 style="margin-top: 0">{{ translate('toolbar.image.modal_title', this.locale) }}</h2>
@@ -259,7 +259,6 @@
       </li>
       <!-- -->
 
-      <li class="editor-separator" v-if="displaySeparator"></li>
       <li v-if="this.extensions.includes('table')"
           @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
         <font-awesome-icon :icon="['fas', 'table']"/>
