@@ -180,7 +180,7 @@
           </ul>
 
           <div class="insert-image--import-file" v-if="imageMethod === 'import'">
-            <input type="file" id="import_file" accept="image/*" style="display:none" @change="$emit('importImage',$event)">
+            <input type="file" id="import_file" accept="image/*" style="display:none" @change="$emit('importImage',$event);imageModal = false">
             <div class="insert-image--import-file-dz" @click="importFromComputer">
                 <div>
                   <span>{{ translate('toolbar.image.import_drag',this.locale) }} <u>{{ translate('toolbar.image.import_download',this.locale) }}</u></span>
