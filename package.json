@@ -5,13 +5,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/tip-tap-editor.umd.js",
-  "module": "./dist/tip-tap-editor.es.js",
-  "browser": "./dist/tip-tap-editor.umd.js",
+  "main": "./dist/tip-tap-editor.umd.cjs",
+  "module": "./dist/tip-tap-editor.js",
+  "browser": "./dist/tip-tap-editor.umd.cjs",
   "exports": {
     ".": {
-      "import": "./dist/tip-tap-editor.es.js",
-      "require": "./dist/tip-tap-editor.umd.js"
+      "import": "./dist/tip-tap-editor.js",
+      "require": "./dist/tip-tap-editor.umd.cjs"
     },
     "./style.css": "./dist/style.css"
   },
