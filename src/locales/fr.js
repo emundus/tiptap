@@ -26,11 +26,18 @@ export default
         },
         link: 'Lien',
         image: {
-            title: 'Insérer une image',
+            title: 'Image',
             import: 'Importer',
             url: 'Via URL',
-            media: 'Depuis la bibliothèque',
-        }
+            url_title: 'Lien',
+            url_insert: 'Insérer',
+            media: 'Média',
+            modal_title: 'Insérer une image',
+            import_drag: 'Glissez déposez ou',
+            import_download: 'cliquez pour télécharger'
+        },
+        insert: 'Insérer',
+        format: 'Format',
     },
     placeholder: {
         default: 'Commencez à écrire...'

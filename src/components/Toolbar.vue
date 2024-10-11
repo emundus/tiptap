@@ -23,12 +23,17 @@
     </bubble-menu>
 
     <ul class="editor-toolbar--list">
+
+      <!-- HISTORY -->
       <li v-if="this.extensions.includes('history')" @click.stop.prevent="this.editor.chain().focus().undo().run()">
         <font-awesome-icon :icon="['fas', 'reply']"/>
       </li>
       <li v-if="this.extensions.includes('history')" @click.stop.prevent="editor.chain().focus().redo().run()">
         <font-awesome-icon :icon="['fas', 'share']"/>
       </li>
+      <!-- -->
+
+      <!-- FONTS -->
       <select v-if="this.extensions.includes('fontFamily')" v-model="fontFamily">
         <option
             v-for="family in fontFamilies"
@@ -47,93 +52,16 @@
           {{ size }}
         </option>
       </select>
-      <li v-if="this.extensions.includes('link')"
-          :class="{ 'is-active': editor.isActive('link') }"
-          :title="translate('toolbar.link',this.locale)"
-          @click.stop.prevent="setLink"
-      >
-        <font-awesome-icon :icon="['fas', 'link']"/>
-      </li>
-      <li v-if="this.extensions.includes('image')"
-          :title="translate('toolbar.image.title',this.locale)"
-          class="editor-image">
-        <popover :icon="'image'">
-          <ul class="editor-image--popover">
-            <li class="image-item" @click="importFromComputer">
-              <font-awesome-icon :icon="['fas', 'upload']"/>
-              <span>{{ translate('toolbar.image.import',this.locale) }}</span>
-              <input type="file" id="import_file" accept="image/*" style="display:none" @change="$emit('importImage',$event)">
-            </li>
-            <li class="image-item" @click="importFromUrl">
-              <font-awesome-icon :icon="['fas', 'link']"/>
-              <span>{{ translate('toolbar.image.url',this.locale) }}</span>
-            </li>
-            <li class="image-item" v-if="displayMediaLibrary" @click="$emit('showMediaLibrary')">
-              <font-awesome-icon :icon="['fas', 'photo-film']"/>
-              <span>{{ translate('toolbar.image.media',this.locale) }}</span>
-            </li>
-          </ul>
-        </popover>
-      </li>
-      <li v-if="this.extensions.includes('bold')"
-          :title="translate('toolbar.bold',this.locale)"
-          :class="{ 'is-active': editor.isActive('bold') }"
-          @click.stop.prevent="editor.chain().focus().toggleBold().run()"
-      >
-        <font-awesome-icon :icon="['fas', 'bold']"/>
-      </li>
-      <li v-if="this.extensions.includes('italic')"
-          :title="translate('toolbar.italic',this.locale)"
-          :class="{ 'is-active': editor.isActive('italic') }"
-          @click.stop.prevent="editor.chain().focus().toggleItalic().run()"
-      >
-        <font-awesome-icon :icon="['fas', 'italic']"/>
-      </li>
-      <li v-if="this.extensions.includes('underline')"
-          :title="translate('toolbar.underline',this.locale)"
-          :class="{ 'is-active': editor.isActive('underline') }"
-          @click.stop.prevent="editor.chain().focus().toggleUnderline().run()"
-      >
-        <font-awesome-icon :icon="['fas', 'underline']"/>
-      </li>
-      <li v-if="this.extensions.includes('strike')"
-          :title="translate('toolbar.strike',this.locale)"
-          :class="{ 'is-active': editor.isActive('strike') }"
-          @click.stop.prevent="editor.chain().focus().toggleStrike().run()"
-      >
-        <font-awesome-icon :icon="['fas', 'text-slash']"/>
-      </li>
-      <li v-if="this.extensions.includes('highlight')"
-          :title="translate('toolbar.highlight',this.locale)"
-          :class="{ 'is-active': editor.isActive('highlight') }"
-          @click.stop.prevent="editor.chain().focus().toggleHighlight({ color: '#ffc078' }).run()"
-      >
-        <font-awesome-icon :icon="['fas', 'highlighter']"/>
-      </li>
-      <li v-if="this.extensions.includes('codeblock')"
-          :class="{ 'is-active': editor.isActive('codeBlock') }"
-          title="Code"
-          @click.stop.prevent="editor.chain().focus().toggleCodeBlock().run()"
-      >
-        <font-awesome-icon :icon="['fas', 'code']"/>
-      </li>
-      <li v-if="this.extensions.includes('color')"
-          :title="translate('toolbar.textColor',this.locale)"
-          class="editor-color-picker"
-      >
-        <popover :icon="'fa-fill-drip'">
-          <div
-              class="editor-color-picker--popover">
-            <span
-                v-for="color of colors"
-                @click="setColor(color.value)"
-                :style="{ backgroundColor: color.value, border: '1px solid grey', margin: '2px' }">
-            </span>
-          </div>
-        </popover>
-      </li>
-      <li class="editor-separator" v-if="displaySeparator">
-      </li>
+      <select v-model="heading"
+              v-if="this.extensions.includes('h1') || this.extensions.includes('h2') || this.extensions.includes('h3')">
+        <option :key="0" :value="0">{{ translate('toolbar.headings.normal', this.locale) }}</option>
+        <option v-for="level in headingLevels" :key="level" :value="level">
+          {{ translate('toolbar.headings.h' + level, this.locale) }}
+        </option>
+      </select>
+      <!-- -->
+
+      <!-- ALIGNMENTS -->
       <li v-if="this.extensions.includes('left')"
           :title="translate('toolbar.align.left',this.locale)"
           :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }"
@@ -178,32 +106,164 @@
       >
         <font-awesome-icon :icon="['fas', 'list-ol']"/>
       </li>
+      <!-- -->
+
+      <!-- COLOR -->
+      <li v-if="this.extensions.includes('color')"
+          :title="translate('toolbar.textColor',this.locale)"
+          class="editor-color-picker"
+      >
+        <popover :icon="'fa-fill-drip'">
+          <div
+              class="editor-color-picker--popover">
+            <span
+                v-for="color of colors"
+                @click="setColor(color.value)"
+                :style="{ backgroundColor: color.value, border: '1px solid grey', margin: '2px' }">
+            </span>
+          </div>
+        </popover>
+      </li>
+      <!-- -->
+
+      <!-- INSERT MENU -->
+      <li v-if="this.extensions.includes('image') || this.extensions.includes('link')"
+          :title="translate('toolbar.insert',this.locale)"
+          class="editor-image">
+        <popover :text="translate('toolbar.insert',this.locale)">
+          <ul class="editor-image--popover">
+            <li v-if="this.extensions.includes('image')"
+                class="image-item"
+                @click="openImageModal">
+              <font-awesome-icon :icon="['fas', 'upload']"/>
+              <span>{{ translate('toolbar.image.title',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('link')"
+                class="image-item"
+                :title="translate('toolbar.link',this.locale)"
+                @click.stop.prevent="setLink"
+            >
+              <font-awesome-icon :icon="['fas', 'link']"/>
+              <span>{{ translate('toolbar.link',this.locale) }}</span>
+            </li>
+            <li v-if="displayMediaLibrary"
+                class="image-item"
+                @click="$emit('showMediaLibrary')"
+                :title="translate('toolbar.image.media',this.locale)">
+              <font-awesome-icon :icon="['fas', 'photo-film']"/>
+              <span>{{ translate('toolbar.image.media',this.locale) }}</span>
+            </li>
+          </ul>
+        </popover>
+      </li>
+
+      <!-- IMAGE MODAL -->
+      <modal v-if="imageModal" class="insert-image" name="insert-image" :resizable="true" :draggable="true" :click-to-close="false" width="auto">
+        <div class="insert-image--modal-head">
+          <div class="insert-image--modal-head-title">
+            <h2 style="margin-top: 0">{{ translate('toolbar.image.modal_title', this.locale) }}</h2>
+            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="imageModal = false"/>
+          </div>
+        </div>
+        <div class="insert-image--modal-content">
+          <ul>
+            <li class="image-item"
+                :class="imageMethod === 'import' ? 'active' : ''"
+                @click="imageMethod = 'import'">
+              <span>{{ translate('toolbar.image.import',this.locale) }}</span>
+            </li>
+            <li class="image-item"
+                :class="imageMethod === 'url' ? 'active' : ''"
+                @click="imageMethod = 'url'">
+              <span>{{ translate('toolbar.image.url',this.locale) }}</span>
+            </li>
+          </ul>
+
+          <div class="insert-image--import-file" v-if="imageMethod === 'import'">
+            <input type="file" id="import_file" accept="image/*" style="display:none" @change="$emit('importImage',$event)">
+            <div class="insert-image--import-file-dz" @click="importFromComputer">
+                <div>
+                  <span>{{ translate('toolbar.image.import_drag',this.locale) }} <u>{{ translate('toolbar.image.import_download',this.locale) }}</u></span>
+                  <font-awesome-icon :icon="['fas', 'cloud-arrow-up']"/>
+                </div>
+            </div>
+          </div>
+
+          <div class="insert-image--from-url" v-if="imageMethod === 'url'">
+            <label for="image-url">{{ translate('toolbar.image.url_title',this.locale) }}</label>
+            <input type="text" id="image-url" v-model="imageImported" placeholder="https://example.com/image.jpg">
+
+            <div class="insert-image--from-url-button">
+              <button @click="editor.chain().focus().setImage({src: imageImported}).run();imageImported = null;imageModal = false">{{ translate('toolbar.image.url_insert',this.locale) }}</button>
+            </div>
+          </div>
+        </div>
+      </modal>
+      <!-- -->
+
+      <!-- FORMAT MENU -->
+      <li v-if="this.extensions.includes('bold') || this.extensions.includes('italic') || this.extensions.includes('underline') || this.extensions.includes('strike') || this.extensions.includes('highlight') || this.extensions.includes('codeblock')"
+          :title="translate('toolbar.format',this.locale)"
+          class="editor-image">
+        <popover :text="translate('toolbar.format',this.locale)">
+          <ul class="editor-image--popover">
+            <li v-if="this.extensions.includes('bold')"
+                class="image-item"
+                :title="translate('toolbar.bold',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleBold().run()">
+              <font-awesome-icon :icon="['fas', 'bold']"/>
+              <span>{{ translate('toolbar.bold',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('italic')"
+                class="image-item"
+                :title="translate('toolbar.italic',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleItalic().run()"
+            >
+              <font-awesome-icon :icon="['fas', 'italic']"/>
+              <span>{{ translate('toolbar.italic',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('underline')"
+                class="image-item"
+                :title="translate('toolbar.underline',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleUnderline().run()"
+            >
+              <font-awesome-icon :icon="['fas', 'underline']"/>
+              <span>{{ translate('toolbar.underline',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('strike')"
+                class="image-item"
+                :title="translate('toolbar.strike',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleStrike().run()"
+            >
+              <font-awesome-icon :icon="['fas', 'text-slash']"/>
+              <span>{{ translate('toolbar.strike',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('highlight')"
+                class="image-item"
+                :title="translate('toolbar.highlight',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleHighlight({ color: '#ffc078' }).run()"
+            >
+              <font-awesome-icon :icon="['fas', 'highlighter']"/>
+              <span>{{ translate('toolbar.highlight',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('codeblock')"
+                class="image-item"
+                :title="translate('toolbar.codeblock',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleCodeBlock().run()"
+            >
+              <font-awesome-icon :icon="['fas', 'code']"/>
+              <span>Code</span>
+            </li>
+          </ul>
+        </popover>
+      </li>
+      <!-- -->
+
+      <li class="editor-separator" v-if="displaySeparator"></li>
       <li v-if="this.extensions.includes('table')"
           @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
         <font-awesome-icon :icon="['fas', 'table']"/>
       </li>
-      <!--      <li
-                title="Espaces de lignes"
-            >
-              <popover icon="arrows-left-right-to-line">
-                <ul class="editor-p-3 editor-bg-white editor-rounded-md editor-border editor-border-neutral-300 editor-top-[28px] editor-w-max editor-z-10">
-                  <li
-                      v-for="lh of lineHeights"
-                      @click="setLineHeight(lh.value)"
-                      class="image-item">
-                    <font-awesome-icon v-show="lineHeight === lh.value" :icon="['fas', 'check']" />
-                    {{ lh.label }}
-                  </li>
-                </ul>
-              </popover>
-            </li>-->
-      <select v-model="heading"
-              v-if="this.extensions.includes('h1') || this.extensions.includes('h2') || this.extensions.includes('h3')">
-        <option :key="0" :value="0">{{ translate('toolbar.headings.normal', this.locale) }}</option>
-        <option v-for="level in headingLevels" :key="level" :value="level">
-          {{ translate('toolbar.headings.h' + level, this.locale) }}
-        </option>
-      </select>
     </ul>
   </div>
 </template>
@@ -214,10 +274,12 @@ import translate from "@/mixins/translate.js";
 
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Popover from "@/components/utils/Popover.vue";
+import Modal from "@/components/utils/Modal.vue";
 
 export default {
   name: "Toolbar",
   components: {
+    Modal,
     Popover,
     FontAwesomeIcon,
     BubbleMenu
@@ -282,7 +344,10 @@ export default {
 
       editor: undefined,
       locale: this.locale,
-      urlIconNotFound: false
+      urlIconNotFound: false,
+
+      imageModal: false,
+      imageMethod: 'import'
     }
   },
 
@@ -370,6 +435,10 @@ export default {
           .extendMarkRange('link')
           .setLink({href: url})
           .run()
+    },
+
+    openImageModal() {
+      this.imageModal = true;
     },
 
     importFromUrl() {

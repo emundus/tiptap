@@ -1,8 +1,15 @@
 <template>
   <div :id="id" class="popover-container" @focusout="onFocusOut">
-    <font-awesome-icon :icon="['fas', icon]" @click="onClickToggle"/>
+    <div @click="onClickToggle">
+      <span v-if="text">
+      {{ text }}
+      <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+    </span>
+      <font-awesome-icon v-if="icon" :icon="['fas', icon]"/>
+    </div>
+
     <transition name="fade">
-      <div v-if="isOpen" class="popover-content tw-shadow tw-rounded" ref="popoverContent" :style="popoverContentStyle">
+      <div v-show="isOpen" class="popover-content tw-shadow tw-rounded" ref="popoverContent" :id="'popover-content-'+id" :style="popoverContentStyle">
         <slot></slot>
       </div>
     </transition>
@@ -21,7 +28,12 @@ export default {
     // Icon name from Font Awesome
     icon: {
       type: String,
-      required: true
+      required: false
+    },
+    // Text to display for toggle button
+    text: {
+      type: String,
+      required: false
     },
     // Position of the popover content
     position: {
@@ -38,7 +50,7 @@ export default {
     id: 'popover-' + Math.random().toString(36).substr(2, 9),
     isOpen: false
   }),
-  mounted() {
+  created() {
     this.calculatePosition();
     document.addEventListener('click', this.handleClickOutside);
   },
@@ -48,6 +60,7 @@ export default {
   methods: {
     calculatePosition() {
       const popoverContentContainer = this.$refs.popoverContent;
+      console.log(popoverContentContainer)
 
       if (popoverContentContainer) {
         // get Width and Height of popover content first child
@@ -59,7 +72,7 @@ export default {
         const popoverToggleBtnWidth = popoverContentContainer.previousElementSibling.offsetWidth;
         const popoverToggleBtnHeight = popoverContentContainer.previousElementSibling.offsetHeight;
 
-        const margin = 4;
+        const margin = 10;
 
         // set position of popover content
         switch (this.position) {
@@ -81,7 +94,7 @@ export default {
           case 'bottom':
           default:
             // center popover content and make it appear below the toggle button
-            popoverContentContainer.style.left = `calc(50% - ${popoverContentWidth / 2}px)`;
+            popoverContentContainer.style.left = `-4px`;
             popoverContentContainer.style.top = `${popoverToggleBtnHeight + margin}px`;
             break;
         }
@@ -117,7 +130,7 @@ export default {
 }
 
 .popover-content {
-  background-color: white;
+  background-color: transparent;
   position: absolute;
   min-height: 40px;
   min-width: 100px;
@@ -125,6 +138,10 @@ export default {
   z-index: 9999;
 
   transition: opacity 0.2s ease-in-out;
+}
+
+.popover-container svg {
+  width: 8px !important;
 }
 
 .fade-enter-active,
