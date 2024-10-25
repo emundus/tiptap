@@ -17,8 +17,8 @@
 <!-- @vuese:Toolbar:events:start -->
 |Event Name|Description|Parameters|
 |---|---|---|
-|importImage|-|-|
 |showMediaLibrary|-|-|
+|importImage|-|-|
 
 <!-- @vuese:Toolbar:events:end -->
 

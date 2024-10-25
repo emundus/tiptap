@@ -1,5 +1,5 @@
 <template>
-  <modal class="media-library" name="edit" :resizable="true" :draggable="true" :click-to-close="false" @closed="closeModal" width="80em" height="90vh">
+  <modal class="media-library" name="edit" :resizable="true" :draggable="true" :click-to-close="false" @closed="closeModal" width="70em" height="90vh">
     <div class="media-library--modal-head">
       <div class="media-library--modal-head-title">
         <h1 style="margin-top: 0">{{ translate('mediaLibrary.title', this.locale) }}</h1>
