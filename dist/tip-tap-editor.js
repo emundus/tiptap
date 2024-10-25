@@ -17824,7 +17824,7 @@ function ew(c, e, t, n, s, l) {
       }, [
         J(i, { icon: ["fas", "link"] })
       ], 8, Zx)) : j("", !0),
-      this.extensions.includes("image") || this.extensions.includes("link") ? (T(), P("li", {
+      this.extensions.includes("image") || this.extensions.includes("youtube") ? (T(), P("li", {
         key: 13,
         title: c.translate("toolbar.insert", this.locale),
         class: "editor-image"
