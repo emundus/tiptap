@@ -60,6 +60,7 @@ import BulletList from '@tiptap/extension-bullet-list';
 import Blockquote from '@tiptap/extension-blockquote'
 import History from '@tiptap/extension-history'
 import Dropcursor from '@tiptap/extension-dropcursor'
+import Youtube from '@tiptap/extension-youtube'
 
 import {getSuggestion} from './plugins/mentions/suggestion.js'
 import defaultColors from './plugins/colors/default.js'
@@ -90,6 +91,7 @@ const options = [
   "fontFamily",
   "fontSize",
   "highlight",
+  "youtube"
 ];
 
 // Main editor component
@@ -369,7 +371,8 @@ export default {
           types: ['heading', 'paragraph'],
         }),
         Table.configure({
-          resizable: true,
+          resizable: false,
+          allowTableNodeSelection: true,
         }),
         TableRow,
         TableHeader,
@@ -378,6 +381,10 @@ export default {
           allowBase64: true,
         }),
         ImageResize,
+        Youtube.configure({
+          controls: true,
+          nocookie: true,
+        }),
       ];
 
       if (this.suggestions.length > 0) {

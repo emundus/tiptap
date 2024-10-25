@@ -60,7 +60,6 @@ export default {
   methods: {
     calculatePosition() {
       const popoverContentContainer = this.$refs.popoverContent;
-      console.log(popoverContentContainer)
 
       if (popoverContentContainer) {
         // get Width and Height of popover content first child

@@ -37,12 +37,13 @@
             gap: 8px;
             align-items: center;
             margin: 0;
-            li {
+
+            li:not(.editor-image) {
                 display: flex;
                 align-items: center;
                 cursor: pointer;
-                padding: 8px;
                 border-radius: 8px;
+                padding: 8px;
                 border: solid 1px transparent;
                 min-height: 16px;
                 svg {
@@ -51,8 +52,25 @@
                 &:hover {
                     background-color: rgb(245 245 245);
                 }
+            }
 
+            li.editor-image {
                 .popover-container {
+                    div:first-child {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        padding: 8px;
+                        border-radius: 8px;
+                        border: solid 1px transparent;
+                        min-height: 16px;
+                        svg {
+                            min-width: 16px !important;
+                        }
+                        &:hover {
+                            background-color: rgb(245 245 245);
+                        }
+                    }
                     span {
                         svg {
                             width: 8px !important;
@@ -286,12 +304,12 @@
     }
 
     /** IMAGE MODAL **/
-    .insert-image {
-        .insert-image--modal-head {
+    .insert-image, .insert-table, .insert-video, .insert-link {
+        .insert-image--modal-head, .insert-table--modal-head, .insert-video--modal-head, .insert-link--modal-head {
             display: flex;
             flex-direction: column;
             padding: 12px 8px;
-            .insert-image--modal-head-title {
+            .insert-image--modal-head-title, .insert-table--modal-head-title, .insert-video--modal-head-title, .insert-link--modal-head-title {
                 display: flex;
                 gap: 16px;
                 justify-content: space-between;
@@ -365,6 +383,69 @@
                         &:hover {
                             background-color: #007f31;
                         }
+                    }
+                }
+            }
+        }
+
+        .insert-table--modal-content, .insert-video--modal-content, .insert-link--modal-content {
+            .insert-table--inputs {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                .insert-table--input {
+                    padding: 12px;
+                    display: flex;
+                    flex-direction: column;
+
+                    label {
+                        margin-bottom: 6px;
+                    }
+
+                    input {
+                        border-radius: 4px;
+                        border: solid 1px rgb(212 212 212);
+                        padding: 6px 8px;
+                    }
+                }
+            }
+
+            .insert-video--input, .insert-link--input {
+                padding: 12px;
+                display: flex;
+                flex-direction: column;
+
+                label {
+                    margin-bottom: 6px;
+                }
+
+                input {
+                    border-radius: 4px;
+                    border: solid 1px rgb(212 212 212);
+                    padding: 6px 8px;
+                }
+            }
+
+            .insert-table--input-header {
+                margin-left: 12px;
+                label {
+                    margin-left: 6px;
+                }
+            }
+
+            .insert-table--button, .insert-video--button, .insert-link--button {
+                margin-top: 12px;
+                display: flex;
+                justify-content: flex-end;
+                button {
+                    cursor: pointer;
+                    padding: 10px 24px;
+                    border-radius: 8px;
+                    background-color: #008A35;
+                    color: white;
+                    border: unset;
+                    &:hover {
+                        background-color: #007f31;
                     }
                 }
             }
