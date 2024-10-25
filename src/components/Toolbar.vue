@@ -115,7 +115,7 @@
       <!-- -->
 
       <!-- INSERT MENU -->
-      <li v-if="this.extensions.includes('image') || this.extensions.includes('link')"
+      <li v-if="this.extensions.includes('image') || this.extensions.includes('youtube')"
           :title="translate('toolbar.insert',this.locale)"
           class="editor-image">
         <popover :text="translate('toolbar.insert',this.locale)">
