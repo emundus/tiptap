@@ -24,13 +24,36 @@ export default
             bullet: 'Liste à puces',
             ordered: 'Liste ordonnée',
         },
-        link: 'Lien',
+        link: {
+            title: 'Lien',
+            modal_title: 'Insérer un lien',
+        },
         image: {
-            title: 'Insérer une image',
+            title: 'Image',
             import: 'Importer',
             url: 'Via URL',
-            media: 'Depuis la bibliothèque',
-        }
+            url_title: 'Lien',
+            url_insert: 'Insérer',
+            media: 'Média',
+            modal_title: 'Insérer une image',
+            import_drag: 'Glissez déposez ou',
+            import_download: 'cliquez pour télécharger',
+            youtube: 'Vidéo',
+        },
+        table: {
+            modal_title: 'Insérer un tableau',
+            columns: 'Colonnes',
+            rows: 'Lignes',
+            header: 'Inclure en-tête',
+            delete: 'Supprimer',
+            add_column_before: 'Ajouter une colonne avant',
+        },
+        video: {
+            modal_title: 'Insérer une vidéo',
+            url: 'Saissisez une URL de vidéo',
+        },
+        insert: 'Insérer',
+        format: 'Format',
     },
     placeholder: {
         default: 'Commencez à écrire...'

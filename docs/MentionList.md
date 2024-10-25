@@ -5,8 +5,13 @@
 <!-- @vuese:MentionList:props:start -->
 |Name|Description|Type|Required|Default|
 |---|---|---|---|---|
-|items|List of items to display|`Array`|`true`|-|
-|command|Function to execute when an item is selected|`Function`|`true`|-|
+|items|-|`Array`|`true`|-|
+|command|-|`Function`|`true`|-|
+
+<!-- @vuese:MentionList:props:end -->
+
+
+ted|`Function`|`true`|-|
 
 <!-- @vuese:MentionList:props:end -->
 

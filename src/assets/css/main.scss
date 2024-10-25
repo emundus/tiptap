@@ -15,6 +15,7 @@
         padding: 8px 16px;
         border-bottom: solid 1px rgb(212 212 212);
         border-radius: 8px 8px 0 0;
+        font-size: 14px;
 
         select {
             cursor: pointer;
@@ -22,6 +23,7 @@
             border-radius: 4px;
             padding: 4px 6px;
             border: solid 1px rgb(212 212 212);
+            background: white;
         }
 
         ul, ol {
@@ -35,13 +37,46 @@
             gap: 8px;
             align-items: center;
             margin: 0;
-            li {
+
+            li:not(.editor-image) {
+                display: flex;
+                align-items: center;
                 cursor: pointer;
-                padding: 4px 8px;
                 border-radius: 8px;
+                padding: 8px;
                 border: solid 1px transparent;
+                min-height: 16px;
+                svg {
+                    min-width: 16px !important;
+                }
                 &:hover {
                     background-color: rgb(245 245 245);
+                }
+            }
+
+            li.editor-image {
+                .popover-container {
+                    div:first-child {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        padding: 8px;
+                        border-radius: 8px;
+                        border: solid 1px transparent;
+                        min-height: 16px;
+                        svg {
+                            min-width: 16px !important;
+                        }
+                        &:hover {
+                            background-color: rgb(245 245 245);
+                        }
+                    }
+                    span {
+                        svg {
+                            width: 8px !important;
+                            min-width: unset !important;
+                        }
+                    }
                 }
             }
 
@@ -51,8 +86,9 @@
                 border-bottom: unset;
                 border-radius: unset;
                 border-left: solid 1px rgb(212 212 212);
+                width: 0;
                 height: 30px;
-                padding: 0 8px 0 0;
+                padding: 0;
             }
 
             .is-active {
@@ -110,15 +146,20 @@
         /* Image */
         .editor-image {
             .editor-image--popover {
-                padding: 12px;
+                padding: 6px;
                 background-color: white;
                 border-radius: 8px;
                 border: solid 1px rgb(212 212 212);
                 top: 28px;
-                width: max-content;
+                width: 100%;
                 z-index: 10;
-                .image-item span {
-                    margin-left: 8px;
+                min-width: 150px;
+                li.image-item {
+                    width: auto;
+                    span {
+                        margin-left: 8px;
+                        white-space: nowrap;
+                    }
                 }
             }
         }
@@ -257,6 +298,155 @@
                     color: inherit;
                     font-size: 0.8rem;
                     padding: 0;
+                }
+            }
+        }
+    }
+
+    /** IMAGE MODAL **/
+    .insert-image, .insert-table, .insert-video, .insert-link {
+        .insert-image--modal-head, .insert-table--modal-head, .insert-video--modal-head, .insert-link--modal-head {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 8px;
+            .insert-image--modal-head-title, .insert-table--modal-head-title, .insert-video--modal-head-title, .insert-link--modal-head-title {
+                display: flex;
+                gap: 16px;
+                justify-content: space-between;
+                svg {
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .insert-image--modal-content {
+            ul {
+                display: flex;
+
+                li.image-item {
+                    border-radius: 0;
+                    &.active {
+                        border-bottom: solid 1px rgb(59 130 246);
+                    }
+                    &:hover {
+                        background-color: unset;
+                    }
+                    &:hover:not(.active) {
+                        border-bottom: solid 1px rgb(229 229 229);
+                    }
+                }
+            }
+
+            .insert-image--import-file {
+                .insert-image--import-file-dz {
+                    height: 150px;
+                    border: 1px dashed #A4A4A4;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 8px;
+                    margin-top: 12px;
+                    padding: 12px;
+                    cursor: pointer;
+                    div {
+                        display: flex;
+                        gap: 12px;
+                    }
+                }
+            }
+
+            .insert-image--from-url {
+                padding: 12px;
+                display: flex;
+                flex-direction: column;
+                label {
+                    margin-bottom: 6px;
+                }
+                input {
+                    border-radius: 4px;
+                    border: solid 1px rgb(212 212 212);
+                    padding: 6px 8px;
+                }
+                .insert-image--from-url-button {
+                    margin-top: 12px;
+                    display: flex;
+                    justify-content: flex-end;
+                    button {
+                        cursor: pointer;
+                        padding: 10px 24px;
+                        border-radius: 8px;
+                        background-color: #008A35;
+                        color: white;
+                        border: unset;
+                        &:hover {
+                            background-color: #007f31;
+                        }
+                    }
+                }
+            }
+        }
+
+        .insert-table--modal-content, .insert-video--modal-content, .insert-link--modal-content {
+            .insert-table--inputs {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                .insert-table--input {
+                    padding: 12px;
+                    display: flex;
+                    flex-direction: column;
+
+                    label {
+                        margin-bottom: 6px;
+                    }
+
+                    input {
+                        border-radius: 4px;
+                        border: solid 1px rgb(212 212 212);
+                        padding: 6px 8px;
+                    }
+                }
+            }
+
+            .insert-video--input, .insert-link--input {
+                padding: 12px;
+                display: flex;
+                flex-direction: column;
+
+                label {
+                    margin-bottom: 6px;
+                }
+
+                input {
+                    border-radius: 4px;
+                    border: solid 1px rgb(212 212 212);
+                    padding: 6px 8px;
+                }
+            }
+
+            .insert-table--input-header {
+                margin-left: 12px;
+                label {
+                    margin-left: 6px;
+                }
+            }
+
+            .insert-table--button, .insert-video--button, .insert-link--button {
+                margin-top: 12px;
+                display: flex;
+                justify-content: flex-end;
+                button {
+                    cursor: pointer;
+                    padding: 10px 24px;
+                    border-radius: 8px;
+                    background-color: #008A35;
+                    color: white;
+                    border: unset;
+                    &:hover {
+                        background-color: #007f31;
+                    }
                 }
             }
         }

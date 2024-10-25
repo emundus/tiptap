@@ -5,24 +5,24 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/tip-tap-editor.umd.js",
-  "module": "./dist/tip-tap-editor.es.js",
-  "browser": "./dist/tip-tap-editor.umd.js",
+  "main": "./dist/tip-tap-editor.umd.cjs",
+  "module": "./dist/tip-tap-editor.js",
+  "browser": "./dist/tip-tap-editor.umd.cjs",
   "exports": {
     ".": {
-      "import": "./dist/tip-tap-editor.es.js",
-      "require": "./dist/tip-tap-editor.umd.js"
+      "import": "./dist/tip-tap-editor.js",
+      "require": "./dist/tip-tap-editor.umd.cjs"
     },
     "./style.css": "./dist/style.css"
   },
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite --mode development",
+    "dev": "vite --mode development --port=3000",
     "build": "vite build",
     "types": "vue-tsc ",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --port=5174",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
@@ -61,6 +61,7 @@
     "@tiptap/extension-text-align": "^2.7.4",
     "@tiptap/extension-text-style": "^2.7.4",
     "@tiptap/extension-underline": "^2.7.4",
+    "@tiptap/extension-youtube": "^2.9.1",
     "@tiptap/pm": "^2.7.4",
     "@tiptap/starter-kit": "^2.7.4",
     "@tiptap/suggestion": "^2.7.4",
