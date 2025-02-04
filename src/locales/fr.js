@@ -27,6 +27,7 @@ export default
         link: {
             title: 'Lien',
             modal_title: 'Insérer un lien',
+            url: 'Saisissez une URL',
         },
         image: {
             title: 'Image',
@@ -50,7 +51,7 @@ export default
         },
         video: {
             modal_title: 'Insérer une vidéo',
-            url: 'Saissisez une URL de vidéo',
+            url: 'Saisissez une URL de vidéo',
         },
         insert: 'Insérer',
         format: 'Format',

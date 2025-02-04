@@ -219,7 +219,7 @@
         </div>
         <div class="insert-link--modal-content">
           <div class="insert-link--input">
-            <label for="link-url">{{ translate('toolbar.video.url',this.locale) }}</label>
+            <label for="link-url">{{ translate('toolbar.link.url',this.locale) }}</label>
             <input type="text" id="link-url" v-model="linkUrl" placeholder="https://example.com">
           </div>
 
