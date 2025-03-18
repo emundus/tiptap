@@ -39,6 +39,64 @@
       </select>
       <!-- -->
 
+      <!-- FORMAT -->
+      <li v-if="this.extensions.includes('bold')"
+          :title="translate('toolbar.bold',this.locale)"
+          @click.stop.prevent="editor.chain().focus().toggleBold().run()">
+        <font-awesome-icon :icon="['fas', 'bold']"/>
+      </li>
+
+      <li v-if="this.extensions.includes('italic')"
+          :title="translate('toolbar.italic',this.locale)"
+          @click.stop.prevent="editor.chain().focus().toggleItalic().run()"
+      >
+        <font-awesome-icon :icon="['fas', 'italic']"/>
+      </li>
+      <!-- -->
+
+      <!-- FORMAT MENU -->
+      <li v-if="this.extensions.includes('bold') || this.extensions.includes('italic') || this.extensions.includes('underline') || this.extensions.includes('strike') || this.extensions.includes('highlight') || this.extensions.includes('codeblock')"
+          :title="translate('toolbar.format',this.locale)"
+          class="editor-image">
+        <popover :icon="'ellipsis'">
+          <ul class="editor-image--popover">
+            <li v-if="this.extensions.includes('underline')"
+                class="image-item"
+                :title="translate('toolbar.underline',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleUnderline().run()"
+            >
+              <font-awesome-icon :icon="['fas', 'underline']"/>
+              <span>{{ translate('toolbar.underline',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('strike')"
+                class="image-item"
+                :title="translate('toolbar.strike',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleStrike().run()"
+            >
+              <font-awesome-icon :icon="['fas', 'text-slash']"/>
+              <span>{{ translate('toolbar.strike',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('highlight')"
+                class="image-item"
+                :title="translate('toolbar.highlight',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleHighlight({ color: '#ffc078' }).run()"
+            >
+              <font-awesome-icon :icon="['fas', 'highlighter']"/>
+              <span>{{ translate('toolbar.highlight',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('codeblock')"
+                class="image-item"
+                :title="translate('toolbar.codeblock',this.locale)"
+                @click.stop.prevent="editor.chain().focus().toggleCodeBlock().run()"
+            >
+              <font-awesome-icon :icon="['fas', 'code']"/>
+              <span>Code</span>
+            </li>
+          </ul>
+        </popover>
+      </li>
+      <!-- -->
+
       <!-- ALIGNMENTS -->
       <li v-if="this.extensions.includes('left')"
           :title="translate('toolbar.align.left',this.locale)"
@@ -114,18 +172,21 @@
       </li>
       <!-- -->
 
+      <!-- IMAGE -->
+      <li v-if="this.extensions.includes('image')"
+          class="image-item"
+          :title="translate('toolbar.image.title',this.locale)"
+          @click="openImageModal"
+      >
+        <font-awesome-icon :icon="['fas', 'image']"/>
+      </li>
+
       <!-- INSERT MENU -->
-      <li v-if="this.extensions.includes('image') || this.extensions.includes('youtube')"
+      <li v-if="displayMediaLibrary || this.extensions.includes('youtube')"
           :title="translate('toolbar.insert',this.locale)"
           class="editor-image">
         <popover :text="translate('toolbar.insert',this.locale)">
           <ul class="editor-image--popover">
-            <li v-if="this.extensions.includes('image')"
-                class="image-item"
-                @click="openImageModal">
-              <font-awesome-icon :icon="['fas', 'upload']"/>
-              <span>{{ translate('toolbar.image.title',this.locale) }}</span>
-            </li>
             <li v-if="displayMediaLibrary"
                 class="image-item"
                 @click="$emit('showMediaLibrary')"
@@ -228,64 +289,6 @@
           </div>
         </div>
       </modal>
-      <!-- -->
-
-      <!-- FORMAT MENU -->
-      <li v-if="this.extensions.includes('bold') || this.extensions.includes('italic') || this.extensions.includes('underline') || this.extensions.includes('strike') || this.extensions.includes('highlight') || this.extensions.includes('codeblock')"
-          :title="translate('toolbar.format',this.locale)"
-          class="editor-image">
-        <popover :text="translate('toolbar.format',this.locale)">
-          <ul class="editor-image--popover">
-            <li v-if="this.extensions.includes('bold')"
-                class="image-item"
-                :title="translate('toolbar.bold',this.locale)"
-                @click.stop.prevent="editor.chain().focus().toggleBold().run()">
-              <font-awesome-icon :icon="['fas', 'bold']"/>
-              <span>{{ translate('toolbar.bold',this.locale) }}</span>
-            </li>
-            <li v-if="this.extensions.includes('italic')"
-                class="image-item"
-                :title="translate('toolbar.italic',this.locale)"
-                @click.stop.prevent="editor.chain().focus().toggleItalic().run()"
-            >
-              <font-awesome-icon :icon="['fas', 'italic']"/>
-              <span>{{ translate('toolbar.italic',this.locale) }}</span>
-            </li>
-            <li v-if="this.extensions.includes('underline')"
-                class="image-item"
-                :title="translate('toolbar.underline',this.locale)"
-                @click.stop.prevent="editor.chain().focus().toggleUnderline().run()"
-            >
-              <font-awesome-icon :icon="['fas', 'underline']"/>
-              <span>{{ translate('toolbar.underline',this.locale) }}</span>
-            </li>
-            <li v-if="this.extensions.includes('strike')"
-                class="image-item"
-                :title="translate('toolbar.strike',this.locale)"
-                @click.stop.prevent="editor.chain().focus().toggleStrike().run()"
-            >
-              <font-awesome-icon :icon="['fas', 'text-slash']"/>
-              <span>{{ translate('toolbar.strike',this.locale) }}</span>
-            </li>
-            <li v-if="this.extensions.includes('highlight')"
-                class="image-item"
-                :title="translate('toolbar.highlight',this.locale)"
-                @click.stop.prevent="editor.chain().focus().toggleHighlight({ color: '#ffc078' }).run()"
-            >
-              <font-awesome-icon :icon="['fas', 'highlighter']"/>
-              <span>{{ translate('toolbar.highlight',this.locale) }}</span>
-            </li>
-            <li v-if="this.extensions.includes('codeblock')"
-                class="image-item"
-                :title="translate('toolbar.codeblock',this.locale)"
-                @click.stop.prevent="editor.chain().focus().toggleCodeBlock().run()"
-            >
-              <font-awesome-icon :icon="['fas', 'code']"/>
-              <span>Code</span>
-            </li>
-          </ul>
-        </popover>
-      </li>
       <!-- -->
 
       <!-- TABLE -->
