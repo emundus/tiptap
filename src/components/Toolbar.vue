@@ -181,116 +181,6 @@
         <font-awesome-icon :icon="['fas', 'image']"/>
       </li>
 
-      <!-- INSERT MENU -->
-      <li v-if="displayMediaLibrary || this.extensions.includes('youtube')"
-          :title="translate('toolbar.insert',this.locale)"
-          class="editor-image">
-        <popover :text="translate('toolbar.insert',this.locale)">
-          <ul class="editor-image--popover">
-            <li v-if="displayMediaLibrary"
-                class="image-item"
-                @click="$emit('showMediaLibrary')"
-                :title="translate('toolbar.image.media',this.locale)">
-              <font-awesome-icon :icon="['fas', 'photo-film']"/>
-              <span>{{ translate('toolbar.image.media',this.locale) }}</span>
-            </li>
-            <li v-if="this.extensions.includes('youtube')"
-                class="image-item"
-                @click="openYoutubeModal"
-                :title="translate('toolbar.image.youtube',this.locale)">
-              <font-awesome-icon :icon="['fas', 'film']"/>
-              <span>{{ translate('toolbar.image.youtube',this.locale) }}</span>
-            </li>
-          </ul>
-        </popover>
-      </li>
-
-      <!-- IMAGE MODAL -->
-      <modal v-if="imageModal" class="insert-image" name="insert-image" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
-        <div class="insert-image--modal-head">
-          <div class="insert-image--modal-head-title">
-            <h2 style="margin-top: 0">{{ translate('toolbar.image.modal_title', this.locale) }}</h2>
-            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="imageModal = false"/>
-          </div>
-        </div>
-        <div class="insert-image--modal-content">
-          <ul>
-            <li class="image-item"
-                :class="imageMethod === 'import' ? 'active' : ''"
-                @click="imageMethod = 'import'">
-              <span>{{ translate('toolbar.image.import',this.locale) }}</span>
-            </li>
-            <li class="image-item"
-                :class="imageMethod === 'url' ? 'active' : ''"
-                @click="imageMethod = 'url'">
-              <span>{{ translate('toolbar.image.url',this.locale) }}</span>
-            </li>
-          </ul>
-
-          <div class="insert-image--import-file" v-if="imageMethod === 'import'">
-            <input type="file" id="import_file" accept="image/*" style="display:none" @change="$emit('importImage',$event);imageModal = false">
-            <div class="insert-image--import-file-dz" @click="importFromComputer">
-                <div>
-                  <span>{{ translate('toolbar.image.import_drag',this.locale) }} <u>{{ translate('toolbar.image.import_download',this.locale) }}</u></span>
-                  <font-awesome-icon :icon="['fas', 'cloud-arrow-up']"/>
-                </div>
-            </div>
-          </div>
-
-          <div class="insert-image--from-url" v-if="imageMethod === 'url'">
-            <label for="image-url">{{ translate('toolbar.image.url_title',this.locale) }}</label>
-            <input type="text" id="image-url" v-model="imageImported" placeholder="https://example.com/image.jpg">
-
-            <div class="insert-image--from-url-button">
-              <button @click="editor.chain().focus().setImage({src: imageImported}).run();imageImported = null;imageModal = false">{{ translate('toolbar.image.url_insert',this.locale) }}</button>
-            </div>
-          </div>
-        </div>
-      </modal>
-      <!-- -->
-
-      <!-- VIDEO MODAL -->
-      <modal v-if="videoModal" class="insert-video" name="insert-video" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
-        <div class="insert-video--modal-head">
-          <div class="insert-video--modal-head-title">
-            <h2 style="margin-top: 0">{{ translate('toolbar.video.modal_title', this.locale) }}</h2>
-            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="videoModal = false"/>
-          </div>
-        </div>
-        <div class="insert-video--modal-content">
-          <div class="insert-video--input">
-            <label for="video-url">{{ translate('toolbar.video.url',this.locale) }}</label>
-            <input type="text" id="video-url" v-model="videoUrl" placeholder="https://youtube.com">
-          </div>
-
-          <div class="insert-video--button">
-            <button @click="editor.commands.setYoutubeVideo({src: videoUrl,width: 400,height: 300,});videoModal = false">{{ translate('toolbar.image.url_insert',this.locale) }}</button>
-          </div>
-        </div>
-      </modal>
-      <!-- -->
-
-      <!-- LINK MODAL -->
-      <modal v-if="linkModal" class="insert-link" name="insert-link" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
-        <div class="insert-link--modal-head">
-          <div class="insert-link--modal-head-title">
-            <h2 style="margin-top: 0">{{ translate('toolbar.link.modal_title', this.locale) }}</h2>
-            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="linkModal = false"/>
-          </div>
-        </div>
-        <div class="insert-link--modal-content">
-          <div class="insert-link--input">
-            <label for="link-url">{{ translate('toolbar.link.url',this.locale) }}</label>
-            <input type="text" id="link-url" v-model="linkUrl" placeholder="https://example.com">
-          </div>
-
-          <div class="insert-link--button">
-            <button @click="editor.chain().focus().extendMarkRange('link').setLink({href: linkUrl}).run();linkModal = false">{{ translate('toolbar.image.url_insert',this.locale) }}</button>
-          </div>
-        </div>
-      </modal>
-      <!-- -->
-
       <!-- TABLE -->
       <li v-if="this.extensions.includes('table') && !editor?.isActive('table')"
           @click="openTableModal">
@@ -403,6 +293,123 @@
           </svg>
         </li>
       </template>
+
+      <!-- INSERT MENU -->
+      <li v-if="displayMediaLibrary || this.extensions.includes('youtube')"
+          :title="translate('toolbar.insert',this.locale)"
+          class="editor-image">
+        <popover :icon="'plus'">
+          <ul class="editor-image--popover">
+            <li v-if="displayMediaLibrary"
+                class="image-item"
+                @click="$emit('showMediaLibrary')"
+                :title="translate('toolbar.image.media',this.locale)">
+              <font-awesome-icon :icon="['fas', 'photo-film']"/>
+              <span>{{ translate('toolbar.image.media',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('youtube')"
+                class="image-item"
+                @click="openYoutubeModal"
+                :title="translate('toolbar.image.youtube',this.locale)">
+              <font-awesome-icon :icon="['fas', 'film']"/>
+              <span>{{ translate('toolbar.image.youtube',this.locale) }}</span>
+            </li>
+            <li v-if="this.extensions.includes('panel')"
+                class="image-item"
+                @click="addPanel"
+                :title="translate('toolbar.panel',this.locale)">
+              <font-awesome-icon :icon="['fas', 'circle-info']"/>
+              <span>{{ translate('toolbar.panel',this.locale) }}</span>
+            </li>
+          </ul>
+        </popover>
+      </li>
+
+      <!-- IMAGE MODAL -->
+      <modal v-if="imageModal" class="insert-image" name="insert-image" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
+        <div class="insert-image--modal-head">
+          <div class="insert-image--modal-head-title">
+            <h2 style="margin-top: 0">{{ translate('toolbar.image.modal_title', this.locale) }}</h2>
+            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="imageModal = false"/>
+          </div>
+        </div>
+        <div class="insert-image--modal-content">
+          <ul>
+            <li class="image-item"
+                :class="imageMethod === 'import' ? 'active' : ''"
+                @click="imageMethod = 'import'">
+              <span>{{ translate('toolbar.image.import',this.locale) }}</span>
+            </li>
+            <li class="image-item"
+                :class="imageMethod === 'url' ? 'active' : ''"
+                @click="imageMethod = 'url'">
+              <span>{{ translate('toolbar.image.url',this.locale) }}</span>
+            </li>
+          </ul>
+
+          <div class="insert-image--import-file" v-if="imageMethod === 'import'">
+            <input type="file" id="import_file" accept="image/*" style="display:none" @change="$emit('importImage',$event);imageModal = false">
+            <div class="insert-image--import-file-dz" @click="importFromComputer">
+                <div>
+                  <span>{{ translate('toolbar.image.import_drag',this.locale) }} <u>{{ translate('toolbar.image.import_download',this.locale) }}</u></span>
+                  <font-awesome-icon :icon="['fas', 'cloud-arrow-up']"/>
+                </div>
+            </div>
+          </div>
+
+          <div class="insert-image--from-url" v-if="imageMethod === 'url'">
+            <label for="image-url">{{ translate('toolbar.image.url_title',this.locale) }}</label>
+            <input type="text" id="image-url" v-model="imageImported" placeholder="https://example.com/image.jpg">
+
+            <div class="insert-image--from-url-button">
+              <button @click="editor.chain().focus().setImage({src: imageImported}).run();imageImported = null;imageModal = false">{{ translate('toolbar.image.url_insert',this.locale) }}</button>
+            </div>
+          </div>
+        </div>
+      </modal>
+      <!-- -->
+
+      <!-- VIDEO MODAL -->
+      <modal v-if="videoModal" class="insert-video" name="insert-video" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
+        <div class="insert-video--modal-head">
+          <div class="insert-video--modal-head-title">
+            <h2 style="margin-top: 0">{{ translate('toolbar.video.modal_title', this.locale) }}</h2>
+            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="videoModal = false"/>
+          </div>
+        </div>
+        <div class="insert-video--modal-content">
+          <div class="insert-video--input">
+            <label for="video-url">{{ translate('toolbar.video.url',this.locale) }}</label>
+            <input type="text" id="video-url" v-model="videoUrl" placeholder="https://youtube.com">
+          </div>
+
+          <div class="insert-video--button">
+            <button @click="editor.commands.setYoutubeVideo({src: videoUrl,width: 400,height: 300,});videoModal = false">{{ translate('toolbar.image.url_insert',this.locale) }}</button>
+          </div>
+        </div>
+      </modal>
+      <!-- -->
+
+      <!-- LINK MODAL -->
+      <modal v-if="linkModal" class="insert-link" name="insert-link" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
+        <div class="insert-link--modal-head">
+          <div class="insert-link--modal-head-title">
+            <h2 style="margin-top: 0">{{ translate('toolbar.link.modal_title', this.locale) }}</h2>
+            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="linkModal = false"/>
+          </div>
+        </div>
+        <div class="insert-link--modal-content">
+          <div class="insert-link--input">
+            <label for="link-url">{{ translate('toolbar.link.url',this.locale) }}</label>
+            <input type="text" id="link-url" v-model="linkUrl" placeholder="https://example.com">
+          </div>
+
+          <div class="insert-link--button">
+            <button @click="editor.chain().focus().extendMarkRange('link').setLink({href: linkUrl}).run();linkModal = false">{{ translate('toolbar.image.url_insert',this.locale) }}</button>
+          </div>
+        </div>
+      </modal>
+      <!-- -->
 
       <!-- TABLE MODAL -->
       <modal v-if="tableModal" class="insert-table" name="insert-table" :resizable="true" :draggable="true" :click-to-close="false" width="40%">
@@ -647,6 +654,10 @@ export default {
     copyLink(url) {
       navigator.clipboard.writeText(url)
     },
+
+    addPanel() {
+      this.editor.chain().focus().insertContent('<div data-type="info"><p>Texte ici</p></div>').run();
+    }
   },
 
   computed: {

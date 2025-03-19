@@ -55,6 +55,7 @@ export default
         },
         insert: 'Insérer',
         format: 'Format',
+        panel: 'Volet d\'information',
     },
     placeholder: {
         default: 'Commencez à écrire...'
