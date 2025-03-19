@@ -16,14 +16,14 @@
 
     /** TOOLBAR **/
     .editor-toolbar {
-        padding: 8px 16px;
+        padding: 8px;
         border-bottom: solid 1px rgb(212 212 212);
         border-radius: 8px 8px 0 0;
         font-size: 14px;
 
         select {
             cursor: pointer;
-            height: 35px;
+            height: 30px;
             border-radius: 4px;
             padding: 4px 6px;
             border: solid 1px rgb(212 212 212);
@@ -47,7 +47,7 @@
                 align-items: center;
                 cursor: pointer;
                 border-radius: 8px;
-                padding: 8px;
+                padding: 4px;
                 border: solid 1px transparent;
                 min-height: 16px;
                 svg {
@@ -64,7 +64,7 @@
                         display: flex;
                         align-items: center;
                         cursor: pointer;
-                        padding: 8px;
+                        padding: 4px;
                         border-radius: 8px;
                         border: solid 1px transparent;
                         min-height: 16px;
@@ -173,7 +173,7 @@
     /** CONTENT **/
     .editor-content {
         overflow: scroll;
-        padding: 8px;
+        padding: 4px;
 
         .tiptap {
             height: 100%;
@@ -516,7 +516,7 @@
                         display: flex;
                         flex-direction: column;
                         gap: 4px;
-                        padding: 8px;
+                        padding: 4px;
                         width: 120px;
                         border-radius: 8px;
                         &.media-library--selected {
@@ -626,7 +626,7 @@
         background: white;
         border: solid 1px rgb(212 212 212);
         border-radius: 16px;
-        padding: 8px;
+        padding: 4px;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         display: flex;
         flex-direction: column;

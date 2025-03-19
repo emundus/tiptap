@@ -18601,7 +18601,7 @@ function qw(c, e, t, n, s, l) {
           ], -1)
         ]), 8, cw)
       ], 64)) : q("", !0),
-      t.displayMediaLibrary || this.extensions.includes("youtube") ? (D(), I("li", {
+      t.displayMediaLibrary || this.extensions.includes("youtube") || this.extensions.includes("panel") ? (D(), I("li", {
         key: 20,
         title: c.translate("toolbar.insert", this.locale),
         class: "editor-image"
