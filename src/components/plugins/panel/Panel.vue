@@ -45,8 +45,16 @@ export default {
       }
     },
     isActive() {
-      return this.editor.isActive('infoPanel');
+      const { state } = this.editor;
+      const { from, to } = state.selection;
+      const nodePos = this.getPos?.();
+
+      if (typeof nodePos !== 'number') return false;
+
+      return from >= nodePos && to <= nodePos + this.node.nodeSize;
     }
+
+
   },
   watch: {
     selectedType(newVal) {
@@ -65,7 +73,7 @@ export default {
 </script>
 
 <template>
-  <NodeViewWrapper :class="`info-panel info-panel--${selectedType}`">
+  <NodeViewWrapper :class="`panel info-panel--${selectedType}`">
     <div v-if="isActive" class="info-panel__actions">
       <select @change="updateType" :value="selectedType" class="info-panel__select">
         <option value="info">{{ translate('toolbar.panel.type.info', this.locale) }}</option>
@@ -82,7 +90,7 @@ export default {
 </template>
 
 <style>
-.info-panel {
+.panel {
   padding: 10px;
   background: #ebeefa;
   border-radius: 4px;

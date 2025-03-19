@@ -18227,7 +18227,7 @@ const Wo = /* @__PURE__ */ n4(yv, [["render", xv], ["__scopeId", "data-v-eaff321
       navigator.clipboard.writeText(c);
     },
     addPanel() {
-      this.editor.chain().focus().insertContent('<div data-type="info"><p></p></div>').run(), this.$refs.insertPopover.onFocusOut();
+      this.editor.chain().focus().insertContent('<div data-plugin="panel" data-type="info"><div><p></p></div></div>').run(), this.$refs.insertPopover.onFocusOut();
     }
   },
   computed: {
@@ -25209,7 +25209,9 @@ const ZA = /* @__PURE__ */ n4(wA, [["render", QA]]), eT = {
       }
     },
     isActive() {
-      return this.editor.isActive("infoPanel");
+      var s;
+      const { state: c } = this.editor, { from: e, to: t } = c.selection, n = (s = this.getPos) == null ? void 0 : s.call(this);
+      return typeof n != "number" ? !1 : e >= n && t <= n + this.node.nodeSize;
     }
   },
   watch: {
@@ -25229,7 +25231,7 @@ const ZA = /* @__PURE__ */ n4(wA, [["render", QA]]), eT = {
 function oT(c, e, t, n, s, l) {
   const i = d3("NodeViewContent"), o = d3("NodeViewWrapper");
   return D(), r3(o, {
-    class: I2(`info-panel info-panel--${s.selectedType}`)
+    class: I2(`panel info-panel--${s.selectedType}`)
   }, {
     default: a1(() => [
       l.isActive ? (D(), I("div", tT, [
@@ -25255,33 +25257,56 @@ function oT(c, e, t, n, s, l) {
   }, 8, ["class"]);
 }
 const rT = /* @__PURE__ */ n4(eT, [["render", oT]]), aT = M2.create({
-  name: "infoPanel",
+  name: "panel",
   group: "block",
   content: "block+",
+  selectable: !0,
   defining: !0,
+  isolating: !0,
   addAttributes() {
     return {
       type: {
         default: "info",
         parseHTML: (c) => c.getAttribute("data-type") || "info",
-        renderHTML: (c) => ({
-          "data-type": c.type
-        })
+        renderHTML: (c) => ({ "data-type": c.type })
+      },
+      draggable: {
+        default: !1
       }
     };
   },
   parseHTML() {
     return [
       {
-        tag: "div[data-type]"
+        tag: "div[data-plugin='panel']",
+        contentElement: "div"
       }
     ];
   },
-  renderHTML({ HTMLAttributes: c }) {
-    return ["div", c, 0];
+  renderHTML({ node: c, HTMLAttributes: e }) {
+    return [
+      "div",
+      e2({ "data-plugin": "panel", "data-type": c.attrs.type }),
+      ["span", { class: "material-symbols-outlined" }, c.attrs.type],
+      ["div", 0]
+    ];
   },
   addNodeView() {
     return Ky(rT);
+  },
+  addKeyboardShortcuts() {
+    return {
+      Enter: ({ editor: c }) => {
+        const { state: e, dispatch: t } = c, { selection: n } = e, { $from: s, $to: l } = n, i = s.node(-1), o = (i == null ? void 0 : i.type.name) === "panel", r = l.parentOffset === l.parent.content.size;
+        if (o && r) {
+          const a = s.after(s.depth - 1);
+          return t(
+            e.tr.insert(a, e.schema.nodes.paragraph.create()).scrollIntoView()
+          ), !0;
+        }
+        return !1;
+      }
+    };
   }
 }), Wl = [
   "bold",

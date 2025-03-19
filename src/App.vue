@@ -25,6 +25,7 @@ export default {
     return {
       content: `
         <h1>TipTap Editor Wiin + eMundus</h1>
+        <div data-plugin="panel" data-type="info"><span class="material-symbols-outlined">info</span><div><p>Bonjour</p></div></div>
         <p>Welcome to this common editor built with TipTap, Vue3 and Tailwind</p>
         <pre><code>import TipTapEditor from "tip-tap-editor";
 import "tip-tap-editor/style.css";</code></pre>

@@ -656,7 +656,7 @@ export default {
     },
 
     addPanel() {
-      this.editor.chain().focus().insertContent('<div data-type="info"><p></p></div>').run();
+      this.editor.chain().focus().insertContent('<div data-plugin="panel" data-type="info"><div><p></p></div></div>').run();
       this.$refs.insertPopover.onFocusOut();
     }
   },
