@@ -1,20 +1,15 @@
 import {createApp} from 'vue';
 import App from './App.vue'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import 'material-symbols';
 
 import "./assets/css/main.scss"
 import translate from "@/mixins/translate.js";
-
-library.add(fas)
 
 let app = null;
 
 app = createApp(App);
 
-app.use(FontAwesomeIcon);
 app.mixin(translate);
 
 const devmode = import.meta.env.MODE === 'development';

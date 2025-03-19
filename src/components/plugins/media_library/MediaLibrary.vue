@@ -3,7 +3,7 @@
     <div class="media-library--modal-head">
       <div class="media-library--modal-head-title">
         <h1 style="margin-top: 0">{{ translate('mediaLibrary.title', this.locale) }}</h1>
-        <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="$emit('closeMediaLibrary')"/>
+        <span :title="translate('modal.close', this.locale)" class="material-symbols-outlined" @click="$emit('closeMediaLibrary')">close</span>
       </div>
     </div>
     <div class="media-library--modal-content">

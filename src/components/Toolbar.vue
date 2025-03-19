@@ -4,10 +4,10 @@
     <ul class="editor-toolbar--list">
       <!-- HISTORY -->
       <li v-if="this.extensions.includes('history')" @click.stop.prevent="this.editor.chain().focus().undo().run()">
-        <font-awesome-icon :icon="['fas', 'reply']"/>
+        <span class="material-symbols-outlined">undo</span>
       </li>
       <li v-if="this.extensions.includes('history')" @click.stop.prevent="editor.chain().focus().redo().run()">
-        <font-awesome-icon :icon="['fas', 'share']"/>
+        <span class="material-symbols-outlined">redo</span>
       </li>
       <!-- -->
 
@@ -43,14 +43,14 @@
       <li v-if="this.extensions.includes('bold')"
           :title="translate('toolbar.bold',this.locale)"
           @click.stop.prevent="editor.chain().focus().toggleBold().run()">
-        <font-awesome-icon :icon="['fas', 'bold']"/>
+        <span class="material-symbols-outlined">format_bold</span>
       </li>
 
       <li v-if="this.extensions.includes('italic')"
           :title="translate('toolbar.italic',this.locale)"
           @click.stop.prevent="editor.chain().focus().toggleItalic().run()"
       >
-        <font-awesome-icon :icon="['fas', 'italic']"/>
+        <span class="material-symbols-outlined">format_italic</span>
       </li>
       <!-- -->
 
@@ -58,14 +58,14 @@
       <li v-if="this.extensions.includes('bold') || this.extensions.includes('italic') || this.extensions.includes('underline') || this.extensions.includes('strike') || this.extensions.includes('highlight') || this.extensions.includes('codeblock')"
           :title="translate('toolbar.format',this.locale)"
           class="editor-image">
-        <popover :icon="'ellipsis'">
+        <popover :icon="'more_horiz'">
           <ul class="editor-image--popover">
             <li v-if="this.extensions.includes('underline')"
                 class="image-item"
                 :title="translate('toolbar.underline',this.locale)"
                 @click.stop.prevent="editor.chain().focus().toggleUnderline().run()"
             >
-              <font-awesome-icon :icon="['fas', 'underline']"/>
+              <span class="material-symbols-outlined">format_underlined</span>
               <span>{{ translate('toolbar.underline',this.locale) }}</span>
             </li>
             <li v-if="this.extensions.includes('strike')"
@@ -73,7 +73,7 @@
                 :title="translate('toolbar.strike',this.locale)"
                 @click.stop.prevent="editor.chain().focus().toggleStrike().run()"
             >
-              <font-awesome-icon :icon="['fas', 'text-slash']"/>
+              <span class="material-symbols-outlined">format_clear</span>
               <span>{{ translate('toolbar.strike',this.locale) }}</span>
             </li>
             <li v-if="this.extensions.includes('highlight')"
@@ -81,7 +81,7 @@
                 :title="translate('toolbar.highlight',this.locale)"
                 @click.stop.prevent="editor.chain().focus().toggleHighlight({ color: '#ffc078' }).run()"
             >
-              <font-awesome-icon :icon="['fas', 'highlighter']"/>
+              <span class="material-symbols-outlined">format_ink_highlighter</span>
               <span>{{ translate('toolbar.highlight',this.locale) }}</span>
             </li>
             <li v-if="this.extensions.includes('codeblock')"
@@ -89,7 +89,7 @@
                 :title="translate('toolbar.codeblock',this.locale)"
                 @click.stop.prevent="editor.chain().focus().toggleCodeBlock().run()"
             >
-              <font-awesome-icon :icon="['fas', 'code']"/>
+              <span class="material-symbols-outlined">code_blocks</span>
               <span>Code</span>
             </li>
           </ul>
@@ -103,7 +103,7 @@
           :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }"
           @click.stop.prevent="setTextAlign('left')"
       >
-        <font-awesome-icon :icon="['fas', 'align-left']"/>
+        <span class="material-symbols-outlined">format_align_left</span>
       </li>
 
       <li v-if="this.extensions.includes('center')"
@@ -111,14 +111,14 @@
           :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }"
           @click.stop.prevent="setTextAlign('center')"
       >
-        <font-awesome-icon :icon="['fas', 'align-center']"/>
+        <span class="material-symbols-outlined">format_align_center</span>
       </li>
       <li v-if="this.extensions.includes('right')"
           :title="translate('toolbar.align.right',this.locale)"
           :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }"
           @click.stop.prevent="setTextAlign('right')"
       >
-        <font-awesome-icon :icon="['fas', 'align-right']"/>
+        <span class="material-symbols-outlined">format_align_right</span>
       </li>
       <li v-if="this.extensions.includes('justify')"
           :title="translate('toolbar.align.justify',this.locale)"
@@ -126,21 +126,21 @@
           class="menubar__button"
           @click.stop.prevent="setTextAlign('justify')"
       >
-        <font-awesome-icon :icon="['fas', 'align-justify']"/>
+        <span class="material-symbols-outlined">format_align_justify</span>
       </li>
       <li v-if="this.extensions.includes('ul')"
           :class="{ 'is-active': editor.isActive('bulletList') }"
           :title="translate('toolbar.list.bullet',this.locale)"
           @click.stop.prevent="editor.chain().focus().toggleBulletList().run()"
       >
-        <font-awesome-icon :icon="['fas', 'list-ul']"/>
+        <span class="material-symbols-outlined">format_list_bulleted</span>
       </li>
       <li v-if="this.extensions.includes('ol')"
           :class="{ 'is-active': editor.isActive('orderedList') }"
           :title="translate('toolbar.list.ordered',this.locale)"
           @click.stop.prevent="editor.chain().focus().toggleOrderedList().run()"
       >
-        <font-awesome-icon :icon="['fas', 'list-ol']"/>
+        <span class="material-symbols-outlined">format_list_numbered</span>
       </li>
       <!-- -->
 
@@ -149,7 +149,7 @@
           :title="translate('toolbar.textColor',this.locale)"
           class="editor-color-picker"
       >
-        <popover :icon="'fa-fill-drip'">
+        <popover :icon="'format_color_fill'">
           <div
               class="editor-color-picker--popover">
             <span
@@ -168,7 +168,7 @@
           :title="translate('toolbar.link.title',this.locale)"
           @click="openLinkModal"
       >
-        <font-awesome-icon :icon="['fas', 'link']"/>
+        <span class="material-symbols-outlined">link</span>
       </li>
       <!-- -->
 
@@ -178,19 +178,19 @@
           :title="translate('toolbar.image.title',this.locale)"
           @click="openImageModal"
       >
-        <font-awesome-icon :icon="['fas', 'image']"/>
+        <span class="material-symbols-outlined">image</span>
       </li>
 
       <!-- TABLE -->
       <li v-if="this.extensions.includes('table') && !editor?.isActive('table')"
           @click="openTableModal">
-        <font-awesome-icon :icon="['fas', 'table']"/>
+        <span class="material-symbols-outlined">table</span>
       </li>
 
       <template v-if="this.extensions.includes('link') && editor?.isActive('link')">
         <li class="editor-separator"></li>
         <li @click="editor.chain().focus().extendMarkRange('link').unsetLink().run()">
-          <font-awesome-icon :icon="['fas', 'link-slash']"/>
+          <span class="material-symbols-outlined">link_off</span>
         </li>
       </template>
 
@@ -298,28 +298,28 @@
       <li v-if="displayMediaLibrary || this.extensions.includes('youtube')"
           :title="translate('toolbar.insert',this.locale)"
           class="editor-image">
-        <popover :icon="'plus'">
+        <popover :icon="'add'" :ref="'insertPopover'">
           <ul class="editor-image--popover">
             <li v-if="displayMediaLibrary"
                 class="image-item"
                 @click="$emit('showMediaLibrary')"
                 :title="translate('toolbar.image.media',this.locale)">
-              <font-awesome-icon :icon="['fas', 'photo-film']"/>
+              <span class="material-symbols-outlined">photo_library</span>
               <span>{{ translate('toolbar.image.media',this.locale) }}</span>
             </li>
             <li v-if="this.extensions.includes('youtube')"
                 class="image-item"
                 @click="openYoutubeModal"
                 :title="translate('toolbar.image.youtube',this.locale)">
-              <font-awesome-icon :icon="['fas', 'film']"/>
+              <span class="material-symbols-outlined">movie</span>
               <span>{{ translate('toolbar.image.youtube',this.locale) }}</span>
             </li>
             <li v-if="this.extensions.includes('panel')"
                 class="image-item"
                 @click="addPanel"
-                :title="translate('toolbar.panel',this.locale)">
-              <font-awesome-icon :icon="['fas', 'circle-info']"/>
-              <span>{{ translate('toolbar.panel',this.locale) }}</span>
+                :title="translate('toolbar.panel.title',this.locale)">
+              <span class="material-symbols-outlined">info</span>
+              <span>{{ translate('toolbar.panel.title',this.locale) }}</span>
             </li>
           </ul>
         </popover>
@@ -330,8 +330,8 @@
         <div class="insert-image--modal-head">
           <div class="insert-image--modal-head-title">
             <h2 style="margin-top: 0">{{ translate('toolbar.image.modal_title', this.locale) }}</h2>
-            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="imageModal = false"/>
-          </div>
+            <span :title="translate('modal.close', this.locale)" class="material-symbols-outlined" @click="imageModal = false">close</span>
+-          </div>
         </div>
         <div class="insert-image--modal-content">
           <ul>
@@ -352,7 +352,7 @@
             <div class="insert-image--import-file-dz" @click="importFromComputer">
                 <div>
                   <span>{{ translate('toolbar.image.import_drag',this.locale) }} <u>{{ translate('toolbar.image.import_download',this.locale) }}</u></span>
-                  <font-awesome-icon :icon="['fas', 'cloud-arrow-up']"/>
+                  <span class="material-symbols-outlined">cloud_upload</span>
                 </div>
             </div>
           </div>
@@ -374,7 +374,7 @@
         <div class="insert-video--modal-head">
           <div class="insert-video--modal-head-title">
             <h2 style="margin-top: 0">{{ translate('toolbar.video.modal_title', this.locale) }}</h2>
-            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="videoModal = false"/>
+            <span :title="translate('modal.close', this.locale)" class="material-symbols-outlined" @click="videoModal = false">close</span>
           </div>
         </div>
         <div class="insert-video--modal-content">
@@ -395,7 +395,7 @@
         <div class="insert-link--modal-head">
           <div class="insert-link--modal-head-title">
             <h2 style="margin-top: 0">{{ translate('toolbar.link.modal_title', this.locale) }}</h2>
-            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="linkModal = false"/>
+            <span :title="translate('modal.close', this.locale)" class="material-symbols-outlined" @click="linkModal = false">close</span>
           </div>
         </div>
         <div class="insert-link--modal-content">
@@ -416,7 +416,7 @@
         <div class="insert-table--modal-head">
           <div class="insert-table--modal-head-title">
             <h2 style="margin-top: 0">{{ translate('toolbar.table.modal_title', this.locale) }}</h2>
-            <font-awesome-icon :icon="['fas', 'xmark']" :title="translate('modal.close', this.locale)" @click="tableModal = false"/>
+            <span :title="translate('modal.close', this.locale)" class="material-symbols-outlined" @click="tableModal = false">close</span>
           </div>
         </div>
         <div class="insert-table--modal-content">
@@ -656,7 +656,8 @@ export default {
     },
 
     addPanel() {
-      this.editor.chain().focus().insertContent('<div data-type="info"><p>Texte ici</p></div>').run();
+      this.editor.chain().focus().insertContent('<div data-type="info"><p></p></div>').run();
+      this.$refs.insertPopover.onFocusOut();
     }
   },
 

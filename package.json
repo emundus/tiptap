@@ -27,9 +27,6 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@tiptap/extension-blockquote": "^2.11.5",
     "@tiptap/extension-bold": "^2.11.5",
     "@tiptap/extension-bubble-menu": "^2.11.5",
@@ -66,6 +63,7 @@
     "@tiptap/starter-kit": "^2.11.5",
     "@tiptap/suggestion": "^2.11.5",
     "@tiptap/vue-3": "^2.11.5",
+    "material-symbols": "^0.29.1",
     "sass": "^1.86.0",
     "tiptap-extension-font-size": "^1.2.0",
     "tiptap-extension-resize-image": "^1.2.1",
