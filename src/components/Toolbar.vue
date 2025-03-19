@@ -295,7 +295,7 @@
       </template>
 
       <!-- INSERT MENU -->
-      <li v-if="displayMediaLibrary || this.extensions.includes('youtube')"
+      <li v-if="displayMediaLibrary || this.extensions.includes('youtube') || this.extensions.includes('panel')"
           :title="translate('toolbar.insert',this.locale)"
           class="editor-image">
         <popover :icon="'add'" :ref="'insertPopover'">
