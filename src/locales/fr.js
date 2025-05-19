@@ -55,6 +55,14 @@ export default
         },
         insert: 'Insérer',
         format: 'Format',
+        panel: {
+            title: 'Volet d\'informations',
+            type: {
+                info: 'Informations',
+                warning: 'Avertissement',
+                error: 'Erreur',
+            }
+        }
     },
     placeholder: {
         default: 'Commencez à écrire...'

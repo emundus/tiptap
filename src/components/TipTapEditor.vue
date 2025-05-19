@@ -65,6 +65,7 @@ import Youtube from '@tiptap/extension-youtube'
 import {getSuggestion} from './plugins/mentions/suggestion.js'
 import defaultColors from './plugins/colors/default.js'
 import MediaLibrary from "@/components/plugins/media_library/MediaLibrary.vue";
+import { Panel } from './plugins/panel/panel.js'
 
 const options = [
   "bold",
@@ -91,7 +92,8 @@ const options = [
   "fontFamily",
   "fontSize",
   "highlight",
-  "youtube"
+  "youtube",
+  "panel"
 ];
 
 // Main editor component
@@ -385,6 +387,7 @@ export default {
           controls: true,
           nocookie: true,
         }),
+        Panel
       ];
 
       if (this.suggestions.length > 0) {

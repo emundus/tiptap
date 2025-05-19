@@ -10,16 +10,20 @@
         outline: unset !important;
     }
 
+    .material-symbols-outlined {
+        font-size: 20px;
+    }
+
     /** TOOLBAR **/
     .editor-toolbar {
-        padding: 8px 16px;
+        padding: 8px;
         border-bottom: solid 1px rgb(212 212 212);
         border-radius: 8px 8px 0 0;
         font-size: 14px;
 
         select {
             cursor: pointer;
-            height: 35px;
+            height: 30px;
             border-radius: 4px;
             padding: 4px 6px;
             border: solid 1px rgb(212 212 212);
@@ -34,7 +38,7 @@
         .editor-toolbar--list {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 4px;
             align-items: center;
             margin: 0;
 
@@ -43,7 +47,7 @@
                 align-items: center;
                 cursor: pointer;
                 border-radius: 8px;
-                padding: 8px;
+                padding: 4px;
                 border: solid 1px transparent;
                 min-height: 16px;
                 svg {
@@ -60,7 +64,7 @@
                         display: flex;
                         align-items: center;
                         cursor: pointer;
-                        padding: 8px;
+                        padding: 4px;
                         border-radius: 8px;
                         border: solid 1px transparent;
                         min-height: 16px;
@@ -169,7 +173,7 @@
     /** CONTENT **/
     .editor-content {
         overflow: scroll;
-        padding: 8px;
+        padding: 4px;
 
         .tiptap {
             height: 100%;
@@ -512,7 +516,7 @@
                         display: flex;
                         flex-direction: column;
                         gap: 4px;
-                        padding: 8px;
+                        padding: 4px;
                         width: 120px;
                         border-radius: 8px;
                         &.media-library--selected {
@@ -598,6 +602,70 @@
             }
         }
     }
+
+    /** PANEL **/
+    .info-panel {
+        padding: 10px;
+        background: #ebeefa;
+        border-radius: 4px;
+        margin: 10px 0;
+        position: relative;
+
+        .info-panel__content {
+            p {
+                margin-bottom: 0;
+                line-height: 1.25rem;
+            }
+        }
+
+        .info-panel__actions {
+            position: absolute;
+            display: flex;
+            top: -40px;
+            right: 5px;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: rgba(30, 31, 33, 0.15) 0 8px 12px 0, rgba(30, 31, 33, 0.31) 0 0 1px 0;
+            gap: 6px;
+            
+            .material-symbols-outlined {
+                cursor: pointer;
+            }
+
+            .info-panel__icon--active {
+                background-color: #e9f2fe;
+                color: #1868db;
+            }
+        }
+
+        .info-panel__select {
+            background: white;
+            font-size: 14px;
+            border: solid 1px gray;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+
+        &.info-panel--warning {
+            background: #fff6de;
+        }
+
+        &.info-panel--error {
+            background: #fae9e9;
+        }
+    }
+
+    .info-panel--block {
+        display: flex;
+        align-items: start;
+        gap: 0.75rem;
+
+        .material-symbols-outlined {
+            font-size: 20px;
+        }
+    }
 }
 
 /** TIPPY for BubbleMenu **/
@@ -622,7 +690,7 @@
         background: white;
         border: solid 1px rgb(212 212 212);
         border-radius: 16px;
-        padding: 8px;
+        padding: 4px;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         display: flex;
         flex-direction: column;

@@ -3,9 +3,9 @@
     <div @click="onClickToggle">
       <span v-if="text">
       {{ text }}
-      <font-awesome-icon :icon="['fas', 'chevron-down']"/>
+        <span class="material-symbols-outlined">keyboard_arrow_down</span>
     </span>
-      <font-awesome-icon v-if="icon" :icon="['fas', icon]"/>
+      <span class="material-symbols-outlined">{{ icon }}</span>
     </div>
 
     <transition name="fade">

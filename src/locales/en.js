@@ -55,6 +55,14 @@ export default
         },
         insert: 'Insert',
         format: 'Format',
+        panel: {
+            title: 'Section',
+            type: {
+                info: 'Informations',
+                warning: 'Warning',
+                error: 'Error',
+            }
+        }
     },
     placeholder: {
         default: 'Start writing...'
