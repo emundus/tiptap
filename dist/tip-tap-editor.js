@@ -1,4 +1,4 @@
-import { ref as w6, defineComponent as J1, provide as is, markRaw as Ul, reactive as lm, h as b3, render as rs, getCurrentInstance as im, watchEffect as om, nextTick as rm, unref as am, onBeforeUnmount as r8, onMounted as ql, customRef as fm, computed as f1, watch as um, createElementBlock as I, openBlock as D, createElementVNode as y, createVNode as V3, createCommentVNode as q, createTextVNode as p0, toDisplayString as j, Transition as Kl, withCtx as a1, withDirectives as j2, normalizeStyle as N6, renderSlot as Gl, vShow as Jl, createBlock as r3, resolveComponent as d3, normalizeClass as I2, withModifiers as P2, Fragment as u1, renderList as R3, vModelSelect as Me, vModelText as d4, vModelCheckbox as dm } from "vue";
+import { ref as w6, defineComponent as J1, provide as is, markRaw as Ul, reactive as lm, h as b3, render as rs, getCurrentInstance as im, watchEffect as om, nextTick as rm, unref as am, onBeforeUnmount as r8, onMounted as ql, customRef as fm, computed as f1, watch as um, createElementBlock as I, openBlock as D, createElementVNode as y, createVNode as V3, createCommentVNode as q, createTextVNode as Te, toDisplayString as j, Transition as Kl, withCtx as a1, withDirectives as j2, normalizeStyle as N6, renderSlot as Gl, vShow as Jl, createBlock as r3, resolveComponent as d3, normalizeClass as I2, withModifiers as P2, Fragment as u1, renderList as R3, vModelSelect as ze, vModelText as d4, vModelCheckbox as dm } from "vue";
 function y2(c) {
   this.content = c;
 }
@@ -328,15 +328,15 @@ class w {
   */
   findIndex(e, t = -1) {
     if (e == 0)
-      return te(0, e);
+      return ee(0, e);
     if (e == this.size)
-      return te(this.content.length, e);
+      return ee(this.content.length, e);
     if (e > this.size || e < 0)
       throw new RangeError(`Position ${e} outside of fragment (${this})`);
     for (let n = 0, s = 0; ; n++) {
       let l = this.child(n), i = s + l.nodeSize;
       if (i >= e)
-        return i == e || t > 0 ? te(n + 1, i) : te(n, s);
+        return i == e || t > 0 ? ee(n + 1, i) : ee(n, s);
       s = i;
     }
   }
@@ -402,7 +402,7 @@ class w {
 }
 w.empty = new w([], 0);
 const mt = { index: 0, offset: 0 };
-function te(c, e) {
+function ee(c, e) {
   return mt.index = c, mt.offset = e, mt;
 }
 function Ee(c, e) {
@@ -701,7 +701,7 @@ function hm(c, e) {
     end: s.resolveNoCache(s.content.size - c.openEnd - t)
   };
 }
-class h0 {
+class p0 {
   /**
   @internal
   */
@@ -929,7 +929,7 @@ class h0 {
         break;
       l = a - 1, s += r + 1;
     }
-    return new h0(t, n, l);
+    return new p0(t, n, l);
   }
   /**
   @internal
@@ -944,7 +944,7 @@ class h0 {
       }
     else
       as.set(e, n = new mm());
-    let s = n.elts[n.i] = h0.resolve(e, t);
+    let s = n.elts[n.i] = p0.resolve(e, t);
     return n.i = (n.i + 1) % gm, s;
   }
 }
@@ -1199,13 +1199,13 @@ let p3 = class ec {
   [object](https://prosemirror.net/docs/ref/#model.ResolvedPos) with information about its context.
   */
   resolve(e) {
-    return h0.resolveCached(this, e);
+    return p0.resolveCached(this, e);
   }
   /**
   @internal
   */
   resolveNoCache(e) {
-    return h0.resolve(this, e);
+    return p0.resolve(this, e);
   }
   /**
   Test whether a given mark or mark type occurs in this document
@@ -2302,13 +2302,13 @@ const d7 = {
   script: !0,
   style: !0,
   title: !0
-}, p7 = { ol: !0, ul: !0 }, m0 = 1, tc = 2, Ce = 4;
+}, p7 = { ol: !0, ul: !0 }, h0 = 1, tc = 2, Me = 4;
 function hs(c, e, t) {
-  return e != null ? (e ? m0 : 0) | (e === "full" ? tc : 0) : c && c.whitespace == "pre" ? m0 | tc : t & -5;
+  return e != null ? (e ? h0 : 0) | (e === "full" ? tc : 0) : c && c.whitespace == "pre" ? h0 | tc : t & -5;
 }
-class ce {
+class te {
   constructor(e, t, n, s, l, i) {
-    this.type = e, this.attrs = t, this.marks = n, this.solid = s, this.options = i, this.content = [], this.activeMarks = n2.none, this.match = l || (i & Ce ? null : e.contentMatch);
+    this.type = e, this.attrs = t, this.marks = n, this.solid = s, this.options = i, this.content = [], this.activeMarks = n2.none, this.match = l || (i & Me ? null : e.contentMatch);
   }
   findWrapping(e) {
     if (!this.match) {
@@ -2325,7 +2325,7 @@ class ce {
     return this.match.findWrapping(e.type);
   }
   finish(e) {
-    if (!(this.options & m0)) {
+    if (!(this.options & h0)) {
       let n = this.content[this.content.length - 1], s;
       if (n && n.isText && (s = /[ \t\r\n\u000c]+$/.exec(n.text))) {
         let l = n;
@@ -2342,8 +2342,8 @@ class ce {
 class ms {
   constructor(e, t, n) {
     this.parser = e, this.options = t, this.isOpen = n, this.open = 0, this.localPreserveWS = !1;
-    let s = t.topNode, l, i = hs(null, t.preserveWhitespace, 0) | (n ? Ce : 0);
-    s ? l = new ce(s.type, s.attrs, n2.none, !0, t.topMatch || s.type.contentMatch, i) : n ? l = new ce(null, null, n2.none, !0, null, i) : l = new ce(e.schema.topNodeType, null, n2.none, !0, null, i), this.nodes = [l], this.find = t.findPositions, this.needsBlock = !1;
+    let s = t.topNode, l, i = hs(null, t.preserveWhitespace, 0) | (n ? Me : 0);
+    s ? l = new te(s.type, s.attrs, n2.none, !0, t.topMatch || s.type.contentMatch, i) : n ? l = new te(null, null, n2.none, !0, null, i) : l = new te(e.schema.topNodeType, null, n2.none, !0, null, i), this.nodes = [l], this.find = t.findPositions, this.needsBlock = !1;
   }
   get top() {
     return this.nodes[this.open];
@@ -2355,7 +2355,7 @@ class ms {
     e.nodeType == 3 ? this.addTextNode(e, t) : e.nodeType == 1 && this.addElement(e, t);
   }
   addTextNode(e, t) {
-    let n = e.nodeValue, s = this.top, l = s.options & tc ? "full" : this.localPreserveWS || (s.options & m0) > 0;
+    let n = e.nodeValue, s = this.top, l = s.options & tc ? "full" : this.localPreserveWS || (s.options & h0) > 0;
     if (l === "full" || s.inlineContext(e) || /[^ \t\r\n\u000c]/.test(n)) {
       if (l)
         l !== "full" ? n = n.replace(/\r?\n|\r/g, " ") : n = n.replace(/\r\n?/g, `
@@ -2512,9 +2512,9 @@ class ms {
     let i = this.top;
     i.match = i.match && i.match.matchType(e);
     let o = hs(e, l, i.options);
-    i.options & Ce && i.content.length == 0 && (o |= Ce);
+    i.options & Me && i.content.length == 0 && (o |= Me);
     let r = n2.none;
-    return n = n.filter((a) => (i.type ? i.type.allowsMarkType(a.type) : Ls(a.type, e)) ? (r = a.addToSet(r), !1) : !0), this.nodes.push(new ce(e, t, r, s, null, o)), this.open++, n;
+    return n = n.filter((a) => (i.type ? i.type.allowsMarkType(a.type) : Ls(a.type, e)) ? (r = a.addToSet(r), !1) : !0), this.nodes.push(new te(e, t, r, s, null, o)), this.open++, n;
   }
   // Make sure all nodes above this.open are finished and added to
   // their parents
@@ -2533,7 +2533,7 @@ class ms {
     for (let t = this.open; t >= 0; t--) {
       if (this.nodes[t] == e)
         return this.open = t, !0;
-      this.localPreserveWS && (this.nodes[t].options |= m0);
+      this.localPreserveWS && (this.nodes[t].options |= h0);
     }
     return !1;
   }
@@ -2690,7 +2690,7 @@ class t4 {
   @internal
   */
   serializeNodeInner(e, t) {
-    let { dom: n, contentDOM: s } = ye(gt(t), this.nodes[e.type.name](e), null, e.attrs);
+    let { dom: n, contentDOM: s } = Ce(gt(t), this.nodes[e.type.name](e), null, e.attrs);
     if (s) {
       if (e.isLeaf)
         throw new RangeError("Content hole not allowed in a leaf node spec");
@@ -2718,10 +2718,10 @@ class t4 {
   */
   serializeMark(e, t, n = {}) {
     let s = this.marks[e.type.name];
-    return s && ye(gt(n), s(e, t), null, e.attrs);
+    return s && Ce(gt(n), s(e, t), null, e.attrs);
   }
   static renderSpec(e, t, n = null, s) {
-    return ye(e, t, n, s);
+    return Ce(e, t, n, s);
   }
   /**
   Build a serializer using the [`toDOM`](https://prosemirror.net/docs/ref/#model.NodeSpec.toDOM)
@@ -2777,7 +2777,7 @@ function Rm(c) {
   }
   return t(c), e;
 }
-function ye(c, e, t, n) {
+function Ce(c, e, t, n) {
   if (typeof e == "string")
     return { dom: c.createTextNode(e) };
   if (e.nodeType != null)
@@ -2807,7 +2807,7 @@ function ye(c, e, t, n) {
         throw new RangeError("Content hole must be the only child of its parent node");
       return { dom: r, contentDOM: r };
     } else {
-      let { dom: p, contentDOM: h } = ye(c, d, t, n);
+      let { dom: p, contentDOM: h } = Ce(c, d, t, n);
       if (r.appendChild(p), h) {
         if (o)
           throw new RangeError("Multiple content holes");
@@ -2827,7 +2827,7 @@ function Cs(c) {
 function Bm(c) {
   return (c - (c & h7)) / m7;
 }
-const g7 = 1, L7 = 2, be = 4, z7 = 8;
+const g7 = 1, L7 = 2, ye = 4, z7 = 8;
 class cc {
   /**
   @internal
@@ -2847,13 +2847,13 @@ class cc {
   Tells you whether the token before the mapped position was deleted.
   */
   get deletedBefore() {
-    return (this.delInfo & (g7 | be)) > 0;
+    return (this.delInfo & (g7 | ye)) > 0;
   }
   /**
   True when the token after the mapped position was deleted.
   */
   get deletedAfter() {
-    return (this.delInfo & (L7 | be)) > 0;
+    return (this.delInfo & (L7 | ye)) > 0;
   }
   /**
   Tells whether any of the steps mapped through deletes across the
@@ -2861,7 +2861,7 @@ class cc {
   position).
   */
   get deletedAcross() {
-    return (this.delInfo & be) > 0;
+    return (this.delInfo & ye) > 0;
   }
 }
 class U2 {
@@ -2904,7 +2904,7 @@ class U2 {
         let d = a ? e == r ? -1 : e == u ? 1 : t : t, p = r + s + (d < 0 ? 0 : f);
         if (n)
           return p;
-        let h = e == (t < 0 ? r : u) ? null : Im(o / 3, e - r), m = e == r ? L7 : e == u ? g7 : be;
+        let h = e == (t < 0 ? r : u) ? null : Im(o / 3, e - r), m = e == r ? L7 : e == u ? g7 : ye;
         return (t < 0 ? e != r : e != u) && (m |= z7), new cc(p, m, h);
       }
       s += f - a;
@@ -2961,7 +2961,7 @@ class U2 {
   }
 }
 U2.empty = new U2([]);
-class g0 {
+class m0 {
   /**
   Create a new mapping with the given position maps.
   */
@@ -2978,7 +2978,7 @@ class g0 {
   Create a mapping that maps only through a part of this one.
   */
   slice(e = 0, t = this.maps.length) {
-    return new g0(this._maps, this.mirror, e, t);
+    return new m0(this._maps, this.mirror, e, t);
   }
   /**
   Add a step map to the end of this mapping. If `mirrors` is
@@ -3029,7 +3029,7 @@ class g0 {
   Create an inverted version of this mapping.
   */
   invert() {
-    let e = new g0();
+    let e = new m0();
     return e.appendMappingInverted(this), e;
   }
   /**
@@ -4042,7 +4042,7 @@ class C4 extends A2 {
   }
 }
 A2.jsonID("attr", C4);
-class L0 extends A2 {
+class g0 extends A2 {
   /**
   Construct an attribute step.
   */
@@ -4061,7 +4061,7 @@ class L0 extends A2 {
     return U2.empty;
   }
   invert(e) {
-    return new L0(this.attr, e.attrs[this.attr]);
+    return new g0(this.attr, e.attrs[this.attr]);
   }
   map(e) {
     return this;
@@ -4072,10 +4072,10 @@ class L0 extends A2 {
   static fromJSON(e, t) {
     if (typeof t.attr != "string")
       throw new RangeError("Invalid input for DocAttrStep.fromJSON");
-    return new L0(t.attr, t.value);
+    return new g0(t.attr, t.value);
   }
 }
-A2.jsonID("docAttr", L0);
+A2.jsonID("docAttr", g0);
 let v4 = class extends Error {
 };
 v4 = function c(e) {
@@ -4090,7 +4090,7 @@ class d8 {
   Create a transform that starts with the given document.
   */
   constructor(e) {
-    this.doc = e, this.steps = [], this.docs = [], this.mapping = new g0();
+    this.doc = e, this.steps = [], this.docs = [], this.mapping = new m0();
   }
   /**
   The starting document.
@@ -4248,7 +4248,7 @@ class d8 {
   Set a single attribute on the document to a new value.
   */
   setDocAttribute(e, t) {
-    return this.step(new L0(e, t)), this;
+    return this.step(new g0(e, t)), this;
   }
   /**
   Add a mark to the node at position `pos`.
@@ -5137,7 +5137,7 @@ function As(c, e, t, n, s) {
       return !0;
     if (e == (s < 0 ? 0 : c1(c))) {
       let l = c.parentNode;
-      if (!l || l.nodeType != 1 || O0(c) || rg.test(c.nodeName) || c.contentEditable == "false")
+      if (!l || l.nodeType != 1 || E0(c) || rg.test(c.nodeName) || c.contentEditable == "false")
         return !1;
       e = b2(c) + (s < 0 ? 0 : 1), c = l;
     } else if (c.nodeType == 1) {
@@ -5159,7 +5159,7 @@ function ag(c, e) {
       if (c.contentEditable == "false")
         return null;
       c = c.childNodes[e - 1], e = c1(c);
-    } else if (c.parentNode && !O0(c))
+    } else if (c.parentNode && !E0(c))
       e = b2(c), c = c.parentNode;
     else
       return null;
@@ -5173,7 +5173,7 @@ function fg(c, e) {
       if (c.contentEditable == "false")
         return null;
       c = c.childNodes[e], e = 0;
-    } else if (c.parentNode && !O0(c))
+    } else if (c.parentNode && !E0(c))
       e = b2(c) + 1, c = c.parentNode;
     else
       return null;
@@ -5189,7 +5189,7 @@ function ug(c, e, t) {
     n = n && l == 0, s = s && l == c1(c);
   }
 }
-function O0(c) {
+function E0(c) {
   let e;
   for (let t = c; t && !(e = t.pmViewDesc); t = t.parentNode)
     ;
@@ -5224,7 +5224,7 @@ function pg(c, e, t) {
 }
 const N1 = typeof navigator < "u" ? navigator : null, Ts = typeof document < "u" ? document : null, v3 = N1 && N1.userAgent || "", lc = /Edge\/(\d+)/.exec(v3), T7 = /MSIE \d/.exec(v3), ic = /Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(v3), F2 = !!(T7 || ic || lc), m3 = T7 ? document.documentMode : ic ? +ic[1] : lc ? +lc[1] : 0, h1 = !F2 && /gecko\/(\d+)/i.test(v3);
 h1 && +(/Firefox\/(\d+)/.exec(v3) || [0, 0])[1];
-const oc = !F2 && /Chrome\/(\d+)/.exec(v3), w2 = !!oc, E7 = oc ? +oc[1] : 0, E2 = !F2 && !!N1 && /Apple Computer/.test(N1.vendor), N4 = E2 && (/Mobile\/\w+/.test(v3) || !!N1 && N1.maxTouchPoints > 2), t1 = N4 || (N1 ? /Mac/.test(N1.platform) : !1), hg = N1 ? /Win/.test(N1.platform) : !1, _1 = /Android \d/.test(v3), D0 = !!Ts && "webkitFontSmoothing" in Ts.documentElement.style, mg = D0 ? +(/\bAppleWebKit\/(\d+)/.exec(navigator.userAgent) || [0, 0])[1] : 0;
+const oc = !F2 && /Chrome\/(\d+)/.exec(v3), w2 = !!oc, E7 = oc ? +oc[1] : 0, E2 = !F2 && !!N1 && /Apple Computer/.test(N1.vendor), N4 = E2 && (/Mobile\/\w+/.test(v3) || !!N1 && N1.maxTouchPoints > 2), t1 = N4 || (N1 ? /Mac/.test(N1.platform) : !1), hg = N1 ? /Win/.test(N1.platform) : !1, _1 = /Android \d/.test(v3), O0 = !!Ts && "webkitFontSmoothing" in Ts.documentElement.style, mg = O0 ? +(/\bAppleWebKit\/(\d+)/.exec(navigator.userAgent) || [0, 0])[1] : 0;
 function gg(c) {
   let e = c.defaultView && c.defaultView.visualViewport;
   return e ? {
@@ -5419,7 +5419,7 @@ function wg(c, e) {
       f.nodeName == "IMG" && (u = f.getBoundingClientRect()).right <= e.left && u.bottom > e.top && s++;
     }
     let a;
-    D0 && s && n.nodeType == 1 && (a = n.childNodes[s - 1]).nodeType == 1 && a.contentEditable == "false" && a.getBoundingClientRect().top >= e.top && s--, n == c.dom && s == n.childNodes.length - 1 && n.lastChild.nodeType == 1 && e.top > n.lastChild.getBoundingClientRect().bottom ? o = c.state.doc.content.size : (s == 0 || n.nodeType != 1 || n.childNodes[s - 1].nodeName != "BR") && (o = vg(c, n, s, e));
+    O0 && s && n.nodeType == 1 && (a = n.childNodes[s - 1]).nodeType == 1 && a.contentEditable == "false" && a.getBoundingClientRect().top >= e.top && s--, n == c.dom && s == n.childNodes.length - 1 && n.lastChild.nodeType == 1 && e.top > n.lastChild.getBoundingClientRect().bottom ? o = c.state.doc.content.size : (s == 0 || n.nodeType != 1 || n.childNodes[s - 1].nodeName != "BR") && (o = vg(c, n, s, e));
   }
   o == null && (o = xg(c, i, e));
   let r = c.docView.nearestDesc(i, !0);
@@ -5439,7 +5439,7 @@ function t3(c, e) {
 }
 const Ng = /[\u0590-\u05f4\u0600-\u06ff\u0700-\u08ac]/;
 function I7(c, e, t) {
-  let { node: n, offset: s, atom: l } = c.docView.domFromPos(e, t < 0 ? -1 : 1), i = D0 || h1;
+  let { node: n, offset: s, atom: l } = c.docView.domFromPos(e, t < 0 ? -1 : 1), i = O0 || h1;
   if (n.nodeType == 3)
     if (i && (Ng.test(n.nodeValue) || (t < 0 ? !s : s == n.nodeValue.length))) {
       let r = t3(H1(n, s, s), t);
@@ -5559,7 +5559,7 @@ function Tg(c, e, t) {
   return Ds == e && Ps == t ? Rs : (Ds = e, Ps = t, Rs = t == "up" || t == "down" ? Sg(c, e, t) : Ag(c, e, t));
 }
 const n1 = 0, Is = 1, I3 = 2, S1 = 3;
-class P0 {
+class D0 {
   constructor(e, t, n, s) {
     this.parent = e, this.children = t, this.dom = n, this.contentDOM = s, this.dirty = n1, n.pmViewDesc = this;
   }
@@ -5900,7 +5900,7 @@ class P0 {
     return !1;
   }
 }
-class F7 extends P0 {
+class F7 extends D0 {
   constructor(e, t, n, s) {
     let l, i = t.type.toDOM;
     if (typeof i == "function" && (i = i(n, () => {
@@ -5940,7 +5940,7 @@ class F7 extends P0 {
     return this.widget.type.side;
   }
 }
-class Eg extends P0 {
+class Eg extends D0 {
   constructor(e, t, n, s) {
     super(e, [], t, null), this.textDOM = n, this.text = s;
   }
@@ -5957,7 +5957,7 @@ class Eg extends P0 {
     return e.type === "characterData" && e.target.nodeValue == e.oldValue;
   }
 }
-class J3 extends P0 {
+class J3 extends D0 {
   constructor(e, t, n, s, l) {
     super(e, [], n, s), this.mark = t, this.spec = l;
   }
@@ -5993,7 +5993,7 @@ class J3 extends P0 {
     this.spec.destroy && this.spec.destroy(), super.destroy();
   }
 }
-class g3 extends P0 {
+class g3 extends D0 {
   constructor(e, t, n, s, l, i, o, r, a) {
     super(e, [], l, i), this.node = t, this.outerDeco = n, this.innerDeco = s, this.nodeDOM = o;
   }
@@ -6167,7 +6167,7 @@ class O6 extends g3 {
     return this.node.text == e;
   }
 }
-class H7 extends P0 {
+class H7 extends D0 {
   parseRule() {
     return { ignore: !0 };
   }
@@ -6722,7 +6722,7 @@ function Ws(c, e, t) {
         if (!l || l.isText)
           return !1;
         let o = e < 0 ? s.pos - l.nodeSize : s.pos;
-        return l.isAtom || (i = c.docView.descAt(o)) && !i.contentDOM ? F.isSelectable(l) ? c3(c, new F(e < 0 ? c.state.doc.resolve(s.pos - l.nodeSize) : s)) : D0 ? c3(c, new _(c.state.doc.resolve(e < 0 ? o : o + l.nodeSize))) : !1 : !1;
+        return l.isAtom || (i = c.docView.descAt(o)) && !i.contentDOM ? F.isSelectable(l) ? c3(c, new F(e < 0 ? c.state.doc.resolve(s.pos - l.nodeSize) : s)) : O0 ? c3(c, new _(c.state.doc.resolve(e < 0 ? o : o + l.nodeSize))) : !1 : !1;
       }
     } else return !1;
   else {
@@ -6817,7 +6817,7 @@ function q7(c) {
   return e && e.node && e.node.isBlock;
 }
 function Ug(c, e) {
-  for (; c && e == c.childNodes.length && !O0(c); )
+  for (; c && e == c.childNodes.length && !E0(c); )
     e = b2(c) + 1, c = c.parentNode;
   for (; c && e < c.childNodes.length; ) {
     let t = c.childNodes[e];
@@ -6829,7 +6829,7 @@ function Ug(c, e) {
   }
 }
 function qg(c, e) {
-  for (; c && !e && !O0(c); )
+  for (; c && !e && !E0(c); )
     e = b2(c), c = c.parentNode;
   for (; c && e; ) {
     let t = c.childNodes[e - 1];
@@ -7001,7 +7001,7 @@ function K7(c, e, t, n, s) {
   } else
     c.someProp("transformPastedHTML", (u) => {
       t = u(t, c);
-    }), i = Zg(t), D0 && eL(i);
+    }), i = Zg(t), O0 && eL(i);
   let a = i && i.querySelector("[data-pm-slice]"), f = a && /^(\d+) (\d+)(?: -(\d+))? (.*)/.exec(a.getAttribute("data-pm-slice") || "");
   if (f && f[3])
     for (let u = +f[3]; u > 0; u--) {
@@ -7428,12 +7428,12 @@ function ML(c, e) {
     t.parentNode && t.parentNode.removeChild(t), c.focus();
   }, 50);
 }
-const z0 = F2 && m3 < 15 || N4 && mg < 604;
+const L0 = F2 && m3 < 15 || N4 && mg < 604;
 O2.copy = D2.cut = (c, e) => {
   let t = e, n = c.state.selection, s = t.type == "cut";
   if (n.empty)
     return;
-  let l = z0 ? null : t.clipboardData, i = n.content(), { dom: o, text: r } = L8(c, i);
+  let l = L0 ? null : t.clipboardData, i = n.content(), { dom: o, text: r } = L8(c, i);
   l ? (t.preventDefault(), l.clearData(), l.setData("text/html", o.innerHTML), l.setData("text/plain", r)) : ML(c, o), s && c.dispatch(c.state.tr.deleteSelection().scrollIntoView().setMeta("uiEvent", "cut"));
 };
 function CL(c) {
@@ -7446,10 +7446,10 @@ function yL(c, e) {
   t || (n.contentEditable = "true"), n.style.cssText = "position: fixed; left: -10000px; top: 10px", n.focus();
   let s = c.input.shiftKey && c.input.lastKeyCode != 45;
   setTimeout(() => {
-    c.focus(), n.parentNode && n.parentNode.removeChild(n), t ? M0(c, n.value, null, s, e) : M0(c, n.textContent, n.innerHTML, s, e);
+    c.focus(), n.parentNode && n.parentNode.removeChild(n), t ? z0(c, n.value, null, s, e) : z0(c, n.textContent, n.innerHTML, s, e);
   }, 50);
 }
-function M0(c, e, t, n, s) {
+function z0(c, e, t, n, s) {
   let l = K7(c, e, t, n, c.state.selection.$from);
   if (c.someProp("handlePaste", (r) => r(c, s, l || T.empty)))
     return !0;
@@ -7469,8 +7469,8 @@ D2.paste = (c, e) => {
   let t = e;
   if (c.composing && !_1)
     return;
-  let n = z0 ? null : t.clipboardData, s = c.input.shiftKey && c.input.lastKeyCode != 45;
-  n && M0(c, ni(n), n.getData("text/html"), s, t) ? t.preventDefault() : yL(c, t);
+  let n = L0 ? null : t.clipboardData, s = c.input.shiftKey && c.input.lastKeyCode != 45;
+  n && z0(c, ni(n), n.getData("text/html"), s, t) ? t.preventDefault() : yL(c, t);
 };
 class si {
   constructor(e, t, n) {
@@ -7492,7 +7492,7 @@ O2.dragstart = (c, e) => {
     }
   }
   let o = (i || c.state.selection).content(), { dom: r, text: a, slice: f } = L8(c, o);
-  (!t.dataTransfer.files.length || !w2 || E7 > 120) && t.dataTransfer.clearData(), t.dataTransfer.setData(z0 ? "Text" : "text/html", r.innerHTML), t.dataTransfer.effectAllowed = "copyMove", z0 || t.dataTransfer.setData("text/plain", a), c.dragging = new si(f, !t[li], i);
+  (!t.dataTransfer.files.length || !w2 || E7 > 120) && t.dataTransfer.clearData(), t.dataTransfer.setData(L0 ? "Text" : "text/html", r.innerHTML), t.dataTransfer.effectAllowed = "copyMove", L0 || t.dataTransfer.setData("text/plain", a), c.dragging = new si(f, !t[li], i);
 };
 O2.dragend = (c) => {
   let e = c.dragging;
@@ -7511,7 +7511,7 @@ D2.drop = (c, e) => {
   let l = c.state.doc.resolve(s.pos), i = n && n.slice;
   i ? c.someProp("transformPasted", (h) => {
     i = h(i, c);
-  }) : i = K7(c, ni(t.dataTransfer), z0 ? null : t.dataTransfer.getData("text/html"), !1, l);
+  }) : i = K7(c, ni(t.dataTransfer), L0 ? null : t.dataTransfer.getData("text/html"), !1, l);
   let o = !!(n && !t[li]);
   if (c.someProp("handleDrop", (h) => h(c, t, i || T.empty, o))) {
     t.preventDefault();
@@ -7562,7 +7562,7 @@ O2.beforeinput = (c, e) => {
 };
 for (let c in D2)
   O2[c] = D2[c];
-function C0(c, e) {
+function M0(c, e) {
   if (c == e)
     return !0;
   for (let t in c)
@@ -7585,7 +7585,7 @@ class He {
     return !0;
   }
   eq(e) {
-    return this == e || e instanceof He && (this.spec.key && this.spec.key == e.spec.key || this.toDOM == e.toDOM && C0(this.spec, e.spec));
+    return this == e || e instanceof He && (this.spec.key && this.spec.key == e.spec.key || this.toDOM == e.toDOM && M0(this.spec, e.spec));
   }
   destroy(e) {
     this.spec.destroy && this.spec.destroy(e);
@@ -7603,7 +7603,7 @@ class L3 {
     return t.from < t.to;
   }
   eq(e) {
-    return this == e || e instanceof L3 && C0(this.attrs, e.attrs) && C0(this.spec, e.spec);
+    return this == e || e instanceof L3 && M0(this.attrs, e.attrs) && M0(this.spec, e.spec);
   }
   static is(e) {
     return e.type instanceof L3;
@@ -7627,7 +7627,7 @@ class y8 {
     return s == t.from && !(l = e.child(n)).isText && s + l.nodeSize == t.to;
   }
   eq(e) {
-    return this == e || e instanceof y8 && C0(this.attrs, e.attrs) && C0(this.spec, e.spec);
+    return this == e || e instanceof y8 && M0(this.attrs, e.attrs) && M0(this.spec, e.spec);
   }
   destroy() {
   }
@@ -8732,13 +8732,13 @@ class FL {
   [`handlePaste`](https://prosemirror.net/docs/ref/#view.EditorProps.handlePaste) hook.
   */
   pasteHTML(e, t) {
-    return M0(this, "", e, !1, t || new ClipboardEvent("paste"));
+    return z0(this, "", e, !1, t || new ClipboardEvent("paste"));
   }
   /**
   Run the editor's paste logic with the given plain-text input.
   */
   pasteText(e, t) {
-    return M0(this, e, null, !0, t || new ClipboardEvent("paste"));
+    return z0(this, e, null, !0, t || new ClipboardEvent("paste"));
   }
   /**
   Serialize the given slice as it would be if it was copied from
@@ -9797,7 +9797,7 @@ const Mz = (c, e) => {
   const n = [t.text];
   return n.index = t.index, n.input = c, n.data = t.data, t.replaceWith && (t.text.includes(t.replaceWith) || console.warn('[tiptap warn]: "inputRuleMatch.replaceWith" must be part of "inputRuleMatch.text".'), n.push(t.replaceWith)), n;
 };
-function ne(c) {
+function ce(c) {
   var e;
   const { editor: t, from: n, to: s, text: l, rules: i, plugin: o } = c, { view: r } = t;
   if (r.composing)
@@ -9856,7 +9856,7 @@ function Cz(c) {
           let { text: f } = r;
           typeof f == "string" ? f = f : f = k8(w.from(f), i.schema);
           const { from: u } = r, d = u + f.length;
-          ne({
+          ce({
             editor: e,
             from: u,
             to: d,
@@ -9869,7 +9869,7 @@ function Cz(c) {
     },
     props: {
       handleTextInput(s, l, i, o) {
-        return ne({
+        return ce({
           editor: e,
           from: l,
           to: i,
@@ -9881,7 +9881,7 @@ function Cz(c) {
       handleDOMEvents: {
         compositionend: (s) => (setTimeout(() => {
           const { $cursor: l } = s.state.selection;
-          l && ne({
+          l && ce({
             editor: e,
             from: l.pos,
             to: l.pos,
@@ -9897,7 +9897,7 @@ function Cz(c) {
         if (l.key !== "Enter")
           return !1;
         const { $cursor: i } = s.state.selection;
-        return i ? ne({
+        return i ? ce({
           editor: e,
           from: i.pos,
           to: i.pos,
@@ -9916,13 +9916,13 @@ function Cz(c) {
 function yz(c) {
   return Object.prototype.toString.call(c).slice(8, -1);
 }
-function se(c) {
+function ne(c) {
   return yz(c) !== "Object" ? !1 : c.constructor === Object && Object.getPrototypeOf(c) === Object.prototype;
 }
 function F6(c, e) {
   const t = { ...c };
-  return se(c) && se(e) && Object.keys(e).forEach((n) => {
-    se(e[n]) && se(c[n]) ? t[n] = F6(c[n], e[n]) : t[n] = e[n];
+  return ne(c) && ne(e) && Object.keys(e).forEach((n) => {
+    ne(e[n]) && ne(c[n]) ? t[n] = F6(c[n], e[n]) : t[n] = e[n];
   }), t;
 }
 class m1 {
@@ -10017,7 +10017,7 @@ function vz(c) {
     });
   }), u.every((p) => p !== null);
 }
-let le = null;
+let se = null;
 const wz = (c) => {
   var e;
   const t = new ClipboardEvent("paste", {
@@ -10060,9 +10060,9 @@ function Nz(c) {
     view(u) {
       const d = (h) => {
         var m;
-        n = !((m = u.dom.parentElement) === null || m === void 0) && m.contains(h.target) ? u.dom.parentElement : null, n && (le = e);
+        n = !((m = u.dom.parentElement) === null || m === void 0) && m.contains(h.target) ? u.dom.parentElement : null, n && (se = e);
       }, p = () => {
-        le && (le = null);
+        se && (se = null);
       };
       return window.addEventListener("dragstart", d), window.addEventListener("dragend", p), {
         destroy() {
@@ -10074,7 +10074,7 @@ function Nz(c) {
       handleDOMEvents: {
         drop: (u, d) => {
           if (l = n === u.dom.parentElement, o = d, !l) {
-            const p = le;
+            const p = se;
             p && setTimeout(() => {
               const h = p.state.selection;
               h && p.commands.deleteRange({ from: h.from, to: h.to });
@@ -10530,7 +10530,7 @@ const jz = (c = null, e = {}) => ({ editor: t, view: n, tr: s, dispatch: l }) =>
   }
   return c;
 };
-function ie(c) {
+function le(c) {
   const e = `<body>${c}</body>`, t = new window.DOMParser().parseFromString(e, "text/html").body;
   return Ai(t);
 }
@@ -10575,11 +10575,11 @@ function je(c, e, t) {
           }
         })
       });
-      if (t.slice ? h3.fromSchema(r).parseSlice(ie(c), t.parseOptions) : h3.fromSchema(r).parse(ie(c), t.parseOptions), t.errorOnInvalidContent && i)
+      if (t.slice ? h3.fromSchema(r).parseSlice(le(c), t.parseOptions) : h3.fromSchema(r).parse(le(c), t.parseOptions), t.errorOnInvalidContent && i)
         throw new Error("[tiptap error]: Invalid HTML content", { cause: new Error(`Invalid element found: ${o}`) });
     }
     const l = h3.fromSchema(e);
-    return t.slice ? l.parseSlice(ie(c), t.parseOptions).content : l.parse(ie(c), t.parseOptions);
+    return t.slice ? l.parseSlice(le(c), t.parseOptions).content : l.parse(le(c), t.parseOptions);
   }
   return je("", e, t);
 }
@@ -10704,7 +10704,7 @@ const sM = (c) => ({ editor: e, view: t, tr: n, dispatch: s }) => {
     f && s && n.maybeStep(f);
   }), !0;
 };
-function y0(c, e, t = {}) {
+function C0(c, e, t = {}) {
   const { from: n, to: s, empty: l } = c.selection, i = e ? z2(e, c.schema) : null, o = [];
   c.doc.nodesBetween(n, s, (u, d) => {
     if (u.isText)
@@ -10721,7 +10721,7 @@ function y0(c, e, t = {}) {
 }
 const lM = (c, e = {}) => ({ state: t, dispatch: n }) => {
   const s = z2(c, t.schema);
-  return y0(t, s, e) ? QL(t, n) : !1;
+  return C0(t, s, e) ? QL(t, n) : !1;
 }, iM = () => ({ state: c, dispatch: e }) => Mi(c, e), oM = (c) => ({ state: e, dispatch: t }) => {
   const n = z2(c, e.schema);
   return fz(n)(e, t);
@@ -10894,7 +10894,7 @@ function P8(c, e, t) {
     })));
   }), n;
 }
-function xe(c, e, t) {
+function be(c, e, t) {
   return Object.fromEntries(Object.entries(t).filter(([n]) => {
     const s = c.find((l) => l.type === e && l.name === n);
     return s ? s.attribute.keepOnSplit : !1;
@@ -10925,9 +10925,9 @@ function gc(c, e, t = {}) {
 }
 function wM(c, e, t = {}) {
   if (!e)
-    return y0(c, null, t) || gc(c, null, t);
+    return C0(c, null, t) || gc(c, null, t);
   const n = V6(e, c.schema);
-  return n === "node" ? y0(c, e, t) : n === "mark" ? gc(c, e, t) : !1;
+  return n === "node" ? C0(c, e, t) : n === "mark" ? gc(c, e, t) : !1;
 }
 function h5(c, e) {
   const { nodeExtensions: t } = I6(e), n = t.find((i) => i.name === c);
@@ -11054,7 +11054,7 @@ function m5(c, e) {
   }
 }
 const PM = ({ keepMarks: c = !0 } = {}) => ({ tr: e, state: t, dispatch: n, editor: s }) => {
-  const { selection: l, doc: i } = e, { $from: o, $to: r } = l, a = s.extensionManager.attributes, f = xe(a, o.node().type.name, o.node().attrs);
+  const { selection: l, doc: i } = e, { $from: o, $to: r } = l, a = s.extensionManager.attributes, f = be(a, o.node().type.name, o.node().attrs);
   if (l instanceof F && l.node.isBlock)
     return !o.parentOffset || !j1(i, o.pos) ? !1 : (n && (c && m5(t, s.extensionManager.splittableMarks), e.split(o.pos).scrollIntoView()), !0);
   if (!o.parent.isBlock)
@@ -11097,7 +11097,7 @@ const PM = ({ keepMarks: c = !0 } = {}) => ({ tr: e, state: t, dispatch: n, edit
       for (let E = r.depth - M; E >= r.depth - 3; E -= 1)
         L = w.from(r.node(E).copy(L));
       const b = r.indexAfter(-1) < r.node(-2).childCount ? 1 : r.indexAfter(-2) < r.node(-3).childCount ? 2 : 3, z = {
-        ...xe(d, r.node().type.name, r.node().attrs),
+        ...be(d, r.node().type.name, r.node().attrs),
         ...e
       }, x = ((i = o.contentMatch.defaultType) === null || i === void 0 ? void 0 : i.createAndFill(z)) || void 0;
       L = L.append(w.from(o.createAndFill(null, x) || void 0));
@@ -11113,10 +11113,10 @@ const PM = ({ keepMarks: c = !0 } = {}) => ({ tr: e, state: t, dispatch: n, edit
     return !0;
   }
   const p = a.pos === r.end() ? u.contentMatchAt(0).defaultType : null, h = {
-    ...xe(d, u.type.name, u.attrs),
+    ...be(d, u.type.name, u.attrs),
     ...e
   }, m = {
-    ...xe(d, r.node().type.name, r.node().attrs),
+    ...be(d, r.node().type.name, r.node().attrs),
     ...e
   };
   t.delete(r.pos, a.pos);
@@ -11171,12 +11171,12 @@ const PM = ({ keepMarks: c = !0 } = {}) => ({ tr: e, state: t, dispatch: n, edit
   const { extendEmptyMarkRange: l = !1 } = t, i = w3(c, n.schema);
   return gc(n, i, e) ? s.unsetMark(i, { extendEmptyMarkRange: l }) : s.setMark(i, e);
 }, FM = (c, e, t = {}) => ({ state: n, commands: s }) => {
-  const l = z2(c, n.schema), i = z2(e, n.schema), o = y0(n, l, t);
+  const l = z2(c, n.schema), i = z2(e, n.schema), o = C0(n, l, t);
   let r;
   return n.selection.$anchor.sameParent(n.selection.$head) && (r = n.selection.$anchor.parent.attrs), o ? s.setNode(i, r) : s.setNode(l, { ...r, ...t });
 }, HM = (c, e = {}) => ({ state: t, commands: n }) => {
   const s = z2(c, t.schema);
-  return y0(t, s, e) ? n.lift(s) : n.wrapIn(s, e);
+  return C0(t, s, e) ? n.lift(s) : n.wrapIn(s, e);
 }, VM = () => ({ state: c, dispatch: e }) => {
   const t = c.plugins;
   for (let n = 0; n < t.length; n += 1) {
@@ -12088,7 +12088,7 @@ function Lc(c) {
     }
   });
 }
-function b0(c) {
+function y0(c) {
   return new B6({
     find: c.find,
     handler: ({ state: e, range: t, match: n, chain: s }) => {
@@ -12273,10 +12273,10 @@ function iC(c) {
     }
   });
 }
-var H2 = "top", l1 = "bottom", i1 = "right", V2 = "left", R8 = "auto", R0 = [H2, l1, i1, V2], A4 = "start", x0 = "end", oC = "clippingParents", Ii = "viewport", U4 = "popper", rC = "reference", g5 = /* @__PURE__ */ R0.reduce(function(c, e) {
-  return c.concat([e + "-" + A4, e + "-" + x0]);
-}, []), Bi = /* @__PURE__ */ [].concat(R0, [R8]).reduce(function(c, e) {
-  return c.concat([e, e + "-" + A4, e + "-" + x0]);
+var H2 = "top", l1 = "bottom", i1 = "right", V2 = "left", R8 = "auto", P0 = [H2, l1, i1, V2], A4 = "start", b0 = "end", oC = "clippingParents", Ii = "viewport", U4 = "popper", rC = "reference", g5 = /* @__PURE__ */ P0.reduce(function(c, e) {
+  return c.concat([e + "-" + A4, e + "-" + b0]);
+}, []), Bi = /* @__PURE__ */ [].concat(P0, [R8]).reduce(function(c, e) {
+  return c.concat([e, e + "-" + A4, e + "-" + b0]);
 }, []), aC = "beforeRead", fC = "read", uC = "afterRead", dC = "beforeMain", pC = "main", hC = "afterMain", mC = "beforeWrite", gC = "write", LC = "afterWrite", zC = [aC, fC, uC, dC, pC, hC, mC, gC, LC];
 function k1(c) {
   return c ? (c.nodeName || "").toLowerCase() : null;
@@ -12442,7 +12442,7 @@ function bC(c) {
   }
   return null;
 }
-function I0(c) {
+function R0(c) {
   for (var e = J2(c), t = L5(c); t && yC(t) && U1(t).position === "static"; )
     t = L5(t);
   return t && (k1(t) === "html" || k1(t) === "body" && U1(t).position === "static") ? e : t || bC(c) || e;
@@ -12476,12 +12476,12 @@ function ji(c, e) {
 var vC = function(e, t) {
   return e = typeof e == "function" ? e(Object.assign({}, t.rects, {
     placement: t.placement
-  })) : e, $i(typeof e != "number" ? e : ji(e, R0));
+  })) : e, $i(typeof e != "number" ? e : ji(e, P0));
 };
 function wC(c) {
   var e, t = c.state, n = c.name, s = c.options, l = t.elements.arrow, i = t.modifiersData.popperOffsets, o = w1(t.placement), r = F8(o), a = [V2, i1].indexOf(o) >= 0, f = a ? "height" : "width";
   if (!(!l || !i)) {
-    var u = vC(s.padding, t), d = B8(l), p = r === "y" ? H2 : V2, h = r === "y" ? l1 : i1, m = t.rects.reference[f] + t.rects.reference[r] - i[r] - t.rects.popper[f], g = i[r] - t.rects.reference[r], L = I0(l), M = L ? r === "y" ? L.clientHeight || 0 : L.clientWidth || 0 : 0, b = m / 2 - g / 2, z = u[p], x = M - d[f] - u[h], C = M / 2 - d[f] / 2 + b, N = t0(z, C, x), E = r;
+    var u = vC(s.padding, t), d = B8(l), p = r === "y" ? H2 : V2, h = r === "y" ? l1 : i1, m = t.rects.reference[f] + t.rects.reference[r] - i[r] - t.rects.popper[f], g = i[r] - t.rects.reference[r], L = R0(l), M = L ? r === "y" ? L.clientHeight || 0 : L.clientWidth || 0 : 0, b = m / 2 - g / 2, z = u[p], x = M - d[f] - u[h], C = M / 2 - d[f] / 2 + b, N = t0(z, C, x), E = r;
     t.modifiersData[n] = (e = {}, e[E] = N, e.centerOffset = N - C, e);
   }
 }
@@ -12525,8 +12525,8 @@ function z5(c) {
   p = g.x, m = g.y;
   var L = i.hasOwnProperty("x"), M = i.hasOwnProperty("y"), b = V2, z = H2, x = window;
   if (a) {
-    var C = I0(t), N = "clientHeight", E = "clientWidth";
-    if (C === J2(t) && (C = N3(t), U1(C).position !== "static" && o === "absolute" && (N = "scrollHeight", E = "scrollWidth")), C = C, s === H2 || (s === V2 || s === i1) && l === x0) {
+    var C = R0(t), N = "clientHeight", E = "clientWidth";
+    if (C === J2(t) && (C = N3(t), U1(C).position !== "static" && o === "absolute" && (N = "scrollHeight", E = "scrollWidth")), C = C, s === H2 || (s === V2 || s === i1) && l === b0) {
       z = l1;
       var A = u && C === x && x.visualViewport ? x.visualViewport.height : (
         // $FlowFixMe[prop-missing]
@@ -12534,7 +12534,7 @@ function z5(c) {
       );
       m -= A - n.height, m *= r ? 1 : -1;
     }
-    if (s === V2 || (s === H2 || s === l1) && l === x0) {
+    if (s === V2 || (s === H2 || s === l1) && l === b0) {
       b = i1;
       var O = u && C === x && x.visualViewport ? x.visualViewport.width : (
         // $FlowFixMe[prop-missing]
@@ -12588,17 +12588,17 @@ const EC = {
   fn: TC,
   data: {}
 };
-var oe = {
+var ie = {
   passive: !0
 };
 function OC(c) {
   var e = c.state, t = c.instance, n = c.options, s = n.scroll, l = s === void 0 ? !0 : s, i = n.resize, o = i === void 0 ? !0 : i, r = J2(e.elements.popper), a = [].concat(e.scrollParents.reference, e.scrollParents.popper);
   return l && a.forEach(function(f) {
-    f.addEventListener("scroll", t.update, oe);
-  }), o && r.addEventListener("resize", t.update, oe), function() {
+    f.addEventListener("scroll", t.update, ie);
+  }), o && r.addEventListener("resize", t.update, ie), function() {
     l && a.forEach(function(f) {
-      f.removeEventListener("scroll", t.update, oe);
-    }), o && r.removeEventListener("resize", t.update, oe);
+      f.removeEventListener("scroll", t.update, ie);
+    }), o && r.removeEventListener("resize", t.update, ie);
   };
 }
 const DC = {
@@ -12616,7 +12616,7 @@ var PC = {
   bottom: "top",
   top: "bottom"
 };
-function ve(c) {
+function xe(c) {
   return c.replace(/left|right|bottom|top/g, function(e) {
     return PC[e];
   });
@@ -12695,7 +12695,7 @@ function C5(c, e, t) {
   return e === Ii ? Cc(IC(c, t)) : X3(e) ? FC(e, t) : Cc(BC(N3(c)));
 }
 function HC(c) {
-  var e = c0($6(c)), t = ["absolute", "fixed"].indexOf(U1(c).position) >= 0, n = t && s1(c) ? I0(c) : c;
+  var e = c0($6(c)), t = ["absolute", "fixed"].indexOf(U1(c).position) >= 0, n = t && s1(c) ? R0(c) : c;
   return X3(n) ? e.filter(function(s) {
     return X3(s) && Vi(s, n) && k1(s) !== "body";
   }) : [];
@@ -12747,16 +12747,16 @@ function Ui(c) {
       case A4:
         r[a] = r[a] - (e[f] / 2 - t[f] / 2);
         break;
-      case x0:
+      case b0:
         r[a] = r[a] + (e[f] / 2 - t[f] / 2);
         break;
     }
   }
   return r;
 }
-function v0(c, e) {
+function x0(c, e) {
   e === void 0 && (e = {});
-  var t = e, n = t.placement, s = n === void 0 ? c.placement : n, l = t.strategy, i = l === void 0 ? c.strategy : l, o = t.boundary, r = o === void 0 ? oC : o, a = t.rootBoundary, f = a === void 0 ? Ii : a, u = t.elementContext, d = u === void 0 ? U4 : u, p = t.altBoundary, h = p === void 0 ? !1 : p, m = t.padding, g = m === void 0 ? 0 : m, L = $i(typeof g != "number" ? g : ji(g, R0)), M = d === U4 ? rC : U4, b = c.rects.popper, z = c.elements[h ? M : d], x = VC(X3(z) ? z : z.contextElement || N3(c.elements.popper), r, f, i), C = E4(c.elements.reference), N = Ui({
+  var t = e, n = t.placement, s = n === void 0 ? c.placement : n, l = t.strategy, i = l === void 0 ? c.strategy : l, o = t.boundary, r = o === void 0 ? oC : o, a = t.rootBoundary, f = a === void 0 ? Ii : a, u = t.elementContext, d = u === void 0 ? U4 : u, p = t.altBoundary, h = p === void 0 ? !1 : p, m = t.padding, g = m === void 0 ? 0 : m, L = $i(typeof g != "number" ? g : ji(g, P0)), M = d === U4 ? rC : U4, b = c.rects.popper, z = c.elements[h ? M : d], x = VC(X3(z) ? z : z.contextElement || N3(c.elements.popper), r, f, i), C = E4(c.elements.reference), N = Ui({
     reference: C,
     element: b,
     placement: s
@@ -12779,12 +12779,12 @@ function _C(c, e) {
   e === void 0 && (e = {});
   var t = e, n = t.placement, s = t.boundary, l = t.rootBoundary, i = t.padding, o = t.flipVariations, r = t.allowedAutoPlacements, a = r === void 0 ? Bi : r, f = O4(n), u = f ? o ? g5 : g5.filter(function(h) {
     return O4(h) === f;
-  }) : R0, d = u.filter(function(h) {
+  }) : P0, d = u.filter(function(h) {
     return a.indexOf(h) >= 0;
   });
   d.length === 0 && (d = u);
   var p = d.reduce(function(h, m) {
-    return h[m] = v0(c, {
+    return h[m] = x0(c, {
       placement: m,
       boundary: s,
       rootBoundary: l,
@@ -12798,13 +12798,13 @@ function _C(c, e) {
 function $C(c) {
   if (w1(c) === R8)
     return [];
-  var e = ve(c);
+  var e = xe(c);
   return [M5(c), e, M5(e)];
 }
 function jC(c) {
   var e = c.state, t = c.options, n = c.name;
   if (!e.modifiersData[n]._skip) {
-    for (var s = t.mainAxis, l = s === void 0 ? !0 : s, i = t.altAxis, o = i === void 0 ? !0 : i, r = t.fallbackPlacements, a = t.padding, f = t.boundary, u = t.rootBoundary, d = t.altBoundary, p = t.flipVariations, h = p === void 0 ? !0 : p, m = t.allowedAutoPlacements, g = e.options.placement, L = w1(g), M = L === g, b = r || (M || !h ? [ve(g)] : $C(g)), z = [g].concat(b).reduce(function(T1, r1) {
+    for (var s = t.mainAxis, l = s === void 0 ? !0 : s, i = t.altAxis, o = i === void 0 ? !0 : i, r = t.fallbackPlacements, a = t.padding, f = t.boundary, u = t.rootBoundary, d = t.altBoundary, p = t.flipVariations, h = p === void 0 ? !0 : p, m = t.allowedAutoPlacements, g = e.options.placement, L = w1(g), M = L === g, b = r || (M || !h ? [xe(g)] : $C(g)), z = [g].concat(b).reduce(function(T1, r1) {
       return T1.concat(w1(r1) === R8 ? _C(e, {
         placement: r1,
         boundary: f,
@@ -12814,15 +12814,15 @@ function jC(c) {
         allowedAutoPlacements: m
       }) : r1);
     }, []), x = e.rects.reference, C = e.rects.popper, N = /* @__PURE__ */ new Map(), E = !0, A = z[0], O = 0; O < z.length; O++) {
-      var H = z[O], U = w1(H), J = O4(H) === A4, X = [H2, l1].indexOf(U) >= 0, t2 = X ? "width" : "height", Q = v0(e, {
+      var H = z[O], U = w1(H), J = O4(H) === A4, X = [H2, l1].indexOf(U) >= 0, t2 = X ? "width" : "height", Q = x0(e, {
         placement: H,
         boundary: f,
         rootBoundary: u,
         altBoundary: d,
         padding: a
       }), c2 = X ? J ? i1 : V2 : J ? l1 : H2;
-      x[t2] > C[t2] && (c2 = ve(c2));
-      var u2 = ve(c2), C2 = [];
+      x[t2] > C[t2] && (c2 = xe(c2));
+      var u2 = xe(c2), C2 = [];
       if (l && C2.push(Q[U] <= 0), o && C2.push(Q[c2] <= 0, Q[u2] <= 0), C2.every(function(T1) {
         return T1;
       })) {
@@ -12876,9 +12876,9 @@ function b5(c) {
   });
 }
 function UC(c) {
-  var e = c.state, t = c.name, n = e.rects.reference, s = e.rects.popper, l = e.modifiersData.preventOverflow, i = v0(e, {
+  var e = c.state, t = c.name, n = e.rects.reference, s = e.rects.popper, l = e.modifiersData.preventOverflow, i = x0(e, {
     elementContext: "reference"
-  }), o = v0(e, {
+  }), o = x0(e, {
     altBoundary: !0
   }), r = y5(i, n), a = y5(o, s, l), f = b5(r), u = b5(a);
   e.modifiersData[t] = {
@@ -12942,7 +12942,7 @@ function QC(c) {
   return c === "x" ? "y" : "x";
 }
 function ZC(c) {
-  var e = c.state, t = c.options, n = c.name, s = t.mainAxis, l = s === void 0 ? !0 : s, i = t.altAxis, o = i === void 0 ? !1 : i, r = t.boundary, a = t.rootBoundary, f = t.altBoundary, u = t.padding, d = t.tether, p = d === void 0 ? !0 : d, h = t.tetherOffset, m = h === void 0 ? 0 : h, g = v0(e, {
+  var e = c.state, t = c.options, n = c.name, s = t.mainAxis, l = s === void 0 ? !0 : s, i = t.altAxis, o = i === void 0 ? !1 : i, r = t.boundary, a = t.rootBoundary, f = t.altBoundary, u = t.padding, d = t.tether, p = d === void 0 ? !0 : d, h = t.tetherOffset, m = h === void 0 ? 0 : h, g = x0(e, {
     boundary: r,
     rootBoundary: a,
     padding: u,
@@ -12964,12 +12964,12 @@ function ZC(c) {
       var J, X = z === "y" ? H2 : V2, t2 = z === "y" ? l1 : i1, Q = z === "y" ? "height" : "width", c2 = C[z], u2 = c2 + g[X], C2 = c2 - g[t2], _2 = p ? -E[Q] / 2 : 0, $2 = M === A4 ? N[Q] : E[Q], X2 = M === A4 ? -E[Q] : -N[Q], o1 = e.elements.arrow, T1 = p && o1 ? B8(o1) : {
         width: 0,
         height: 0
-      }, r1 = e.modifiersData["arrow#persistent"] ? e.modifiersData["arrow#persistent"].padding : _i(), E1 = r1[X], s4 = r1[t2], O1 = t0(0, N[Q], T1[Q]), l4 = b ? N[Q] / 2 - _2 - O1 - E1 - O.mainAxis : $2 - O1 - E1 - O.mainAxis, X1 = b ? -N[Q] / 2 + _2 + O1 + s4 + O.mainAxis : X2 + O1 + s4 + O.mainAxis, i4 = e.elements.arrow && I0(e.elements.arrow), W0 = i4 ? z === "y" ? i4.clientTop || 0 : i4.clientLeft || 0 : 0, H4 = (J = H == null ? void 0 : H[z]) != null ? J : 0, U0 = c2 + l4 - H4 - W0, q0 = c2 + X1 - H4, V4 = t0(p ? We(u2, U0) : u2, c2, p ? U3(C2, q0) : C2);
+      }, r1 = e.modifiersData["arrow#persistent"] ? e.modifiersData["arrow#persistent"].padding : _i(), E1 = r1[X], s4 = r1[t2], O1 = t0(0, N[Q], T1[Q]), l4 = b ? N[Q] / 2 - _2 - O1 - E1 - O.mainAxis : $2 - O1 - E1 - O.mainAxis, X1 = b ? -N[Q] / 2 + _2 + O1 + s4 + O.mainAxis : X2 + O1 + s4 + O.mainAxis, i4 = e.elements.arrow && R0(e.elements.arrow), j0 = i4 ? z === "y" ? i4.clientTop || 0 : i4.clientLeft || 0 : 0, H4 = (J = H == null ? void 0 : H[z]) != null ? J : 0, W0 = c2 + l4 - H4 - j0, U0 = c2 + X1 - H4, V4 = t0(p ? We(u2, W0) : u2, c2, p ? U3(C2, U0) : C2);
       C[z] = V4, U[z] = V4 - c2;
     }
     if (o) {
-      var _4, K0 = z === "x" ? H2 : V2, G0 = z === "x" ? l1 : i1, D1 = C[x], Q1 = x === "y" ? "height" : "width", $4 = D1 + g[K0], k3 = D1 - g[G0], j4 = [H2, V2].indexOf(L) !== -1, J0 = (_4 = H == null ? void 0 : H[x]) != null ? _4 : 0, Y0 = j4 ? $4 : D1 - N[Q1] - E[Q1] - J0 + O.altAxis, X0 = j4 ? D1 + N[Q1] + E[Q1] - J0 - O.altAxis : k3, Q0 = p && j4 ? xC(Y0, D1, X0) : t0(p ? Y0 : $4, D1, p ? X0 : k3);
-      C[x] = Q0, U[x] = Q0 - D1;
+      var _4, q0 = z === "x" ? H2 : V2, K0 = z === "x" ? l1 : i1, D1 = C[x], Q1 = x === "y" ? "height" : "width", $4 = D1 + g[q0], k3 = D1 - g[K0], j4 = [H2, V2].indexOf(L) !== -1, G0 = (_4 = H == null ? void 0 : H[x]) != null ? _4 : 0, J0 = j4 ? $4 : D1 - N[Q1] - E[Q1] - G0 + O.altAxis, Y0 = j4 ? D1 + N[Q1] + E[Q1] - G0 - O.altAxis : k3, X0 = p && j4 ? xC(J0, D1, Y0) : t0(p ? J0 : $4, D1, p ? Y0 : k3);
+      C[x] = X0, U[x] = X0 - D1;
     }
     e.modifiersData[n] = U;
   }
@@ -13111,7 +13111,7 @@ function ay(c) {
           var L = f.elements, M = L.reference, b = L.popper;
           if (v5(M, b)) {
             f.rects = {
-              reference: sy(M, I0(b), f.options.strategy === "fixed"),
+              reference: sy(M, R0(b), f.options.strategy === "fixed"),
               popper: B8(b)
             }, f.reset = !1, f.placement = f.options.placement, f.orderedModifiers.forEach(function(O) {
               return f.modifiersData[O.name] = Object.assign({}, O.data);
@@ -13240,7 +13240,7 @@ function S5(c) {
 function n0() {
   return document.createElement("div");
 }
-function w0(c) {
+function v0(c) {
   return ["Element", "Fragment"].some(function(e) {
     return $8(c, e);
   });
@@ -13255,7 +13255,7 @@ function yy(c) {
   return !!(c && c._tippy && c._tippy.reference === c);
 }
 function by(c) {
-  return w0(c) ? [c] : My(c) ? Ue(c) : Array.isArray(c) ? c : Ue(document.querySelectorAll(c));
+  return v0(c) ? [c] : My(c) ? Ue(c) : Array.isArray(c) ? c : Ue(document.querySelectorAll(c));
 }
 function Pt(c, e) {
   c.forEach(function(t) {
@@ -13348,21 +13348,21 @@ function Qi(c) {
     "color: #a6a095;"
   ];
 }
-var N0;
+var w0;
 process.env.NODE_ENV !== "production" && Ey();
 function Ey() {
-  N0 = /* @__PURE__ */ new Set();
+  w0 = /* @__PURE__ */ new Set();
 }
 function V1(c, e) {
-  if (c && !N0.has(e)) {
+  if (c && !w0.has(e)) {
     var t;
-    N0.add(e), (t = console).warn.apply(t, Qi(e));
+    w0.add(e), (t = console).warn.apply(t, Qi(e));
   }
 }
 function yc(c, e) {
-  if (c && !N0.has(e)) {
+  if (c && !w0.has(e)) {
     var t;
-    N0.add(e), (t = console).error.apply(t, Qi(e));
+    w0.add(e), (t = console).error.apply(t, Qi(e));
   }
 }
 function Oy(c) {
@@ -13499,10 +13499,10 @@ function bc(c, e) {
 }
 function D5(c) {
   var e = n0();
-  return c === !0 ? e.className = Ki : (e.className = Gi, w0(c) ? e.appendChild(c) : bc(e, c)), e;
+  return c === !0 ? e.className = Ki : (e.className = Gi, v0(c) ? e.appendChild(c) : bc(e, c)), e;
 }
 function P5(c, e) {
-  w0(e.content) ? (bc(c, ""), c.appendChild(e.content)) : typeof e.content != "function" && (e.allowHTML ? bc(c, e.content) : c.textContent = e.content);
+  v0(e.content) ? (bc(c, ""), c.appendChild(e.content)) : typeof e.content != "function" && (e.allowHTML ? bc(c, e.content) : c.textContent = e.content);
 }
 function xc(c) {
   var e = c.firstElementChild, t = Ue(e.children);
@@ -13534,9 +13534,9 @@ function co(c) {
   };
 }
 co.$$tippy = !0;
-var Fy = 1, re = [], It = [];
+var Fy = 1, oe = [], It = [];
 function Hy(c, e) {
-  var t = O5(c, Object.assign({}, q2, eo(S5(e)))), n, s, l, i = !1, o = !1, r = !1, a = !1, f, u, d, p = [], h = w5(U0, t.interactiveDebounce), m, g = Fy++, L = null, M = Ly(t.plugins), b = {
+  var t = O5(c, Object.assign({}, q2, eo(S5(e)))), n, s, l, i = !1, o = !1, r = !1, a = !1, f, u, d, p = [], h = w5(W0, t.interactiveDebounce), m, g = Fy++, L = null, M = Ly(t.plugins), b = {
     // Is the instance currently enabled?
     isEnabled: !0,
     // Is the tippy currently showing and not transitioning out?
@@ -13557,14 +13557,14 @@ function Hy(c, e) {
     state: b,
     plugins: M,
     // methods
-    clearDelayTimeouts: Y0,
-    setProps: X0,
-    setContent: Q0,
+    clearDelayTimeouts: J0,
+    setProps: Y0,
+    setContent: X0,
     show: Zh,
     hide: em,
     hideWithInteractivity: tm,
     enable: j4,
-    disable: J0,
+    disable: G0,
     unmount: cm,
     destroy: nm
   };
@@ -13639,7 +13639,7 @@ function Hy(c, e) {
     }
   }
   function $2() {
-    X().removeEventListener("mousemove", h), re = re.filter(function(v) {
+    X().removeEventListener("mousemove", h), oe = oe.filter(function(v) {
       return v !== h;
     });
   }
@@ -13706,13 +13706,13 @@ function Hy(c, e) {
   function i4() {
     H() && (X1("touchstart", H4, {
       passive: !0
-    }), X1("touchend", q0, {
+    }), X1("touchend", U0, {
       passive: !0
     })), gy(z.props.trigger).forEach(function(v) {
       if (v !== "manual")
         switch (X1(v, H4), v) {
           case "mouseenter":
-            X1("mouseleave", q0);
+            X1("mouseleave", U0);
             break;
           case "focus":
             X1(Ay ? "focusout" : "blur", V4);
@@ -13723,7 +13723,7 @@ function Hy(c, e) {
         }
     });
   }
-  function W0() {
+  function j0() {
     p.forEach(function(v) {
       var R = v.node, $ = v.eventType, Z = v.handler, Y = v.options;
       R.removeEventListener($, Z, Y);
@@ -13733,12 +13733,12 @@ function Hy(c, e) {
     var R, $ = !1;
     if (!(!z.state.isEnabled || _4(v) || o)) {
       var Z = ((R = f) == null ? void 0 : R.type) === "focus";
-      f = v, m = v.currentTarget, _2(), !z.state.isVisible && Cy(v) && re.forEach(function(Y) {
+      f = v, m = v.currentTarget, _2(), !z.state.isVisible && Cy(v) && oe.forEach(function(Y) {
         return Y(v);
       }), v.type === "click" && (z.props.trigger.indexOf("mouseenter") < 0 || i) && z.props.hideOnClick !== !1 && z.state.isVisible ? $ = !0 : $4(v), v.type === "click" && (i = !$), $ && !Z && k3(v);
     }
   }
-  function U0(v) {
+  function W0(v) {
     var R = v.target, $ = J().contains(R) || C.contains(R);
     if (!(v.type === "mousemove" && $)) {
       var Z = Q1().concat(C).map(function(Y) {
@@ -13752,7 +13752,7 @@ function Hy(c, e) {
       vy(Z, v) && ($2(), k3(v));
     }
   }
-  function q0(v) {
+  function U0(v) {
     var R = _4(v) || z.props.trigger.indexOf("click") >= 0 && i;
     if (!R) {
       if (z.props.interactive) {
@@ -13768,8 +13768,8 @@ function Hy(c, e) {
   function _4(v) {
     return C1.isTouch ? H() !== v.type.indexOf("touch") >= 0 : !1;
   }
-  function K0() {
-    G0();
+  function q0() {
+    K0();
     var v = z.props, R = v.popperOptions, $ = v.placement, Z = v.offset, Y = v.getReferenceClientRect, T2 = v.moveTransition, Q2 = U() ? xc(C).arrow : null, o4 = Y ? {
       getBoundingClientRect: Y,
       contextElement: Y.contextElement || J()
@@ -13778,12 +13778,12 @@ function Hy(c, e) {
       enabled: !0,
       phase: "beforeWrite",
       requires: ["computeStyles"],
-      fn: function(Z0) {
-        var r4 = Z0.state;
+      fn: function(Q0) {
+        var r4 = Q0.state;
         if (U()) {
           var sm = t2(), ht = sm.box;
-          ["placement", "reference-hidden", "escaped"].forEach(function(ee) {
-            ee === "placement" ? ht.setAttribute("data-placement", r4.placement) : r4.attributes.popper["data-popper-" + ee] ? ht.setAttribute("data-" + ee, "") : ht.removeAttribute("data-" + ee);
+          ["placement", "reference-hidden", "escaped"].forEach(function(Z0) {
+            Z0 === "placement" ? ht.setAttribute("data-placement", r4.placement) : r4.attributes.popper["data-popper-" + Z0] ? ht.setAttribute("data-" + Z0, "") : ht.removeAttribute("data-" + Z0);
           }), r4.attributes.popper = {};
         }
       }
@@ -13825,12 +13825,12 @@ function Hy(c, e) {
       modifiers: A3
     }));
   }
-  function G0() {
+  function K0() {
     z.popperInstance && (z.popperInstance.destroy(), z.popperInstance = null);
   }
   function D1() {
     var v = z.props.appendTo, R, $ = J();
-    z.props.interactive && v === Ji || v === "parent" ? R = $.parentNode : R = Yi(v, [$]), R.contains(C) || R.appendChild(C), z.state.isMounted = !0, K0(), process.env.NODE_ENV !== "production" && V1(z.props.interactive && v === q2.appendTo && $.nextElementSibling !== C, ["Interactive tippy element may not be accessible via keyboard", "navigation because it is not directly after the reference element", "in the DOM source order.", `
+    z.props.interactive && v === Ji || v === "parent" ? R = $.parentNode : R = Yi(v, [$]), R.contains(C) || R.appendChild(C), z.state.isMounted = !0, q0(), process.env.NODE_ENV !== "production" && V1(z.props.interactive && v === q2.appendTo && $.nextElementSibling !== C, ["Interactive tippy element may not be accessible via keyboard", "navigation because it is not directly after the reference element", "in the DOM source order.", `
 
 `, "Using a wrapper <div> or <span> tag around the reference element", "solves this by creating a new parentNode context.", `
 
@@ -13865,26 +13865,26 @@ function Hy(c, e) {
   function j4() {
     z.state.isEnabled = !0;
   }
-  function J0() {
+  function G0() {
     z.hide(), z.state.isEnabled = !1;
   }
-  function Y0() {
+  function J0() {
     clearTimeout(n), clearTimeout(s), cancelAnimationFrame(l);
   }
-  function X0(v) {
+  function Y0(v) {
     if (process.env.NODE_ENV !== "production" && V1(z.state.isDestroyed, u4("setProps")), !z.state.isDestroyed) {
-      u2("onBeforeUpdate", [z, v]), W0();
+      u2("onBeforeUpdate", [z, v]), j0();
       var R = z.props, $ = O5(c, Object.assign({}, R, S5(v), {
         ignoreAttributes: !0
       }));
-      z.props = $, i4(), R.interactiveDebounce !== $.interactiveDebounce && ($2(), h = w5(U0, $.interactiveDebounce)), R.triggerTarget && !$.triggerTarget ? m4(R.triggerTarget).forEach(function(Z) {
+      z.props = $, i4(), R.interactiveDebounce !== $.interactiveDebounce && ($2(), h = w5(W0, $.interactiveDebounce)), R.triggerTarget && !$.triggerTarget ? m4(R.triggerTarget).forEach(function(Z) {
         Z.removeAttribute("aria-expanded");
-      }) : $.triggerTarget && c.removeAttribute("aria-expanded"), _2(), c2(), N && N(R, $), z.popperInstance && (K0(), Q1().forEach(function(Z) {
+      }) : $.triggerTarget && c.removeAttribute("aria-expanded"), _2(), c2(), N && N(R, $), z.popperInstance && (q0(), Q1().forEach(function(Z) {
         requestAnimationFrame(Z._tippy.popperInstance.forceUpdate);
       })), u2("onAfterUpdate", [z, v]);
     }
   }
-  function Q0(v) {
+  function X0(v) {
     z.setProps({
       content: v
     });
@@ -13901,8 +13901,8 @@ function Hy(c, e) {
         var A3;
         if (!(!z.state.isVisible || a)) {
           if (a = !0, C.offsetHeight, C.style.transition = z.props.moveTransition, U() && z.props.animation) {
-            var pt = t2(), Z0 = pt.box, r4 = pt.content;
-            Pt([Z0, r4], Y), k5([Z0, r4], "visible");
+            var pt = t2(), Q0 = pt.box, r4 = pt.content;
+            Pt([Q0, r4], Y), k5([Q0, r4], "visible");
           }
           C2(), _2(), N5(It, z), (A3 = z.popperInstance) == null || A3.forceUpdate(), u2("onMount", [z]), z.props.animation && U() && O1(Y, function() {
             z.state.isShown = !0, u2("onShown", [z]);
@@ -13923,17 +13923,17 @@ function Hy(c, e) {
     }
   }
   function tm(v) {
-    process.env.NODE_ENV !== "production" && V1(z.state.isDestroyed, u4("hideWithInteractivity")), X().addEventListener("mousemove", h), N5(re, h), h(v);
+    process.env.NODE_ENV !== "production" && V1(z.state.isDestroyed, u4("hideWithInteractivity")), X().addEventListener("mousemove", h), N5(oe, h), h(v);
   }
   function cm() {
-    process.env.NODE_ENV !== "production" && V1(z.state.isDestroyed, u4("unmount")), z.state.isVisible && z.hide(), z.state.isMounted && (G0(), Q1().forEach(function(v) {
+    process.env.NODE_ENV !== "production" && V1(z.state.isDestroyed, u4("unmount")), z.state.isVisible && z.hide(), z.state.isMounted && (K0(), Q1().forEach(function(v) {
       v._tippy.unmount();
     }), C.parentNode && C.parentNode.removeChild(C), It = It.filter(function(v) {
       return v !== z;
     }), z.state.isMounted = !1, u2("onHidden", [z]));
   }
   function nm() {
-    process.env.NODE_ENV !== "production" && V1(z.state.isDestroyed, u4("destroy")), !z.state.isDestroyed && (z.clearDelayTimeouts(), z.unmount(), W0(), delete c._tippy, z.state.isDestroyed = !0, u2("onDestroy", [z]));
+    process.env.NODE_ENV !== "production" && V1(z.state.isDestroyed, u4("destroy")), !z.state.isDestroyed && (z.clearDelayTimeouts(), z.unmount(), j0(), delete c._tippy, z.state.isDestroyed = !0, u2("onDestroy", [z]));
   }
 }
 function c4(c, e) {
@@ -13944,7 +13944,7 @@ function c4(c, e) {
     plugins: t
   }), s = by(c);
   if (process.env.NODE_ENV !== "production") {
-    var l = w0(n.content), i = s.length > 1;
+    var l = v0(n.content), i = s.length > 1;
     V1(l && i, ["tippy() was passed an Element as the `content` prop, but more than", "one tippy instance was created by this invocation. This means the", "content element will only be appended to the last tippy instance.", `
 
 `, "Instead, pass the .innerHTML of the element, or use a function that", "returns a cloned version of the element instead.", `
@@ -13956,7 +13956,7 @@ function c4(c, e) {
     var f = a && Hy(a, n);
     return f && r.push(f), r;
   }, []);
-  return w0(c) ? o[0] : o;
+  return v0(c) ? o[0] : o;
 }
 c4.defaultProps = q2;
 c4.setDefaultProps = Ry;
@@ -14830,7 +14830,7 @@ try {
 }
 const {
   userAgent: F5 = ""
-} = j8.navigator || {}, M3 = j8, i2 = oo, H5 = ro, ae = ao;
+} = j8.navigator || {}, M3 = j8, i2 = oo, H5 = ro, re = ao;
 M3.document;
 const Y1 = !!i2.documentElement && !!i2.head && typeof i2.addEventListener == "function" && typeof i2.createElement == "function", fo = ~F5.indexOf("MSIE") || ~F5.indexOf("Trident/");
 var Zy = /fa(s|r|l|t|d|dr|dl|dt|b|k|kd|ss|sr|sl|st|sds|sdr|sdl|sdt)?[\-\ ]/, eb = /Font ?Awesome ?([56 ]*)(Solid|Regular|Light|Thin|Duotone|Brands|Free|Pro|Sharp Duotone|Sharp|Kit)?.*/i, uo = {
@@ -15022,7 +15022,7 @@ var Zy = /fa(s|r|l|t|d|dr|dl|dt|b|k|kd|ss|sr|sl|st|sds|sdr|sdl|sdt)?[\-\ ]/, eb 
   "kit-duotone": {
     "kit-duotone": "fakd"
   }
-}, fe = {
+}, ae = {
   GROUP: "duotone-group",
   SWAP_OPACITY: "swap-opacity",
   PRIMARY: "primary",
@@ -15093,7 +15093,7 @@ var Zy = /fa(s|r|l|t|d|dr|dl|dt|b|k|kd|ss|sr|sl|st|sds|sdr|sdl|sdt)?[\-\ ]/, eb 
     fasdl: "fa-light",
     fasdt: "fa-thin"
   }
-}, zb = ["fa-solid", "fa-regular", "fa-light", "fa-thin", "fa-duotone", "fa-brands"], wc = ["fa", "fas", "far", "fal", "fat", "fad", "fadr", "fadl", "fadt", "fab", "fass", "fasr", "fasl", "fast", "fasds", "fasdr", "fasdl", "fasdt", ...pb, ...zb], Mb = ["solid", "regular", "light", "thin", "duotone", "brands"], mo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], Cb = mo.concat([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), yb = [...Object.keys(Lb), ...Mb, "2xs", "xs", "sm", "lg", "xl", "2xl", "beat", "border", "fade", "beat-fade", "bounce", "flip-both", "flip-horizontal", "flip-vertical", "flip", "fw", "inverse", "layers-counter", "layers-text", "layers", "li", "pull-left", "pull-right", "pulse", "rotate-180", "rotate-270", "rotate-90", "rotate-by", "shake", "spin-pulse", "spin-reverse", "spin", "stack-1x", "stack-2x", "stack", "ul", fe.GROUP, fe.SWAP_OPACITY, fe.PRIMARY, fe.SECONDARY].concat(mo.map((c) => "".concat(c, "x"))).concat(Cb.map((c) => "w-".concat(c))), bb = {
+}, zb = ["fa-solid", "fa-regular", "fa-light", "fa-thin", "fa-duotone", "fa-brands"], wc = ["fa", "fas", "far", "fal", "fat", "fad", "fadr", "fadl", "fadt", "fab", "fass", "fasr", "fasl", "fast", "fasds", "fasdr", "fasdl", "fasdt", ...pb, ...zb], Mb = ["solid", "regular", "light", "thin", "duotone", "brands"], mo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], Cb = mo.concat([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), yb = [...Object.keys(Lb), ...Mb, "2xs", "xs", "sm", "lg", "xl", "2xl", "beat", "border", "fade", "beat-fade", "bounce", "flip-both", "flip-horizontal", "flip-vertical", "flip", "fw", "inverse", "layers-counter", "layers-text", "layers", "li", "pull-left", "pull-right", "pulse", "rotate-180", "rotate-270", "rotate-90", "rotate-by", "shake", "spin-pulse", "spin-reverse", "spin", "stack-1x", "stack-2x", "stack", "ul", ae.GROUP, ae.SWAP_OPACITY, ae.PRIMARY, ae.SECONDARY].concat(mo.map((c) => "".concat(c, "x"))).concat(Cb.map((c) => "w-".concat(c))), bb = {
   "Font Awesome 5 Free": {
     900: "fas",
     400: "far"
@@ -15119,7 +15119,7 @@ const q1 = "___FONT_AWESOME___", Nc = 16, go = "fa", Lo = "svg-inline--fa", Q3 =
     return !1;
   }
 })();
-function B0(c) {
+function I0(c) {
   return new Proxy(c, {
     get(e, t) {
       return t in e ? e[t] : e[S2];
@@ -15130,17 +15130,17 @@ const Mo = k({}, uo);
 Mo[S2] = k(k(k(k({}, {
   "fa-duotone": "duotone"
 }), uo[S2]), V5.kit), V5["kit-duotone"]);
-const Nb = B0(Mo), kc = k({}, ob);
+const Nb = I0(Mo), kc = k({}, ob);
 kc[S2] = k(k(k(k({}, {
   duotone: "fad"
 }), kc[S2]), _5.kit), _5["kit-duotone"]);
-const j5 = B0(kc), Ac = k({}, vc);
+const j5 = I0(kc), Ac = k({}, vc);
 Ac[S2] = k(k({}, Ac[S2]), db.kit);
-const q8 = B0(Ac), Tc = k({}, gb);
+const q8 = I0(Ac), Tc = k({}, gb);
 Tc[S2] = k(k({}, Tc[S2]), fb.kit);
-B0(Tc);
+I0(Tc);
 const Sb = Zy, Co = "fa-layers-text", kb = eb, Ab = k({}, sb);
-B0(Ab);
+I0(Ab);
 const Tb = ["class", "data-prefix", "data-icon", "data-fa-transform", "data-fa-mask"], Bt = tb, Eb = [...ab, ...yb], s0 = M3.FontAwesomeConfig || {};
 function Ob(c) {
   var e = i2.querySelector("script[" + c + "]");
@@ -15223,7 +15223,7 @@ function Rb(c) {
   return i2.head.insertBefore(e, n), c;
 }
 const Ib = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-function S0() {
+function N0() {
   let c = 12, e = "";
   for (; c-- > 0; )
     e += Ib[Math.random() * 62 | 0];
@@ -15879,13 +15879,13 @@ Y1 && (qe = (i2.documentElement.doScroll ? /^loaded|^c/ : /^loaded|^i|^c/).test(
 function $b(c) {
   Y1 && (qe ? setTimeout(c, 0) : vo.push(c));
 }
-function F0(c) {
+function B0(c) {
   const {
     tag: e,
     attributes: t = {},
     children: n = []
   } = c;
-  return typeof c == "string" ? bo(c) : "<".concat(e, " ").concat(Bb(t), ">").concat(n.map(F0).join(""), "</").concat(e, ">");
+  return typeof c == "string" ? bo(c) : "<".concat(e, " ").concat(Bb(t), ">").concat(n.map(B0).join(""), "</").concat(e, ">");
 }
 function U5(c, e, t) {
   if (c && c[e] && c[e][t])
@@ -15938,7 +15938,7 @@ function Oc(c, e) {
   typeof x1.hooks.addPack == "function" && !n ? x1.hooks.addPack(c, q5(e)) : x1.styles[c] = k(k({}, x1.styles[c] || {}), s), c === "fas" && Oc("fa", e);
 }
 const {
-  styles: k0,
+  styles: S0,
   shims: Ub
 } = x1, No = Object.keys(q8), qb = No.reduce((c, e) => (c[e] = Object.keys(q8[e]), c), {});
 let J8 = null, So = {}, ko = {}, Ao = {}, To = {}, Eo = {};
@@ -15950,7 +15950,7 @@ function Gb(c, e) {
   return n === c && s !== "" && !Kb(s) ? s : null;
 }
 const Oo = () => {
-  const c = (n) => Ht(k0, (s, l, i) => (s[i] = Ht(l, n, {}), s), {});
+  const c = (n) => Ht(S0, (s, l, i) => (s[i] = Ht(l, n, {}), s), {});
   So = c((n, s, l) => (s[3] && (n[s[3]] = l), s[2] && s[2].filter((o) => typeof o == "number").forEach((o) => {
     n[o.toString(16)] = l;
   }), n)), ko = c((n, s, l) => (n[l] = l, s[2] && s[2].filter((o) => typeof o == "string").forEach((o) => {
@@ -15961,7 +15961,7 @@ const Oo = () => {
       n[o] = l;
     }), n;
   });
-  const e = "far" in k0 || B.autoFetchSvg, t = Ht(Ub, (n, s) => {
+  const e = "far" in S0 || B.autoFetchSvg, t = Ht(Ub, (n, s) => {
     const l = s[0];
     let i = s[1];
     const o = s[2];
@@ -16063,7 +16063,7 @@ function K6(c) {
   return k(k(k({}, f), cx({
     values: c,
     family: a,
-    styles: k0,
+    styles: S0,
     config: B,
     canonical: f,
     givenPrefix: n
@@ -16080,7 +16080,7 @@ function Zb(c, e, t) {
       iconName: s
     };
   const l = e === "fa" ? Do(s) : {}, i = F3(n, s);
-  return s = l.iconName || i || s, n = l.prefix || n, n === "far" && !k0.far && k0.fas && !B.autoFetchSvg && (n = "fas"), {
+  return s = l.iconName || i || s, n = l.prefix || n, n === "far" && !S0.far && S0.fas && !B.autoFetchSvg && (n = "fas"), {
     prefix: n,
     iconName: s
   };
@@ -16242,7 +16242,7 @@ const Ro = new nx(), ix = () => {
   parse: rx,
   library: Ro,
   findIconDefinition: Pc,
-  toHtml: F0
+  toHtml: B0
 }, ax = function() {
   let c = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
   const {
@@ -16257,7 +16257,7 @@ function G6(c, e) {
     get: e
   }), Object.defineProperty(c, "html", {
     get: function() {
-      return c.abstract.map((t) => F0(t));
+      return c.abstract.map((t) => B0(t));
     }
   }), Object.defineProperty(c, "node", {
     get: function() {
@@ -16353,7 +16353,7 @@ function X8(c) {
   u && (g.attributes[Q3] = ""), o && (g.children.push({
     tag: "title",
     attributes: {
-      id: g.attributes["aria-labelledby"] || "title-".concat(a || S0())
+      id: g.attributes["aria-labelledby"] || "title-".concat(a || N0())
     },
     children: [o]
   }), delete g.attributes.title);
@@ -16503,7 +16503,7 @@ function Ic(c, e) {
   });
 }
 const Y5 = () => {
-}, Bc = B.measurePerformance && ae && ae.mark && ae.measure ? ae : {
+}, Bc = B.measurePerformance && re && re.mark && re.measure ? re : {
   mark: Y5,
   measure: Y5
 }, Y4 = 'FA "6.7.2"', mx = (c) => (Bc.mark("".concat(Y4, " ").concat(c, " begins")), () => Io(c)), Io = (c) => {
@@ -16513,7 +16513,7 @@ var Q8 = {
   begin: mx,
   end: Io
 };
-const we = () => {
+const ve = () => {
 };
 function X5(c) {
   return typeof (c.getAttribute ? c.getAttribute(Q3) : null) == "string";
@@ -16526,7 +16526,7 @@ function Lx(c) {
   return c && c.classList && c.classList.contains && c.classList.contains(B.replacementClass);
 }
 function zx() {
-  return B.autoReplaceSvg === !0 ? Ne.replace : Ne[B.autoReplaceSvg] || Ne.replace;
+  return B.autoReplaceSvg === !0 ? we.replace : we[B.autoReplaceSvg] || we.replace;
 }
 function Mx(c) {
   return i2.createElementNS("http://www.w3.org/2000/svg", c);
@@ -16554,7 +16554,7 @@ function yx(c) {
   let e = " ".concat(c.outerHTML, " ");
   return e = "".concat(e, "Font Awesome fontawesome.com "), e;
 }
-const Ne = {
+const we = {
   replace: function(c) {
     const e = c[0];
     if (e.parentNode)
@@ -16569,7 +16569,7 @@ const Ne = {
   nest: function(c) {
     const e = c[0], t = c[1];
     if (~K8(e).indexOf(B.replacementClass))
-      return Ne.replace(c);
+      return we.replace(c);
     const n = new RegExp("".concat(B.cssPrefix, "-.*"));
     if (delete t[0].attributes.id, t[0].attributes.class) {
       const l = t[0].attributes.class.split(" ").reduce((i, o) => (o === B.replacementClass || o.match(n) ? i.toSvg.push(o) : i.toNode.push(o), i), {
@@ -16578,7 +16578,7 @@ const Ne = {
       });
       t[0].attributes.class = l.toSvg.join(" "), l.toNode.length === 0 ? e.removeAttribute("class") : e.setAttribute("class", l.toNode.join(" "));
     }
-    const s = t.map((l) => F0(l)).join(`
+    const s = t.map((l) => B0(l)).join(`
 `);
     e.setAttribute(Q3, ""), e.innerHTML = s;
   }
@@ -16587,7 +16587,7 @@ function Q5(c) {
   c();
 }
 function Fo(c, e) {
-  const t = typeof e == "function" ? e : we;
+  const t = typeof e == "function" ? e : ve;
   if (c.length === 0)
     t();
   else {
@@ -16610,9 +16610,9 @@ function Z5(c) {
   if (!H5 || !B.observeMutations)
     return;
   const {
-    treeCallback: e = we,
-    nodeCallback: t = we,
-    pseudoElementsCallback: n = we,
+    treeCallback: e = ve,
+    nodeCallback: t = ve,
+    pseudoElementsCallback: n = ve,
     observeMutationsRoot: s = i2
   } = c;
   Ke = new H5((l) => {
@@ -16653,7 +16653,7 @@ function vx(c) {
 }
 function wx(c) {
   const e = I4(c.attributes).reduce((s, l) => (s.name !== "class" && s.name !== "style" && (s[l.name] = l.value), s), {}), t = c.getAttribute("title"), n = c.getAttribute("data-fa-title-id");
-  return B.autoA11y && (t ? e["aria-labelledby"] = "".concat(B.replacementClass, "-title-").concat(n || S0()) : (e["aria-hidden"] = "true", e.focusable = "false")), e;
+  return B.autoA11y && (t ? e["aria-labelledby"] = "".concat(B.replacementClass, "-title-").concat(n || N0()) : (e["aria-hidden"] = "true", e.focusable = "false")), e;
 }
 function Nx() {
   return {
@@ -16796,7 +16796,7 @@ const Ex = function(c) {
   }, c), () => (Z3("beforeDOMElementCreation", {
     iconDefinition: c,
     params: e
-  }), B.autoA11y && (i ? a["aria-labelledby"] = "".concat(B.replacementClass, "-title-").concat(o || S0()) : (a["aria-hidden"] = "true", a.focusable = "false")), X8({
+  }), B.autoA11y && (i ? a["aria-labelledby"] = "".concat(B.replacementClass, "-title-").concat(o || N0()) : (a["aria-hidden"] = "true", a.focusable = "false")), X8({
     icons: {
       main: Rc(p),
       mask: s ? Rc(s.icon) : {
@@ -17071,7 +17071,7 @@ function sl(c, e) {
             extra: z,
             watchable: !0
           })), N = i2.createElementNS("http://www.w3.org/2000/svg", "svg");
-          e === "::before" ? c.insertBefore(N, c.firstChild) : c.appendChild(N), N.outerHTML = C.map((E) => F0(E)).join(`
+          e === "::before" ? c.insertBefore(N, c.firstChild) : c.appendChild(N), N.outerHTML = C.map((E) => B0(E)).join(`
 `), c.removeAttribute(t), n();
         }).catch(s);
       } else
@@ -17299,7 +17299,7 @@ var qx = {
         tag: "g",
         attributes: k({}, d.outer),
         children: [m]
-      }, L = "mask-".concat(i || S0()), M = "clip-".concat(i || S0()), b = {
+      }, L = "mask-".concat(i || N0()), M = "clip-".concat(i || N0()), b = {
         tag: "mask",
         attributes: k(k({}, _t), {}, {
           id: L,
@@ -17985,7 +17985,7 @@ function Mv(c, e, t, n, s, l) {
       onClick: e[0] || (e[0] = (...i) => l.onClickToggle && l.onClickToggle(...i))
     }, [
       t.text ? (D(), I("span", gv, [
-        p0(j(t.text) + " ", 1),
+        Te(j(t.text) + " ", 1),
         e[2] || (e[2] = y("span", { class: "material-symbols-outlined" }, "keyboard_arrow_down", -1))
       ])) : q("", !0),
       y("span", Lv, j(t.icon), 1)
@@ -18287,7 +18287,7 @@ function qw(c, e, t, n, s, l) {
           value: u
         }, j(u), 9, Nv))), 128))
       ], 512)), [
-        [Me, s.fontFamily]
+        [ze, s.fontFamily]
       ]) : q("", !0),
       this.extensions.includes("fontSize") ? j2((D(), I("select", {
         key: 3,
@@ -18298,7 +18298,7 @@ function qw(c, e, t, n, s, l) {
           value: u
         }, j(u), 9, Sv))), 128))
       ], 512)), [
-        [Me, s.fontSize]
+        [ze, s.fontSize]
       ]) : q("", !0),
       this.extensions.includes("h1") || this.extensions.includes("h2") || this.extensions.includes("h3") ? j2((D(), I("select", {
         key: 4,
@@ -18310,7 +18310,7 @@ function qw(c, e, t, n, s, l) {
           value: u
         }, j(c.translate("toolbar.headings.h" + u, this.locale)), 9, Av))), 128))
       ], 512)), [
-        [Me, s.heading]
+        [ze, s.heading]
       ]) : q("", !0),
       this.extensions.includes("bold") ? (D(), I("li", {
         key: 5,
@@ -18661,8 +18661,7 @@ function qw(c, e, t, n, s, l) {
                 title: c.translate("modal.close", this.locale),
                 class: "material-symbols-outlined",
                 onClick: e[32] || (e[32] = (u) => s.imageModal = !1)
-              }, "close", 8, uw),
-              e[81] || (e[81] = p0(" - "))
+              }, "close", 8, uw)
             ])
           ]),
           y("div", dw, [
@@ -18696,10 +18695,10 @@ function qw(c, e, t, n, s, l) {
               }, [
                 y("div", null, [
                   y("span", null, [
-                    p0(j(c.translate("toolbar.image.import_drag", this.locale)) + " ", 1),
+                    Te(j(c.translate("toolbar.image.import_drag", this.locale)) + " ", 1),
                     y("u", null, j(c.translate("toolbar.image.import_download", this.locale)), 1)
                   ]),
-                  e[82] || (e[82] = y("span", { class: "material-symbols-outlined" }, "cloud_upload", -1))
+                  e[81] || (e[81] = y("span", { class: "material-symbols-outlined" }, "cloud_upload", -1))
                 ])
               ])
             ])) : q("", !0),
@@ -20540,7 +20539,7 @@ function hl(c, e, t) {
   }
   return !0;
 }
-function A0(c, e) {
+function k0(c, e) {
   return e = e || { useDeprecatedLogic: !1 }, e.useDeprecatedLogic ? QN(c) : function(t, n) {
     if (!g1(t)) return !1;
     if (n) {
@@ -20567,13 +20566,13 @@ function A0(c, e) {
     return !0;
   };
 }
-A0("row", {
+k0("row", {
   useDeprecatedLogic: !0
 });
-A0("column", {
+k0("column", {
   useDeprecatedLogic: !0
 });
-var ZN = A0("cell", {
+var ZN = k0("cell", {
   useDeprecatedLogic: !0
 });
 function eS(c, e) {
@@ -20621,7 +20620,7 @@ function tS(c, e) {
       ), !0;
   return !1;
 }
-function ue(c, e) {
+function fe(c, e) {
   const t = c.selection;
   if (!(t instanceof s2)) return !1;
   if (e) {
@@ -20833,28 +20832,28 @@ function zl(c, e, t, n, s) {
   ), e(u);
 }
 var iS = ai({
-  ArrowLeft: de("horiz", -1),
-  ArrowRight: de("horiz", 1),
-  ArrowUp: de("vert", -1),
-  ArrowDown: de("vert", 1),
-  "Shift-ArrowLeft": pe("horiz", -1),
-  "Shift-ArrowRight": pe("horiz", 1),
-  "Shift-ArrowUp": pe("vert", -1),
-  "Shift-ArrowDown": pe("vert", 1),
-  Backspace: ue,
-  "Mod-Backspace": ue,
-  Delete: ue,
-  "Mod-Delete": ue
+  ArrowLeft: ue("horiz", -1),
+  ArrowRight: ue("horiz", 1),
+  ArrowUp: ue("vert", -1),
+  ArrowDown: ue("vert", 1),
+  "Shift-ArrowLeft": de("horiz", -1),
+  "Shift-ArrowRight": de("horiz", 1),
+  "Shift-ArrowUp": de("vert", -1),
+  "Shift-ArrowDown": de("vert", 1),
+  Backspace: fe,
+  "Mod-Backspace": fe,
+  Delete: fe,
+  "Mod-Delete": fe
 });
-function Se(c, e, t) {
+function Ne(c, e, t) {
   return t.eq(c.selection) ? !1 : (e && e(c.tr.setSelection(t).scrollIntoView()), !0);
 }
-function de(c, e) {
+function ue(c, e) {
   return (t, n, s) => {
     if (!s) return !1;
     const l = t.selection;
     if (l instanceof s2)
-      return Se(
+      return Ne(
         t,
         n,
         W.near(l.$headCell, e)
@@ -20863,7 +20862,7 @@ function de(c, e) {
     const i = Qo(s, c, e);
     if (i == null) return !1;
     if (c == "horiz")
-      return Se(
+      return Ne(
         t,
         n,
         W.near(t.doc.resolve(l.head + e), e)
@@ -20871,11 +20870,11 @@ function de(c, e) {
     {
       const o = t.doc.resolve(i), r = Uo(o, c, e);
       let a;
-      return r ? a = W.near(r, 1) : e < 0 ? a = W.near(t.doc.resolve(o.before(-1)), -1) : a = W.near(t.doc.resolve(o.after(-1)), 1), Se(t, n, a);
+      return r ? a = W.near(r, 1) : e < 0 ? a = W.near(t.doc.resolve(o.before(-1)), -1) : a = W.near(t.doc.resolve(o.after(-1)), 1), Ne(t, n, a);
     }
   };
 }
-function pe(c, e) {
+function de(c, e) {
   return (t, n, s) => {
     if (!s) return !1;
     const l = t.selection;
@@ -20888,7 +20887,7 @@ function pe(c, e) {
       i = new s2(t.doc.resolve(r));
     }
     const o = Uo(i.$headCell, c, e);
-    return o ? Se(
+    return o ? Ne(
       t,
       n,
       new s2(i.$anchorCell, o)
@@ -21084,19 +21083,19 @@ function uS({
   });
   return l;
 }
-var dS = class ke {
+var dS = class Se {
   constructor(e, t) {
     this.activeHandle = e, this.dragging = t;
   }
   apply(e) {
     const t = this, n = e.getMeta(K2);
     if (n && n.setHandle != null)
-      return new ke(n.setHandle, !1);
+      return new Se(n.setHandle, !1);
     if (n && n.setDragging !== void 0)
-      return new ke(t.activeHandle, n.setDragging);
+      return new Se(t.activeHandle, n.setDragging);
     if (t.activeHandle > -1 && e.docChanged) {
       let s = e.mapping.map(t.activeHandle, -1);
-      return Wc(e.doc.resolve(s)) || (s = -1), new ke(s, t.dragging);
+      return Wc(e.doc.resolve(s)) || (s = -1), new Se(s, t.dragging);
     }
     return t;
   }
@@ -21388,7 +21387,7 @@ function wS(c, e, t, n, s) {
 function NS(c) {
   return c instanceof s2;
 }
-const he = ({ editor: c }) => {
+const pe = ({ editor: c }) => {
   const { selection: e } = c.state;
   if (!NS(e))
     return !1;
@@ -21451,8 +21450,8 @@ const he = ({ editor: c }) => {
       deleteTable: () => ({ state: c, dispatch: e }) => tS(c, e),
       mergeCells: () => ({ state: c, dispatch: e }) => dl(c, e),
       splitCell: () => ({ state: c, dispatch: e }) => pl(c, e),
-      toggleHeaderColumn: () => ({ state: c, dispatch: e }) => A0("column")(c, e),
-      toggleHeaderRow: () => ({ state: c, dispatch: e }) => A0("row")(c, e),
+      toggleHeaderColumn: () => ({ state: c, dispatch: e }) => k0("column")(c, e),
+      toggleHeaderRow: () => ({ state: c, dispatch: e }) => k0("row")(c, e),
       toggleHeaderCell: () => ({ state: c, dispatch: e }) => ZN(c, e),
       mergeOrSplit: () => ({ state: c, dispatch: e }) => dl(c, e) ? !0 : pl(c, e),
       setCellAttribute: (c, e) => ({ state: t, dispatch: n }) => XN(c, e)(t, n),
@@ -21472,10 +21471,10 @@ const he = ({ editor: c }) => {
     return {
       Tab: () => this.editor.commands.goToNextCell() ? !0 : this.editor.can().addRowAfter() ? this.editor.chain().addRowAfter().goToNextCell().run() : !1,
       "Shift-Tab": () => this.editor.commands.goToPreviousCell(),
-      Backspace: he,
-      "Mod-Backspace": he,
-      Delete: he,
-      "Mod-Delete": he
+      Backspace: pe,
+      "Mod-Backspace": pe,
+      Delete: pe,
+      "Mod-Delete": pe
     };
   },
   addProseMirrorPlugins() {
@@ -21736,17 +21735,17 @@ B2.prototype = {
     return s.j[c] = i, i;
   }
 };
-const G = (c, e, t, n, s) => c.ta(e, t, n, s), r2 = (c, e, t, n, s) => c.tr(e, t, n, s), wl = (c, e, t, n, s) => c.ts(e, t, n, s), S = (c, e, t, n, s) => c.tt(e, t, n, s), F1 = "WORD", Qc = "UWORD", tr = "ASCIINUMERICAL", cr = "ALPHANUMERICAL", T0 = "LOCALHOST", Zc = "TLD", e8 = "UTLD", Ae = "SCHEME", g4 = "SLASH_SCHEME", nn = "NUM", t8 = "WS", sn = "NL", r0 = "OPENBRACE", a0 = "CLOSEBRACE", Ye = "OPENBRACKET", Xe = "CLOSEBRACKET", Qe = "OPENPAREN", Ze = "CLOSEPAREN", e6 = "OPENANGLEBRACKET", t6 = "CLOSEANGLEBRACKET", c6 = "FULLWIDTHLEFTPAREN", n6 = "FULLWIDTHRIGHTPAREN", s6 = "LEFTCORNERBRACKET", l6 = "RIGHTCORNERBRACKET", i6 = "LEFTWHITECORNERBRACKET", o6 = "RIGHTWHITECORNERBRACKET", r6 = "FULLWIDTHLESSTHAN", a6 = "FULLWIDTHGREATERTHAN", f6 = "AMPERSAND", ln = "APOSTROPHE", u6 = "ASTERISK", n3 = "AT", d6 = "BACKSLASH", p6 = "BACKTICK", h6 = "CARET", o3 = "COLON", on = "COMMA", m6 = "DOLLAR", L1 = "DOT", g6 = "EQUALS", rn = "EXCLAMATION", e1 = "HYPHEN", f0 = "PERCENT", L6 = "PIPE", z6 = "PLUS", M6 = "POUND", u0 = "QUERY", an = "QUOTE", nr = "FULLWIDTHMIDDLEDOT", fn = "SEMI", z1 = "SLASH", d0 = "TILDE", C6 = "UNDERSCORE", sr = "EMOJI", y6 = "SYM";
+const G = (c, e, t, n, s) => c.ta(e, t, n, s), r2 = (c, e, t, n, s) => c.tr(e, t, n, s), wl = (c, e, t, n, s) => c.ts(e, t, n, s), S = (c, e, t, n, s) => c.tt(e, t, n, s), F1 = "WORD", Qc = "UWORD", tr = "ASCIINUMERICAL", cr = "ALPHANUMERICAL", A0 = "LOCALHOST", Zc = "TLD", e8 = "UTLD", ke = "SCHEME", g4 = "SLASH_SCHEME", nn = "NUM", t8 = "WS", sn = "NL", r0 = "OPENBRACE", a0 = "CLOSEBRACE", Ye = "OPENBRACKET", Xe = "CLOSEBRACKET", Qe = "OPENPAREN", Ze = "CLOSEPAREN", e6 = "OPENANGLEBRACKET", t6 = "CLOSEANGLEBRACKET", c6 = "FULLWIDTHLEFTPAREN", n6 = "FULLWIDTHRIGHTPAREN", s6 = "LEFTCORNERBRACKET", l6 = "RIGHTCORNERBRACKET", i6 = "LEFTWHITECORNERBRACKET", o6 = "RIGHTWHITECORNERBRACKET", r6 = "FULLWIDTHLESSTHAN", a6 = "FULLWIDTHGREATERTHAN", f6 = "AMPERSAND", ln = "APOSTROPHE", u6 = "ASTERISK", n3 = "AT", d6 = "BACKSLASH", p6 = "BACKTICK", h6 = "CARET", o3 = "COLON", on = "COMMA", m6 = "DOLLAR", L1 = "DOT", g6 = "EQUALS", rn = "EXCLAMATION", e1 = "HYPHEN", f0 = "PERCENT", L6 = "PIPE", z6 = "PLUS", M6 = "POUND", u0 = "QUERY", an = "QUOTE", nr = "FULLWIDTHMIDDLEDOT", fn = "SEMI", z1 = "SLASH", d0 = "TILDE", C6 = "UNDERSCORE", sr = "EMOJI", y6 = "SYM";
 var lr = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   WORD: F1,
   UWORD: Qc,
   ASCIINUMERICAL: tr,
   ALPHANUMERICAL: cr,
-  LOCALHOST: T0,
+  LOCALHOST: A0,
   TLD: Zc,
   UTLD: e8,
-  SCHEME: Ae,
+  SCHEME: ke,
   SLASH_SCHEME: g4,
   NUM: nn,
   WS: t8,
@@ -21797,12 +21796,12 @@ var lr = /* @__PURE__ */ Object.freeze({
 });
 const R1 = /[a-z]/, q4 = new RegExp("\\p{L}", "u"), Wt = new RegExp("\\p{Emoji}", "u"), I1 = /\d/, Ut = /\s/, Nl = "\r", qt = `
 `, BS = "️", FS = "‍", Kt = "￼";
-let me = null, ge = null;
+let he = null, me = null;
 function HS(c = []) {
   const e = {};
   B2.groups = e;
   const t = new B2();
-  me == null && (me = Sl(ES)), ge == null && (ge = Sl(OS)), S(t, "'", ln), S(t, "{", r0), S(t, "}", a0), S(t, "[", Ye), S(t, "]", Xe), S(t, "(", Qe), S(t, ")", Ze), S(t, "<", e6), S(t, ">", t6), S(t, "（", c6), S(t, "）", n6), S(t, "「", s6), S(t, "」", l6), S(t, "『", i6), S(t, "』", o6), S(t, "＜", r6), S(t, "＞", a6), S(t, "&", f6), S(t, "*", u6), S(t, "@", n3), S(t, "`", p6), S(t, "^", h6), S(t, ":", o3), S(t, ",", on), S(t, "$", m6), S(t, ".", L1), S(t, "=", g6), S(t, "!", rn), S(t, "-", e1), S(t, "%", f0), S(t, "|", L6), S(t, "+", z6), S(t, "#", M6), S(t, "?", u0), S(t, '"', an), S(t, "/", z1), S(t, ";", fn), S(t, "~", d0), S(t, "_", C6), S(t, "\\", d6), S(t, "・", nr);
+  he == null && (he = Sl(ES)), me == null && (me = Sl(OS)), S(t, "'", ln), S(t, "{", r0), S(t, "}", a0), S(t, "[", Ye), S(t, "]", Xe), S(t, "(", Qe), S(t, ")", Ze), S(t, "<", e6), S(t, ">", t6), S(t, "（", c6), S(t, "）", n6), S(t, "「", s6), S(t, "」", l6), S(t, "『", i6), S(t, "』", o6), S(t, "＜", r6), S(t, "＞", a6), S(t, "&", f6), S(t, "*", u6), S(t, "@", n3), S(t, "`", p6), S(t, "^", h6), S(t, ":", o3), S(t, ",", on), S(t, "$", m6), S(t, ".", L1), S(t, "=", g6), S(t, "!", rn), S(t, "-", e1), S(t, "%", f0), S(t, "|", L6), S(t, "+", z6), S(t, "#", M6), S(t, "?", u0), S(t, '"', an), S(t, "/", z1), S(t, ";", fn), S(t, "~", d0), S(t, "_", C6), S(t, "\\", d6), S(t, "・", nr);
   const n = r2(t, I1, nn, {
     [Gc]: !0
   });
@@ -21834,17 +21833,17 @@ function HS(c = []) {
   const d = S(u, FS);
   S(d, "#"), r2(d, Wt, u);
   const p = [[R1, i], [I1, s]], h = [[R1, null], [q4, o], [I1, l]];
+  for (let m = 0; m < he.length; m++)
+    e3(t, he[m], Zc, F1, p);
   for (let m = 0; m < me.length; m++)
-    e3(t, me[m], Zc, F1, p);
-  for (let m = 0; m < ge.length; m++)
-    e3(t, ge[m], e8, Qc, h);
+    e3(t, me[m], e8, Qc, h);
   H3(Zc, {
     tld: !0,
     ascii: !0
   }, e), H3(e8, {
     utld: !0,
     alpha: !0
-  }, e), e3(t, "file", Ae, F1, p), e3(t, "mailto", Ae, F1, p), e3(t, "http", g4, F1, p), e3(t, "https", g4, F1, p), e3(t, "ftp", g4, F1, p), e3(t, "ftps", g4, F1, p), H3(Ae, {
+  }, e), e3(t, "file", ke, F1, p), e3(t, "mailto", ke, F1, p), e3(t, "http", g4, F1, p), e3(t, "https", g4, F1, p), e3(t, "ftp", g4, F1, p), e3(t, "ftps", g4, F1, p), H3(ke, {
     scheme: !0,
     ascii: !0
   }, e), H3(g4, {
@@ -21859,7 +21858,7 @@ function HS(c = []) {
     };
     g.indexOf("-") >= 0 ? M[Xc] = !0 : R1.test(g) ? I1.test(g) ? M[o0] = !0 : M[Jc] = !0 : M[Gc] = !0, wl(t, g, g, M);
   }
-  return wl(t, "localhost", T0, {
+  return wl(t, "localhost", A0, {
     ascii: !0
   }), t.jd = new B2(y6), {
     start: t,
@@ -21923,7 +21922,7 @@ function Sl(c) {
   }
   return e;
 }
-const E0 = {
+const T0 = {
   defaultProtocol: "http",
   events: null,
   format: kl,
@@ -21940,7 +21939,7 @@ const E0 = {
   render: null
 };
 function un(c, e = null) {
-  let t = P4({}, E0);
+  let t = P4({}, T0);
   c && (t = P4(t, c instanceof un ? c.o : c));
   const n = t.ignoreTags, s = [];
   for (let l = 0; l < n.length; l++)
@@ -21948,7 +21947,7 @@ function un(c, e = null) {
   this.o = t, e && (this.defaultRender = e), this.ignoreTags = s;
 }
 un.prototype = {
-  o: E0,
+  o: T0,
   /**
    * @type string[]
    */
@@ -21984,7 +21983,7 @@ un.prototype = {
   get(c, e, t) {
     const n = e != null;
     let s = this.o[c];
-    return s && (typeof s == "object" ? (s = t.t in s ? s[t.t] : E0[c], typeof s == "function" && n && (s = s(e, t))) : typeof s == "function" && n && (s = s(e, t.t, t)), s);
+    return s && (typeof s == "object" ? (s = t.t in s ? s[t.t] : T0[c], typeof s == "function" && n && (s = s(e, t))) : typeof s == "function" && n && (s = s(e, t.t, t)), s);
   },
   /**
    * @template {keyof Opts} L
@@ -22073,7 +22072,7 @@ or.prototype = {
   		@method toObject
   	@param {string} [protocol] `'http'` by default
   */
-  toObject(c = E0.defaultProtocol) {
+  toObject(c = T0.defaultProtocol) {
     return {
       type: this.t,
       value: this.toString(),
@@ -22134,7 +22133,7 @@ const Al = Y6("email", {
   toHref() {
     return "mailto:" + this.toString();
   }
-}), Tl = Y6("text"), _S = Y6("nl"), Le = Y6("url", {
+}), Tl = Y6("text"), _S = Y6("nl"), ge = Y6("url", {
   isLink: !0,
   /**
   	Lowercases relevant parts of the domain and adds the protocol if
@@ -22143,7 +22142,7 @@ const Al = Y6("email", {
   		@param {string} [scheme] default scheme (e.g., 'https')
   	@return {string} the full href
   */
-  toHref(c = E0.defaultProtocol) {
+  toHref(c = T0.defaultProtocol) {
     return this.hasProtocol() ? this.v : `${c}://${this.v}`;
   },
   /**
@@ -22152,7 +22151,7 @@ const Al = Y6("email", {
    */
   hasProtocol() {
     const c = this.tk;
-    return c.length >= 2 && c[0].t !== T0 && c[1].t === o3;
+    return c.length >= 2 && c[0].t !== A0 && c[1].t === o3;
   }
 }), Z2 = (c) => new B2(c);
 function $S({
@@ -22171,18 +22170,18 @@ function $S({
   const d = S(u, L1);
   G(d, c.domain, u);
   const p = Z2(Al);
-  G(d, c.tld, p), G(d, c.utld, p), S(a, T0, p);
+  G(d, c.tld, p), G(d, c.utld, p), S(a, A0, p);
   const h = S(u, e1);
   S(h, e1, h), G(h, c.domain, u), G(p, c.domain, u), S(p, L1, d), S(p, e1, h);
   const m = S(p, o3);
   G(m, c.numeric, Al);
   const g = S(i, e1), L = S(i, L1);
   S(g, e1, g), G(g, c.domain, i), G(L, n, l), G(L, c.domain, i);
-  const M = Z2(Le);
+  const M = Z2(ge);
   G(L, c.tld, M), G(L, c.utld, M), G(M, c.domain, i), G(M, n, l), S(M, L1, L), S(M, e1, g), S(M, n3, a);
-  const b = S(M, o3), z = Z2(Le);
+  const b = S(M, o3), z = Z2(ge);
   G(b, c.numeric, z);
-  const x = Z2(Le), C = Z2();
+  const x = Z2(ge), C = Z2();
   G(x, e, x), G(x, t, C), G(C, e, x), G(C, t, C), S(M, z1, x), S(z, z1, x);
   const N = S(o, o3), E = S(r, o3), A = S(E, z1), O = S(A, z1);
   G(o, c.domain, i), S(o, L1, L), S(o, e1, g), G(r, c.domain, i), S(r, L1, L), S(r, e1, g), G(N, c.domain, x), S(N, z1, x), S(N, u0, x), G(O, c.domain, x), G(O, e, x), S(O, z1, x);
@@ -22207,12 +22206,12 @@ function $S({
   for (let U = 0; U < H.length; U++) {
     const [J, X] = H[U], t2 = S(x, J);
     S(C, J, t2), S(t2, X, x);
-    const Q = Z2(Le);
+    const Q = Z2(ge);
     G(t2, e, Q);
     const c2 = Z2();
     G(t2, t), G(Q, e, Q), G(Q, t, c2), G(c2, e, Q), G(c2, t, c2), S(Q, X, x), S(c2, X, x);
   }
-  return S(s, T0, M), S(s, sn, _S), {
+  return S(s, A0, M), S(s, sn, _S), {
     start: s,
     tokens: lr
   };
@@ -23129,13 +23128,13 @@ const lk = new d2("mention"), ik = M2.create({
     };
   },
   addInputRules() {
-    let c = b0({
+    let c = y0({
       find: Dl,
       type: this.type,
       getAttributes: (e) => ({ start: +e[1] }),
       joinPredicate: (e, t) => t.childCount + t.attrs.start === +e[1]
     });
-    return (this.options.keepMarks || this.options.keepAttributes) && (c = b0({
+    return (this.options.keepMarks || this.options.keepAttributes) && (c = y0({
       find: Dl,
       type: this.type,
       keepMarks: this.options.keepMarks,
@@ -23180,11 +23179,11 @@ const lk = new d2("mention"), ik = M2.create({
     };
   },
   addInputRules() {
-    let c = b0({
+    let c = y0({
       find: Rl,
       type: this.type
     });
-    return (this.options.keepMarks || this.options.keepAttributes) && (c = b0({
+    return (this.options.keepMarks || this.options.keepAttributes) && (c = y0({
       find: Rl,
       type: this.type,
       keepMarks: this.options.keepMarks,
@@ -23227,7 +23226,7 @@ const lk = new d2("mention"), ik = M2.create({
   },
   addInputRules() {
     return [
-      b0({
+      y0({
         find: pk,
         type: this.type
       })
@@ -23376,7 +23375,7 @@ class p1 {
     return a > zk && (o = Lk(o, a), i -= a), new p1(o.append(l), i);
   }
   remapping(e, t) {
-    let n = new g0();
+    let n = new m0();
     return this.items.forEach((s, l) => {
       let i = s.mirrorOffset != null && l - s.mirrorOffset >= e ? n.maps.length - s.mirrorOffset : void 0;
       n.appendMap(s.map, i);
@@ -23479,10 +23478,10 @@ function Mk(c, e, t, n) {
   if (t.steps.length == 0)
     return c;
   if (i && i.getMeta(q3))
-    return i.getMeta(q3).redo ? new s3(c.done.addTransform(t, void 0, n, Te(e)), c.undone, Il(t.mapping.maps), c.prevTime, c.prevComposition) : new s3(c.done, c.undone.addTransform(t, void 0, n, Te(e)), null, c.prevTime, c.prevComposition);
+    return i.getMeta(q3).redo ? new s3(c.done.addTransform(t, void 0, n, Ae(e)), c.undone, Il(t.mapping.maps), c.prevTime, c.prevComposition) : new s3(c.done, c.undone.addTransform(t, void 0, n, Ae(e)), null, c.prevTime, c.prevComposition);
   if (t.getMeta("addToHistory") !== !1 && !(i && i.getMeta("addToHistory") === !1)) {
     let o = t.getMeta("composition"), r = c.prevTime == 0 || !i && c.prevComposition != o && (c.prevTime < (t.time || 0) - n.newGroupDelay || !Ck(t, c.prevRanges)), a = i ? Jt(c.prevRanges, t.mapping) : Il(t.mapping.maps);
-    return new s3(c.done.addTransform(t, r ? e.selection.getBookmark() : void 0, n, Te(e)), p1.empty, a, t.time, o ?? c.prevComposition);
+    return new s3(c.done.addTransform(t, r ? e.selection.getBookmark() : void 0, n, Ae(e)), p1.empty, a, t.time, o ?? c.prevComposition);
   } else return (l = t.getMeta("rebased")) ? new s3(c.done.rebased(t, l), c.undone.rebased(t, l), Jt(c.prevRanges, t.mapping), c.prevTime, c.prevComposition) : new s3(c.done.addMaps(t.mapping.maps), c.undone.addMaps(t.mapping.maps), Jt(c.prevRanges, t.mapping), c.prevTime, c.prevComposition);
 }
 function Ck(c, e) {
@@ -23513,14 +23512,14 @@ function Jt(c, e) {
   return t;
 }
 function yk(c, e, t) {
-  let n = Te(e), s = q3.get(e).spec.config, l = (t ? c.undone : c.done).popEvent(e, n);
+  let n = Ae(e), s = q3.get(e).spec.config, l = (t ? c.undone : c.done).popEvent(e, n);
   if (!l)
     return null;
   let i = l.selection.resolve(l.transform.doc), o = (t ? c.done : c.undone).addTransform(l.transform, e.selection.getBookmark(), s, n), r = new s3(t ? o : l.remaining, t ? l.remaining : o, null, 0, -1);
   return l.transform.setSelection(i).setMeta(q3, { redo: t, historyState: r });
 }
 let Yt = !1, Bl = null;
-function Te(c) {
+function Ae(c) {
   let e = c.plugins;
   if (Bl != e) {
     Yt = !1, Bl = e;
@@ -24109,7 +24108,7 @@ function Jk(c, { getFn: e = V.getFn, fieldNormWeight: t = V.fieldNormWeight } = 
   const { keys: n, records: s } = c, l = new pn({ getFn: e, fieldNormWeight: t });
   return l.setKeys(n), l.setIndexRecords(s), l;
 }
-function ze(c, {
+function Le(c, {
   errors: e = 0,
   currentLocation: t = 0,
   expectedLocation: n = 0,
@@ -24147,7 +24146,7 @@ function Xk(c, e, t, {
   const m = o > 1 || r, g = m ? Array(u) : [];
   let L;
   for (; (L = c.indexOf(e, h)) > -1; ) {
-    let N = ze(e, {
+    let N = Le(e, {
       currentLocation: L,
       expectedLocation: d,
       distance: s,
@@ -24165,7 +24164,7 @@ function Xk(c, e, t, {
   for (let N = 0; N < f; N += 1) {
     let E = 0, A = z;
     for (; E < A; )
-      ze(e, {
+      Le(e, {
         errors: N,
         currentLocation: d + A,
         expectedLocation: d,
@@ -24177,7 +24176,7 @@ function Xk(c, e, t, {
     U[H + 1] = (1 << N) - 1;
     for (let X = H; X >= O; X -= 1) {
       let t2 = X - 1, Q = t[c.charAt(t2)];
-      if (m && (g[t2] = +!!Q), U[X] = (U[X + 1] << 1 | 1) & Q, N && (U[X] |= (M[X + 1] | M[X]) << 1 | 1 | M[X + 1]), U[X] & x && (b = ze(e, {
+      if (m && (g[t2] = +!!Q), U[X] = (U[X + 1] << 1 | 1) & Q, N && (U[X] |= (M[X + 1] | M[X]) << 1 | 1 | M[X + 1]), U[X] & x && (b = Le(e, {
         errors: N,
         currentLocation: t2,
         expectedLocation: d,
@@ -24189,7 +24188,7 @@ function Xk(c, e, t, {
         O = Math.max(1, 2 * d - h);
       }
     }
-    if (ze(e, {
+    if (Le(e, {
       errors: N + 1,
       currentLocation: d,
       expectedLocation: d,
@@ -25094,9 +25093,9 @@ function QA(c, e, t, n, s, l) {
           y("div", OA, [
             y("h3", DA, [
               l.computedMedias.length > 1 ? (D(), I(u1, { key: 0 }, [
-                p0(j(l.computedMedias.length + " " + c.translate("mediaLibrary.files", this.locale)), 1)
+                Te(j(l.computedMedias.length + " " + c.translate("mediaLibrary.files", this.locale)), 1)
               ], 64)) : (D(), I(u1, { key: 1 }, [
-                p0(j(l.computedMedias.length + " " + c.translate("mediaLibrary.file", this.locale)), 1)
+                Te(j(l.computedMedias.length + " " + c.translate("mediaLibrary.file", this.locale)), 1)
               ], 64))
             ]),
             j2(y("input", {
@@ -25249,7 +25248,7 @@ function iT(c, e, t, n, s, l) {
           y("option", nT, j(c.translate("toolbar.panel.type.warning", this.locale)), 1),
           y("option", sT, j(c.translate("toolbar.panel.type.error", this.locale)), 1)
         ], 512), [
-          [Me, s.selectedType]
+          [ze, s.selectedType]
         ])
       ])) : q("", !0),
       y("div", lT, [
@@ -29079,11 +29078,11 @@ const uT = {
   prefix: "fas",
   iconName: "cookie",
   icon: [512, 512, [127850], "f563", "M247.2 17c-22.1-3.1-44.6 .9-64.4 11.4l-74 39.5C89.1 78.4 73.2 94.9 63.4 115L26.7 190.6c-9.8 20.1-13 42.9-9.1 64.9l14.5 82.8c3.9 22.1 14.6 42.3 30.7 57.9l60.3 58.4c16.1 15.6 36.6 25.6 58.7 28.7l83 11.7c22.1 3.1 44.6-.9 64.4-11.4l74-39.5c19.7-10.5 35.6-27 45.4-47.2l36.7-75.5c9.8-20.1 13-42.9 9.1-64.9l-14.6-82.8c-3.9-22.1-14.6-42.3-30.7-57.9L388.9 57.5c-16.1-15.6-36.6-25.6-58.7-28.7L247.2 17zM208 144a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM144 336a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm224-64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
-}, H0 = {
+}, F0 = {
   prefix: "fas",
   iconName: "arrow-rotate-left",
   icon: [512, 512, [8634, "arrow-left-rotate", "arrow-rotate-back", "arrow-rotate-backward", "undo"], "f0e2", "M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"]
-}, Rq = H0, Iq = H0, Bq = H0, Fq = H0, cd = {
+}, Rq = F0, Iq = F0, Bq = F0, Fq = F0, cd = {
   prefix: "fas",
   iconName: "hard-drive",
   icon: [512, 512, [128436, "hdd"], "f0a0", "M0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 184.4c-17-15.2-39.4-24.4-64-24.4L64 256c-24.6 0-47 9.2-64 24.4L0 96zM64 288l384 0c35.3 0 64 28.7 64 64l0 64c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64zM320 416a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm128-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"]
@@ -29631,11 +29630,11 @@ const uT = {
   prefix: "fas",
   iconName: "plane-circle-xmark",
   icon: [640, 512, [], "e557", "M256 0c-35 0-64 59.5-64 93.7l0 84.6L8.1 283.4c-5 2.8-8.1 8.2-8.1 13.9l0 65.5c0 10.6 10.2 18.3 20.4 15.4l171.6-49 0 70.9-57.6 43.2c-4 3-6.4 7.8-6.4 12.8l0 42c0 7.8 6.3 14 14 14c1.3 0 2.6-.2 3.9-.5L256 480l110.1 31.5c1.3 .4 2.6 .5 3.9 .5c6 0 11.1-3.7 13.1-9C344.5 470.7 320 422.2 320 368c0-60.6 30.6-114 77.1-145.6L320 178.3l0-84.6C320 59.5 292 0 256 0zM496 512a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm59.3-180.7L518.6 368l36.7 36.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0L496 390.6l-36.7 36.7c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6L473.4 368l-36.7-36.7c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L496 345.4l36.7-36.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"]
-}, V0 = {
+}, H0 = {
   prefix: "fas",
   iconName: "yen-sign",
   icon: [320, 512, [165, "cny", "jpy", "rmb", "yen"], "f157", "M58.6 46.3C48.8 31.5 29 27.6 14.2 37.4S-4.4 67 5.4 81.8L100.2 224 48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l80 0 0 32-80 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l80 0 0 64c0 17.7 14.3 32 32 32s32-14.3 32-32l0-64 80 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-80 0 0-32 80 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-52.2 0L314.6 81.8c9.8-14.7 5.8-34.6-8.9-44.4s-34.6-5.8-44.4 8.9L160 198.3 58.6 46.3z"]
-}, vJ = V0, wJ = V0, NJ = V0, SJ = V0, rt = {
+}, vJ = H0, wJ = H0, NJ = H0, SJ = H0, rt = {
   prefix: "fas",
   iconName: "ruble-sign",
   icon: [384, 512, [8381, "rouble", "rub", "ruble"], "f158", "M96 32C78.3 32 64 46.3 64 64l0 192-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l32 0 0 32-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l32 0 0 32c0 17.7 14.3 32 32 32s32-14.3 32-32l0-32 160 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-160 0 0-32 112 0c79.5 0 144-64.5 144-144s-64.5-144-144-144L96 32zM240 256l-112 0 0-160 112 0c44.2 0 80 35.8 80 80s-35.8 80-80 80z"]
@@ -30207,11 +30206,11 @@ const uT = {
   prefix: "fas",
   iconName: "computer",
   icon: [640, 512, [], "e4e5", "M384 96l0 224L64 320 64 96l320 0zM64 32C28.7 32 0 60.7 0 96L0 320c0 35.3 28.7 64 64 64l117.3 0-10.7 32L96 416c-17.7 0-32 14.3-32 32s14.3 32 32 32l256 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-74.7 0-10.7-32L384 384c35.3 0 64-28.7 64-64l0-224c0-35.3-28.7-64-64-64L64 32zm464 0c-26.5 0-48 21.5-48 48l0 352c0 26.5 21.5 48 48 48l64 0c26.5 0 48-21.5 48-48l0-352c0-26.5-21.5-48-48-48l-64 0zm16 64l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm-16 80c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16zm32 160a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
-}, _0 = {
+}, V0 = {
   prefix: "fas",
   iconName: "xmark",
   icon: [384, 512, [128473, 10005, 10006, 10060, 215, "close", "multiply", "remove", "times"], "f00d", "M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"]
-}, wQ = _0, NQ = _0, SQ = _0, kQ = _0, kp = {
+}, wQ = V0, NQ = V0, SQ = V0, kQ = V0, kp = {
   prefix: "fas",
   iconName: "arrows-up-down-left-right",
   icon: [512, 512, ["arrows"], "f047", "M278.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l9.4-9.4L224 224l-114.7 0 9.4-9.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-9.4-9.4L224 288l0 114.7-9.4-9.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-9.4 9.4L288 288l114.7 0-9.4 9.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l9.4 9.4L288 224l0-114.7 9.4 9.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-64-64z"]
@@ -30275,11 +30274,11 @@ const uT = {
   prefix: "fas",
   iconName: "teeth",
   icon: [576, 512, [], "f62e", "M0 128C0 75 43 32 96 32l384 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96L96 480c-53 0-96-43-96-96L0 128zm176 48l0 56c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-56c0-26.5-21.5-48-48-48s-48 21.5-48 48zm176-48c-26.5 0-48 21.5-48 48l0 56c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-56c0-26.5-21.5-48-48-48zM48 208l0 24c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-24c0-26.5-21.5-48-48-48s-48 21.5-48 48zM96 384c26.5 0 48-21.5 48-48l0-24c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24l0 24c0 26.5 21.5 48 48 48zm80-48c0 26.5 21.5 48 48 48s48-21.5 48-48l0-24c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24l0 24zm176 48c26.5 0 48-21.5 48-48l0-24c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24l0 24c0 26.5 21.5 48 48 48zm80-176l0 24c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-24c0-26.5-21.5-48-48-48s-48 21.5-48 48zm48 176c26.5 0 48-21.5 48-48l0-24c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24l0 24c0 26.5 21.5 48 48 48z"]
-}, $0 = {
+}, _0 = {
   prefix: "fas",
   iconName: "shekel-sign",
   icon: [448, 512, [8362, "ils", "shekel", "sheqel", "sheqel-sign"], "f20b", "M32 32C14.3 32 0 46.3 0 64L0 448c0 17.7 14.3 32 32 32s32-14.3 32-32L64 96l128 0c35.3 0 64 28.7 64 64l0 160c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160c0-70.7-57.3-128-128-128L32 32zM320 480c70.7 0 128-57.3 128-128l0-288c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 288c0 35.3-28.7 64-64 64l-128 0 0-224c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l160 0z"]
-}, UQ = $0, qQ = $0, KQ = $0, GQ = $0, JQ = {
+}, UQ = _0, qQ = _0, KQ = _0, GQ = _0, JQ = {
   prefix: "fas",
   iconName: "map",
   icon: [576, 512, [128506, 62072], "f279", "M384 476.1L192 421.2l0-385.3L384 90.8l0 385.3zm32-1.2l0-386.5L543.1 37.5c15.8-6.3 32.9 5.3 32.9 22.3l0 334.8c0 9.8-6 18.6-15.1 22.3L416 474.8zM15.1 95.1L160 37.2l0 386.5L32.9 474.5C17.1 480.8 0 469.2 0 452.2L0 117.4c0-9.8 6-18.6 15.1-22.3z"]
@@ -31219,11 +31218,11 @@ const uT = {
   prefix: "fas",
   iconName: "person-military-pointing",
   icon: [576, 512, [], "e54a", "M246.9 14.1C234 15.2 224 26 224 39c0 13.8 11.2 25 25 25l151 0c8.8 0 16-7.2 16-16l0-30.6C416 8 408 .7 398.7 1.4L246.9 14.1zM240 112c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16L241.6 96c-1 5.2-1.6 10.5-1.6 16zM72 224c-22.1 0-40 17.9-40 40s17.9 40 40 40l152 0 0 89.4L386.8 230.5c-13.3-4.3-27.3-6.5-41.6-6.5L240 224 72 224zm345.7 20.9L246.6 416 416 416l0-46.3 53.6 90.6c11.2 19 35.8 25.3 54.8 14.1s25.3-35.8 14.1-54.8L462.3 290.8c-11.2-18.9-26.6-34.5-44.6-45.9zM224 448l0 32c0 17.7 14.3 32 32 32l128 0c17.7 0 32-14.3 32-32l0-32-192 0z"]
-}, j0 = {
+}, $0 = {
   prefix: "fas",
   iconName: "building-columns",
   icon: [512, 512, ["bank", "institution", "museum", "university"], "f19c", "M243.4 2.6l-224 96c-14 6-21.8 21-18.7 35.8S16.8 160 32 160l0 8c0 13.3 10.7 24 24 24l400 0c13.3 0 24-10.7 24-24l0-8c15.2 0 28.3-10.7 31.3-25.6s-4.8-29.9-18.7-35.8l-224-96c-8-3.4-17.2-3.4-25.2 0zM128 224l-64 0 0 196.3c-.6 .3-1.2 .7-1.8 1.1l-48 32c-11.7 7.8-17 22.4-12.9 35.9S17.9 512 32 512l448 0c14.1 0 26.5-9.2 30.6-22.7s-1.1-28.1-12.9-35.9l-48-32c-.6-.4-1.2-.7-1.8-1.1L448 224l-64 0 0 192-40 0 0-192-64 0 0 192-48 0 0-192-64 0 0 192-40 0 0-192zM256 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
-}, N42 = j0, S42 = j0, k42 = j0, A42 = j0, T42 = {
+}, N42 = $0, S42 = $0, k42 = $0, A42 = $0, T42 = {
   prefix: "fas",
   iconName: "umbrella",
   icon: [576, 512, [], "f0e9", "M288 0c17.7 0 32 14.3 32 32l0 17.7C451.8 63.4 557.7 161 573.9 285.9c2 15.6-17.3 24.4-27.8 12.7C532.1 283 504.8 272 480 272c-38.7 0-71 27.5-78.4 64.1c-1.7 8.7-8.7 15.9-17.6 15.9s-15.8-7.2-17.6-15.9C359 299.5 326.7 272 288 272s-71 27.5-78.4 64.1c-1.7 8.7-8.7 15.9-17.6 15.9s-15.8-7.2-17.6-15.9C167 299.5 134.7 272 96 272c-24.8 0-52.1 11-66.1 26.7C19.4 310.4 .1 301.5 2.1 285.9C18.3 161 124.2 63.4 256 49.7L256 32c0-17.7 14.3-32 32-32zm0 304c12.3 0 23.5 4.6 32 12.2l0 114.3c0 45-36.5 81.4-81.4 81.4c-30.8 0-59-17.4-72.8-45l-2.3-4.7c-7.9-15.8-1.5-35 14.3-42.9s35-1.5 42.9 14.3l2.3 4.7c3 5.9 9 9.6 15.6 9.6c9.6 0 17.4-7.8 17.4-17.4l0-114.3c8.5-7.6 19.7-12.2 32-12.2z"]
@@ -32459,7 +32458,7 @@ var K42 = {
   faSortAlphaDown: Oq,
   faMoneyBillWheat: Dq,
   faCookie: Pq,
-  faArrowRotateLeft: H0,
+  faArrowRotateLeft: F0,
   faArrowLeftRotate: Rq,
   faArrowRotateBack: Iq,
   faArrowRotateBackward: Bq,
@@ -32658,7 +32657,7 @@ var K42 = {
   faMars: yJ,
   faToilet: bJ,
   faPlaneCircleXmark: xJ,
-  faYenSign: V0,
+  faYenSign: H0,
   faCny: vJ,
   faJpy: wJ,
   faRmb: NJ,
@@ -32875,7 +32874,7 @@ var K42 = {
   faAdd: bQ,
   faExpand: xQ,
   faComputer: vQ,
-  faXmark: _0,
+  faXmark: V0,
   faClose: wQ,
   faMultiply: NQ,
   faRemove: SQ,
@@ -32900,7 +32899,7 @@ var K42 = {
   faEquals: $Q,
   faBlender: jQ,
   faTeeth: WQ,
-  faShekelSign: $0,
+  faShekelSign: _0,
   faIls: UQ,
   faShekel: qQ,
   faSheqel: KQ,
@@ -33230,7 +33229,7 @@ var K42 = {
   faUsersGear: Uh,
   faUsersCog: v42,
   faPersonMilitaryPointing: w42,
-  faBuildingColumns: j0,
+  faBuildingColumns: $0,
   faBank: N42,
   faInstitution: S42,
   faMuseum: k42,
