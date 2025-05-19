@@ -331,7 +331,7 @@
           <div class="insert-image--modal-head-title">
             <h2 style="margin-top: 0">{{ translate('toolbar.image.modal_title', this.locale) }}</h2>
             <span :title="translate('modal.close', this.locale)" class="material-symbols-outlined" @click="imageModal = false">close</span>
--          </div>
+          </div>
         </div>
         <div class="insert-image--modal-content">
           <ul>
