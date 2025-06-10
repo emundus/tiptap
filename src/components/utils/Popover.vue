@@ -17,13 +17,10 @@
 </template>
 
 <script>
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
   name: 'Popover',
-  components: {
-    FontAwesomeIcon
-  },
+  components: {},
   props: {
     // Icon name from Font Awesome
     icon: {

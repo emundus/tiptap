@@ -71,7 +71,6 @@
 
 <script>
 import Modal from '@/components/utils/Modal.vue'
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import translate from "@/mixins/translate.js";
 
 export default {
@@ -85,8 +84,7 @@ export default {
     },
   },
   components: {
-    Modal,
-    FontAwesomeIcon
+    Modal
   },
   mixins: [translate],
 
