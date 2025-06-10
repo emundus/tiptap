@@ -13,7 +13,7 @@
       "import": "./dist/tip-tap-editor.js",
       "require": "./dist/tip-tap-editor.umd.cjs"
     },
-    "./style.css": "./dist/style.css"
+    "./tip-tap-editor.css": "./dist/tip-tap-editor.css"
   },
   "types": "./dist/index.d.ts",
   "scripts": {
