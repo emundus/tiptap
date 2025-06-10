@@ -3,9 +3,6 @@
 
 This project is built using the [TipTap](https://tiptap.dev/) editor framework, designed for creating rich text editors with a flexible, extensible architecture. The project includes custom extensions to enhance the editor's capabilities, allowing developers to easily integrate and customize text editing functionality in their applications.
 
-## Demo
-https://emundus.github.io/tiptap/
-
 ## Features
 ### TipTap Editor
 Core editor functionality built using TipTap, a highly customizable editor based on ProseMirror.

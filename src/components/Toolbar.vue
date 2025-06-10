@@ -451,7 +451,6 @@
 import {Editor, BubbleMenu} from "@tiptap/vue-3";
 import translate from "@/mixins/translate.js";
 
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Popover from "@/components/utils/Popover.vue";
 import Modal from "@/components/utils/Modal.vue";
 
@@ -460,7 +459,6 @@ export default {
   components: {
     Modal,
     Popover,
-    FontAwesomeIcon,
     BubbleMenu
   },
   mixins: [translate],
