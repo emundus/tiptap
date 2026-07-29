@@ -50,7 +50,6 @@ import { TableCell } from '@tiptap/extension-table-cell'
 import { TableHeader } from '@tiptap/extension-table-header'
 import { TableRow } from '@tiptap/extension-table-row'
 import { Link } from '@tiptap/extension-link'
-import { Image } from '@tiptap/extension-image'
 import ImageResize from 'tiptap-extension-resize-image';
 import { Mention } from '@tiptap/extension-mention'
 import { Placeholder } from "@tiptap/extension-placeholder";
@@ -380,10 +379,9 @@ export default {
         TableRow,
         TableHeader,
         TableCell,
-        Image.configure({
+        ImageResize.configure({
           allowBase64: true,
         }),
-        ImageResize,
         Youtube.configure({
           controls: true,
           nocookie: true,
