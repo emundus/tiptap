@@ -381,6 +381,7 @@ export default {
         TableCell,
         ImageResize.configure({
           allowBase64: true,
+          inline: true,
         }),
         Youtube.configure({
           controls: true,
