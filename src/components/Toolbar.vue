@@ -448,7 +448,7 @@
 </template>
 
 <script>
-import {Editor, BubbleMenu} from "@tiptap/vue-3";
+import {Editor} from "@tiptap/vue-3";
 import translate from "@/mixins/translate.js";
 
 import Popover from "@/components/utils/Popover.vue";
@@ -458,8 +458,7 @@ export default {
   name: "Toolbar",
   components: {
     Modal,
-    Popover,
-    BubbleMenu
+    Popover
   },
   mixins: [translate],
 
