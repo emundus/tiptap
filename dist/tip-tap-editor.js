@@ -24158,10 +24158,7 @@ var Yj = /*#__PURE__*/ Nf(Hj, [["render", Jj]]), Xj = vf.create({
 				Hv,
 				Vv,
 				Bv,
-				Yx.configure({
-					allowBase64: !0,
-					inline: !0
-				}),
+				Yx.configure({ allowBase64: !0 }),
 				TE.configure({
 					controls: !0,
 					nocookie: !0

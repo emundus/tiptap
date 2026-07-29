@@ -380,8 +380,7 @@ export default {
         TableHeader,
         TableCell,
         ImageResize.configure({
-          allowBase64: true,
-          inline: true,
+          allowBase64: true
         }),
         Youtube.configure({
           controls: true,
